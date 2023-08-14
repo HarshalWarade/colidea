@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        <%=title%>
+    </title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <link rel="stylesheet" href="<%=link1%>">
+    <link rel="stylesheet" href="<%=link2%>">
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/masonry/">
+
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#"><i class="fa-solid fa-objects-column"></i></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Link</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            Dropdown
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Action</a></li>
+                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/createAccount">CreateAccount</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+                    </li>
+                </ul>
+                <a href="" class="btn btn-dark">Login</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1 style="margin-top: 40px;">Create an account</h1>
+        <hr style="margin-bottom: 40px;">
+        <form class="row g-3" action="/generateAccount" method="post">
+            <div class="col-md-3">
+                <label for="inputfirstName" class="form-label">Enter first name (Ex: John)</label>
+                <input type="text" name="firstName" class="form-control" id="inputfirstName" autocomplete="off" required>
+            </div>
+            <div class="col-md-3">
+                <label for="inputlastName" class="form-label">Enter last name (Ex: Doe)</label>
+                <input type="text" name="lastName" class="form-control" id="inputlastName" autocomplete="off" required>
+            </div>
+            <div class="col-md-6">
+                <label for="inputUsername" class="form-label">Choose an unique username <span id="username-status"></span></label>
+                <input type="text" name="username" class="form-control" id="usernameksd" autocomplete="off" required>
+            </div>
+            <div class="col-md-12">
+                <label for="inputEmail4" class="form-label">Email</label>
+                <input type="email" name="email" class="form-control" id="inputEmail4" autocomplete="off" required>
+            </div>
+            <div class="col-md-6">
+                <label for="inputPassword4" class="form-label">Create a strong password</label>
+                <input type="password" name="password" class="form-control" id="inputPassword4" required>
+            </div>
+            <div class="col-md-6">
+                <label for="inputPassword5" class="form-label">Confirm Password</label>
+                <input type="password" name="confirmPassword" class="form-control" id="inputPassword5" required>
+            </div>
+            <div class="col-6">
+                <label for="inputPhone" class="form-label">Enter your Phone Number</label>
+                <input type="text" name="phone" class="form-control" id="inputPhone" autocomplete="off" required>
+            </div>
+            <div class="col-6">
+                <label for="inputDOB" class="form-label">Date of Birth</label>
+                <input type="date" name="dob" class="form-control" id="inputDOB" required>
+            </div>
+            <div class="col-md-6">
+                <label for="inputState" class="form-label">Choose your Country</label>
+                <select id="inputState" name="country" class="form-select" required>
+                    <option selected>India</option>
+                    <option value="Afghanistan">Afghanistan</option>
+                    <option value="Algeria">Algeria</option>
+                    <option value="Argentina">Argentina</option>
+                    <option value="Australia">Australia</option>
+                    <option value="Azerbaijan">Azerbaijan</option>
+                    <option value="Bangladesh">Bangladesh</option>
+                    <option value="Belarus">Belarus</option>
+                    <option value="Benin">Benin</option>
+                    <option value="Bolivia">Bolivia</option>
+                    <option value="Brazil">Brazil</option>
+                    <option value="Burundi">Burundi</option>
+                    <option value="Cambodia">Cambodia</option>
+                    <option value="Cameroon">Cameroon</option>
+                    <option value="Canada">Canada</option>
+                    <option value="Chad">Chad</option>
+                    <option value="China">China</option>
+                    <option value="Colombia">Colombia</option>
+                    <option value="Côte d'Ivoire">Côte d'Ivoire</option>
+                    <option value="Democratic Republic of the Congo">Democratic Republic of the Congo</option>
+                    <option value="Dominican Republic">Dominican Republic</option>
+                    <option value="Egypt">Egypt</option>
+                    <option value="Ethiopia">Ethiopia</option>
+                    <option value="France">France</option>
+                    <option value="Germany">Germany</option>
+                    <option value="Ghana">Ghana</option>
+                    <option value="Guinea">Guinea</option>
+                    <option value="Haiti">Haiti</option>
+                    <option value="Honduras">Honduras</option>
+                    <option value="Hungary">Hungary</option>
+                    <option value="India">India</option>
+                    <option value="Indonesia">Indonesia</option>
+                    <option value="Iran">Iran</option>
+                    <option value="Iraq">Iraq</option>
+                    <option value="Italy">Italy</option>
+                    <option value="Japan">Japan</option>
+                    <option value="Kenya">Kenya</option>
+                    <option value="Madagascar">Madagascar</option>
+                    <option value="Malawi">Malawi</option>
+                    <option value="Malaysia">Malaysia</option>
+                    <option value="Mexico">Mexico</option>
+                    <option value="Morocco">Morocco</option>
+                    <option value="Mozambique">Mozambique</option>
+                    <option value="Myanmar">Myanmar</option>
+                    <option value="Nepal">Nepal</option>
+                    <option value="Niger">Niger</option>
+                    <option value="Nigeria">Nigeria</option>
+                    <option value="North Korea">North Korea</option>
+                    <option value="Pakistan">Pakistan</option>
+                    <option value="Peru">Peru</option>
+                    <option value="Philippines">Philippines</option>
+                    <option value="Poland">Poland</option>
+                    <option value="Romania">Romania</option>
+                    <option value="Russia">Russia</option>
+                    <option value="Rwanda">Rwanda</option>
+                    <option value="Saudi Arabia">Saudi Arabia</option>
+                    <option value="Senegal">Senegal</option>
+                    <option value="Sierra Leone">Sierra Leone</option>
+                    <option value="South Africa">South Africa</option>
+                    <option value="South Korea">South Korea</option>
+                    <option value="South Sudan">South Sudan</option>
+                    <option value="Spain">Spain</option>
+                    <option value="Sri Lanka">Sri Lanka</option>
+                    <option value="Sudan">Sudan</option>
+                    <option value="Syria">Syria</option>
+                    <option value="Taiwan">Taiwan</option>
+                    <option value="Tajikistan">Tajikistan</option>
+                    <option value="Tanzania">Tanzania</option>
+                    <option value="Thailand">Thailand</option>
+                    <option value="Tunisia">Tunisia</option>
+                    <option value="Turkey">Turkey</option>
+                    <option value="Uganda">Uganda</option>
+                    <option value="Ukraine">Ukraine</option>
+                    <option value="United Arab Emirates">United Arab Emirates</option>
+                    <option value="United Kingdom">United Kingdom</option>
+                    <option value="United States">United States</option>
+                    <option value="Uzbekistan">Uzbekistan</option>
+                    <option value="Venezuela">Venezuela</option>
+                    <option value="Vietnam">Vietnam</option>
+                    <option value="Yemen">Yemen</option>
+                    <option value="Zambia">Zambia</option>
+                    <option value="Zimbabwe">Zimbabwe</option>
+                </select>
+            </div>
+            <div class="col-12 my-5">
+                <button type="submit" id="create-account" class="btn btn-dark">Create Account</button>
+            </div>
+        </form>
+    </div>
+
+    <footer class="bd-footer py-4 py-md-5 mt-5 bg-body-tertiary">
+        <div class="container py-4 py-md-5 px-4 px-md-3 text-body-secondary">
+            <div class="row">
+                <div class="col-lg-3 mb-3">
+                    <a class="d-inline-flex gap-2 align-items-center mb-2 text-body-emphasis text-decoration-none"
+                        href="/" aria-label="Bootstrap">
+                        <i class="fa-solid fa-objects-column"></i>
+                        <span class="fs-5">Colidea</span>
+                    </a>
+                    <ul class="list-unstyled small">
+                        <li class="mb-2">Designed and built with all the love in the world by the <a
+                                href="/">Colidea team</a> with the help of <a
+                                href="https://www.linkedin.com/in/harshalwarade/">our developer</a>.
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-6 col-lg-2 offset-lg-1 mb-3">
+                    <h5>Links</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="/">Home</a></li>
+                        <li class="mb-2"><a href="/">Docs</a></li>
+                        <li class="mb-2"><a href="/">Examples</a></li>
+                        <li class="mb-2"><a href="/">Icons</a></li>
+                        <li class="mb-2"><a href="/">Themes</a></li>
+                        <li class="mb-2"><a href="/">Blog</a></li>
+                        <li class="mb-2"><a href="/" target="_blank" rel="noopener">Swag Store</a></li>
+                    </ul>
+                </div>
+                <div class="col-6 col-lg-2 mb-3">
+                    <h5>Guides</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="/">Getting started</a></li>
+                        <li class="mb-2"><a href="/">Starter template</a></li>
+                        <li class="mb-2"><a href="/">Webpack</a></li>
+                        <li class="mb-2"><a href="/">Parcel</a></li>
+                        <li class="mb-2"><a href="/">Vite</a></li>
+                    </ul>
+                </div>
+                <div class="col-6 col-lg-2 mb-3">
+                    <h5>Projects</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="/" target="_blank" rel="noopener">Bootstrap 5</a></li>
+                        <li class="mb-2"><a href="/" target="_blank" rel="noopener">Bootstrap 4</a></li>
+                        <li class="mb-2"><a href="/" target="_blank" rel="noopener">Icons</a></li>
+                        <li class="mb-2"><a href="/" target="_blank" rel="noopener">RFS</a>
+                        </li>
+                        <li class="mb-2"><a href="/" target="_blank" rel="noopener">Examples repo</a></li>
+                    </ul>
+                </div>
+                <div class="col-6 col-lg-2 mb-3">
+                    <h5>Community</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="/" target="_blank" rel="noopener">Issues</a></li>
+                        <li class="mb-2"><a href="/" target="_blank" rel="noopener">Discussions</a></li>
+                        <li class="mb-2"><a href="/" target="_blank" rel="noopener">Corporate sponsors</a></li>
+                        <li class="mb-2"><a href="/" target="_blank" rel="noopener">Open Collective</a></li>
+                        <li class="mb-2"><a href="/" target="_blank" rel="noopener">Stack Overflow</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js"
+        integrity="sha384-GNFwBvfVxBkLMJpYMOABq3c+d3KnQxudP/mGPkzpZSTYykLBNsZEnG2D9G/X/+7D"
+        crossorigin="anonymous"></script>
+    <!-- <script>
+        const usernameInput = document.getElementById('inputUsername');
+        const usernameStatus = document.getElementById('username-status');
+        const createAccountButton = document.getElementById('create-account');
+
+        usernameInput.addEventListener('input', checkUsernameAvailability);
+
+        function checkUsernameAvailability()
+        {
+            const username = usernameInput.value.trim();
+
+            if (username === '')
+            {
+                usernameStatus.textContent = '';
+                createAccountButton.disabled = true;
+                return;
+            }
+
+            fetch(`/check-username?username=${encodeURIComponent(username)}`)
+                .then(response => response.json())
+                .then(data =>
+                {
+                    if (data.isTaken)
+                    {
+                        usernameStatus.textContent = 'Username is already taken';
+                        usernameStatus.style.color = "#ff0000";
+                        createAccountButton.disabled = true;
+                    } else
+                    {
+                        usernameStatus.textContent = 'Username is available';
+                        usernameStatus.style.color = "#5CB85C";
+                        createAccountButton.disabled = false;
+                    }
+                })
+                .catch(error =>
+                {
+                    console.error('Error checking username availability:', error);
+                });
+        }
+    </script> -->
+</body>
+
+</html>

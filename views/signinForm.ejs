@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Colidea</title>
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+        integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/mainHome.css">
+    <link rel="stylesheet" href="/css/loginGeneral.css">
+    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.2.1/css/all.css">
+    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.2.1/css/sharp-solid.css">
+</head>
+
+<body>
+    <div style="position: absolute; width: 60%; opacity: 0.2; z-index: -1;">
+        <svg viewBox="0 0 800 500" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink" width="100%" id="blobSvg">
+            <g transform="translate(-255, -56)">
+                <path class="blob"
+                    d="M404.5,326Q338,402,244.5,411.5Q151,421,123,335.5Q95,250,131,178Q167,106,262,85.5Q357,65,414,157.5Q471,250,404.5,326Z"
+                    fill="#d1d8e0"></path>
+            </g>
+        </svg>
+    </div>
+    <div class="container my-4"
+        style="height: 50vh; display: flex; justify-content: center; align-items: center; flex-direction: column; gap: 3rem;">
+        <h2>Log In</h2>
+        <form class="row g-3" action="/signinrequest" method="post">
+            <div class="col-md-12">
+                <label for="inputEmail4" class="form-label">Enter email here*</label>
+                <input type="email" name="email" class="form-control" id="inputEmail4" autocomplete="off" required>
+            </div>
+            <div class="col-md-12">
+                <label for="inputPassword4" class="form-label">Enter your password*</label>
+                <input type="password" name="password" class="form-control" id="inputPassword4" required>
+            </div>
+            <div class="col-md-12">
+                <button class="btn btn-dark" type="submit">LogIn</button>
+            </div>
+        </form>
+    </div>
+
+    <footer class="bd-footer py-4 py-md-5 mt-5 bg-body-tertiary">
+        <div class="container py-4 py-md-5 px-4 px-md-3 text-body-secondary">
+            <div class="row">
+                <div class="col-lg-3 mb-3">
+                    <a class="d-inline-flex gap-2 align-items-center mb-2 text-body-emphasis text-decoration-none"
+                        href="/" aria-label="Bootstrap">
+                        <i class="fa-solid fa-objects-column"></i>
+                        <span class="fs-5">Colidea</span>
+                    </a>
+                    <ul class="list-unstyled small">
+                        <li class="mb-2">Designed and built with all the love in the world by the <a
+                                href="/">Colidea team</a> with the help of <a
+                                href="https://www.linkedin.com/in/harshalwarade/">our developer</a>.
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-6 col-lg-2 offset-lg-1 mb-3">
+                    <h5>Links</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="/">Home</a></li>
+                        <li class="mb-2"><a href="/">Docs</a></li>
+                        <li class="mb-2"><a href="/">Examples</a></li>
+                        <li class="mb-2"><a href="/">Icons</a></li>
+                        <li class="mb-2"><a href="/">Themes</a></li>
+                        <li class="mb-2"><a href="/">Blog</a></li>
+                        <li class="mb-2"><a href="/" target="_blank" rel="noopener">Swag Store</a></li>
+                    </ul>
+                </div>
+                <div class="col-6 col-lg-2 mb-3">
+                    <h5>Guides</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="/">Getting started</a></li>
+                        <li class="mb-2"><a href="/">Starter template</a></li>
+                        <li class="mb-2"><a href="/">Webpack</a></li>
+                        <li class="mb-2"><a href="/">Parcel</a></li>
+                        <li class="mb-2"><a href="/">Vite</a></li>
+                    </ul>
+                </div>
+                <div class="col-6 col-lg-2 mb-3">
+                    <h5>Projects</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="/" target="_blank" rel="noopener">Bootstrap 5</a></li>
+                        <li class="mb-2"><a href="/" target="_blank" rel="noopener">Bootstrap 4</a></li>
+                        <li class="mb-2"><a href="/" target="_blank" rel="noopener">Icons</a></li>
+                        <li class="mb-2"><a href="/" target="_blank" rel="noopener">RFS</a>
+                        </li>
+                        <li class="mb-2"><a href="/" target="_blank" rel="noopener">Examples repo</a></li>
+                    </ul>
+                </div>
+                <div class="col-6 col-lg-2 mb-3">
+                    <h5>Community</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="/" target="_blank" rel="noopener">Issues</a></li>
+                        <li class="mb-2"><a href="/" target="_blank" rel="noopener">Discussions</a></li>
+                        <li class="mb-2"><a href="/" target="_blank" rel="noopener">Corporate sponsors</a></li>
+                        <li class="mb-2"><a href="/" target="_blank" rel="noopener">Open Collective</a></li>
+                        <li class="mb-2"><a href="/" target="_blank" rel="noopener">Stack Overflow</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+    <script src="logic.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous">
+        </script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</body>
+
+</html>

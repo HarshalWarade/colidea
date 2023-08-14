@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        <%=title%> | Profile
+    </title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <link rel="stylesheet" href="<%=link1%>">
+    <link rel="stylesheet" href="<%=link2%>">
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/masonry/">
+    <link rel="stylesheet" href="/css/output.css">
+</head>
+
+<body class="bg-gray-900">
+    <nav class="bg-gray-800 shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex">
+                    <a href="/dashboard" class="flex-shrink-0 flex items-center">
+                        <i class="text-gray-50 text-xl fa-solid fa-objects-column"></i>
+                        <span class="text-gray-300 text-lg ml-2 font-semibold">ProfileHills</span>
+                    </a>
+                </div>
+                <form action="/search" class="flex items-center" style="width: 40%;">
+                    <input class="h-9 bg-slate-700 rounded-md my-auto w-full outline-none pl-4 text-slate-300"
+                        type="search" name="query" id="searchInput" placeholder="Type here to search..." autocomplete="off" required>
+                    <button id="searchButton"
+                        class="px-4 h-9 py-2 bg-slate-900 rounded-md text-slate-400 text-center">search</button>
+                </form>
+                <div class="flex items-center">
+                    <div class="hidden md:block">
+                        <a href="/following-blogs"
+                            class="text-gray-300 hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium">Home</a>
+                        <a href="#"
+                            class="text-gray-300 hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium">About</a>
+                        <a href="#"
+                            class="text-gray-300 hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium">Services</a>
+                        <a href="/dashboard"
+                            class="bg-gray-700 text-gray-300 hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium">Dashboard</a>
+                    </div>
+                </div>
+                <div class="flex md:hidden">
+                    <button class="text-gray-300 hover:bg-gray-700 p-2 rounded-md">
+                        <svg class="h-6 w-6" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            viewBox="0 0 24 24" stroke="currentColor">
+                            <path d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="upperSection h-72 grid grid-cols-3 gap-3" style="border-bottom: 1px solid #1f2630;">
+        <div class="png flex flex-col items-center justify-center gap-4">
+            <i class="fa-duotone fa-user text-slate-400 text-8xl"></i>
+            <div>
+                <div class="someBtns flex flex-col gap-3">
+                    <a href="/edit-profile"
+                        class="bg-slate-800 text-slate-400 px-5 py-2 rounded-md hover:bg-slate-500 hover:text-slate-100"
+                        style="transition: 0.4s ease; text-align: center;">Edit Profile</a>
+                </div>
+                <!-- Only show the Follow button for other profiles -->
+                <% if (user._id.toString() !==rootUser._id.toString()) { %>
+                    <form action="/follow/<%= user._id %>" method="post">
+                        <button class="bg-blue-500 text-white px-4 py-2 ml-3 rounded-md">Follow</button>
+                    </form>
+                    <% } %>
+            </div>
+            <button id="addBlogButton" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-700">Add
+                Blog</button>
+
+            <!-- Add this modal structure at the bottom of the file, outside the main content -->
+            <div id="addBlogModal"
+                class="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50 hidden">
+                <div class="w-1/2 bg-slate-700 p-6 rounded-md shadow-md">
+                    <h2 class="text-2xl font-semibold mb-4 text-slate-200">Add a New Blog</h2>
+                    <form action="/create-blog" method="POST">
+                        <div class="mb-3">
+                            <label for="modalBlogTitle"
+                                class="block text-gray-300 text-sm font-medium mb-1">Title</label>
+                            <input type="text" id="modalBlogTitle" name="title"
+                                class="w-full text-gray-400 bg-slate-800 px-3 py-2 rounded-md outline-none" autocomplete="off" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="modalBlogContent"
+                                class="block text-gray-300 text-sm font-medium mb-1">Content</label>
+                            <textarea id="modalBlogContent" name="content"
+                                class="w-full px-3 py-2 text-gray-400 bg-slate-800 outline-none rounded-md" rows="5"
+                                required></textarea>
+                        </div>
+                        <button type="submit" class="bg-blue-700 text-white px-4 py-2 rounded-md hover:bg-blue-800"
+                            style="transition: 0.4s ease">Post
+                            Blog</button>
+                        <button type="button" id="closeModalButton"
+                            class="bg-blue-700 text-white px-4 py-2 rounded-md hover:bg-blue-800"
+                            style="transition: 0.4s ease">Cancel</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="bio gap-3" style="display: flex; justify-content: center; flex-direction: column;">
+            <h2 class="text-slate-300 text-xl">
+                <%=myFirstName%>
+                    <%=myLastName%> <span class="text-sm">
+                            <%=myCountry%>
+                        </span>
+            </h2>
+            <h2 class="text-slate-300 text-md">@<%=user.username%>
+
+                    <%if(verified==true) {%>
+                        <i class="text-blue-500 fa-solid fa-badge-check" style="cursor: pointer;"
+                            title="Developer | Verified"></i>
+                        <% } %>
+
+
+
+            </h2>
+
+            <div class="collegeAdding text-slate-300">
+                <% if (!user.college) { %>
+                    <form action="/add-college" class="flex gap-4" method="post">
+                        <textarea name="college" class="bg-slate-700 py-2 w-full px-2 outline-none rounded-md"
+                            placeholder="Add your college here. Don't hit enter for new line"></textarea>
+                        <button type="submit">Add</button>
+                    </form>
+                    <% } else { %>
+                        <p>
+                            <%= user.college %>
+                        </p>
+                        <% } %>
+            </div>
+
+
+            <div class="bioAdding text-slate-300">
+                <% if (!user.bio) { %>
+                    <form action="/add-bio" class="flex gap-4" method="post">
+                        <textarea name="bio" class="bg-slate-700 py-2 w-full px-2 outline-none rounded-md"
+                            placeholder="Add your bio / About here. Don't hit enter for new line"></textarea>
+                        <button type="submit">Add</button>
+                    </form>
+                    <% } else { %>
+                        <p>
+                            <%= user.bio %>
+                        </p>
+                        <% } %>
+            </div>
+        </div>
+        <div class="settings" style="display: flex; justify-content: center; flex-direction: column;">
+            <div class="funTab" style="display: flex; justify-content: space-evenly;">
+                <div class="followers flex gap-2 flex-col">
+                    <h1 class="text-slate-500 font-bold">Followers</h1>
+                    <h1 class="text-slate-300 text-xl">
+                        <%=followersCount%>
+                    </h1>
+                </div>
+                <div class="following flex gap-2 flex-col">
+                    <h1 class="text-slate-500 font-bold">Followings</h1>
+                    <h1></h1>
+                    <h1 class="text-slate-300 text-xl">
+                        <%=followingsCount%>
+                    </h1>
+                </div>
+                <div class="posts flex gap-2 flex-col">
+                    <h1 class="text-slate-500 font-bold">Posts</h1>
+                    <h1></h1>
+                    <h1 class="text-slate-300 text-xl">
+                        <%=blogsCount%>
+                    </h1>
+                </div>
+            </div>
+            <div class="publicView"
+                style="display: flex; justify-content: center; align-items: center; margin-top: 20px;">
+                <a href="/profile/<%=user._id%>" class="text-slate-300 underline">Public View</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <% if (userBlogs.length===0) { %>
+            <p class="text-slate-700 text-center mt-16 text-3xl">You haven't posted any blogs yet.</p>
+            <% } else { %>
+                <h1 class="h-20 text-2xl text-slate-500 font-bold"
+                    style="display: flex; justify-content: center; align-items: center;">My Blogs</h1>
+                    <div class="blogPosts mt-8 w-full px-4 mx-auto grid grid-cols-3 gap-4">
+                        <% userBlogs.forEach(blog=> { %>
+                            <div class="blogPost bg-slate-700 rounded-md mb-6 p-4">
+                                <h2 class="text-slate-200 text-xl font-bold">
+                                    <%= blog.title %>
+                                </h2>
+                                <p class="text-slate-300 mt-2">
+                                    <%= blog.content %>
+                                </p>
+                                <div class="interactionSection flex justify-between mt-4">
+                                    <form action="/like/<%= blog._id %>" method="POST">
+                                        <% if (blog.likes.includes(rootUser._id.toString())) { %>
+                                            <!-- Show Unlike button if the user has already liked the blog -->
+                                            <button class="text-white rounded-md py-2" type="submit">
+                                                <i class="fa-solid fa-thumbs-up"></i> <%= blog.likes.length %>
+                                            </button>
+                                            <% } else { %>
+                                                <!-- Show Like button if the user hasn't liked the blog -->
+                                                <button class="text-slate-300 rounded-md py-2" type="submit">
+                                                    <i class="fa-light fa-thumbs-up"></i> <%= blog.likes.length %>
+                                                </button>
+                                                <% } %>
+                                    </form>
+                                    <button class="bg-blue-800 text-slate-300 rounded-md px-3 py-2 showCommentsButton"
+                                        data-blog-id="<%= blog._id %>">
+                                        Show Comments (<%= blog.comments.length %>)
+                                    </button>
+                                </div>
+            
+                                <div class="commentsSection mt-4" style="display: none;">
+                                    <% blog.comments.forEach(comment=> { %>
+                                        <div class="comment bg-slate-800 rounded-md p-2 mt-2">
+                                            <a href="/profile/<%= comment.author._id %>" class="text-slate-600">@<%=
+                                                    comment.author.username %></a>
+                                            <p class="text-slate-300 mt-1">
+                                                <%= comment.text %>
+                                            </p>
+                                        </div>
+                                        <% }); %>
+                                            <form action="/comment/<%= blog._id %>" method="POST" class="commentForm mt-2">
+                                                <input type="text" name="comment"
+                                                    class="w-full h-10 bg-slate-700 rounded-md px-3 py-2 text-slate-300"
+                                                    placeholder="Write a comment..." autocomplete="off" required>
+                                                <button class="bg-blue-800 text-slate-300 rounded-md px-3 py-2 ml-2"
+                                                    type="submit">Post</button>
+                                            </form>
+                                </div>
+                            </div>
+                            <% }); %>
+                    </div>
+                <% } %>
+    </div>
+
+
+    <script>
+        // JavaScript to manage the modal
+        const addBlogButton = document.getElementById('addBlogButton');
+        const addBlogModal = document.getElementById('addBlogModal');
+        const closeModalButton = document.getElementById('closeModalButton');
+
+        addBlogButton.addEventListener('click', () =>
+        {
+            addBlogModal.classList.remove('hidden');
+        });
+
+        closeModalButton.addEventListener('click', () =>
+        {
+            addBlogModal.classList.add('hidden');
+        });
+    </script>
+
+
+<script>
+    const showCommentsButtons = document.querySelectorAll('.showCommentsButton');
+
+    showCommentsButtons.forEach(button =>
+    {
+        button.addEventListener('click', () =>
+        {
+            const blogId = button.getAttribute('data-blog-id');
+            const commentsSection = document.querySelector(`.commentsSection[data-blog-id="${blogId}"]`);
+            commentsSection.style.display = 'block';
+            button.style.display = 'none';
+        });
+    });
+</script>
+
+
+
+    <script>
+        function confirmDelete(blogId)
+        {
+            const confirmResult = alert("Are you sure you want to delete this blog? If not, then refresh the page! Do not click on OK!");
+            if (!confirmResult)
+            {
+                fetch('/dashboard', {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                })
+            }
+            if (confirmResult)
+            {
+                // User confirmed, send the delete request
+                fetch(`/delete-blog/${blogId}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                })
+                    .then(response => response.json())
+                    .then(data =>
+                    {
+                        alert(data.message); // Show success message
+                        window.location.reload(); // Reload the page to update the blog list
+                    })
+                    .catch(error =>
+                    {
+                        console.error('Error deleting blog:', error);
+                        alert('An error occurred while deleting the blog.');
+                    });
+            }
+        }
+    </script>
+
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () =>
+        {
+            const commentButtons = document.querySelectorAll('[id^="commentButton_"]');
+
+            commentButtons.forEach(button =>
+            {
+                const blogId = button.id.split('_')[1];
+                const commentForm = document.getElementById(`commentForm_${blogId}`);
+
+                button.addEventListener('click', () =>
+                {
+                    commentForm.classList.toggle('hidden');
+                });
+            });
+        });
+    </script>
+
+
+
+    <script>
+        const searchInput = document.getElementById('searchInput');
+        const searchButton = document.getElementById('searchButton');
+
+        searchButton.addEventListener('click', () =>
+        {
+            const query = searchInput.value;
+            if (query.trim() !== '')
+            {
+                // Redirect or handle the search here
+                window.location.href = `/search?query=${encodeURIComponent(query)}`;
+            }
+        });
+    </script>
+</body>
+
+</html>

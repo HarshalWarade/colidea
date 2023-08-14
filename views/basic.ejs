@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        <%=title%>
+    </title>
+    <!-- <link rel="stylesheet" href="/css/output.css"> -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <link rel="stylesheet" href="<%=link1%>">
+    <link rel="stylesheet" href="<%=link2%>">
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/masonry/">
+
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/"><i class="fa-solid fa-objects-column"></i></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Link</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            Dropdown
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/">Action</a></li>
+                            <li><a class="dropdown-item" href="/">Another action</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="/">Something else here</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/createAccount">CreateAccount</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+                    </li>
+                </ul>
+                <a href="/signin" class="btn btn-dark">Login</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container px-4 py-5 my-5 text-center">
+        <h1 class="display-5 fw-bold text-body-emphasis">Welcome to Colidea <i
+                class="fa-solid fa-objects-column"></i> </h1>
+        <hr>
+        <br>
+        <div class="col-lg-9 mx-auto" style="text-align: justify;">
+            <p class="mb-4" style="line-height: 30px;">Colidea is a dynamic platform created by a college student, exclusively for students. It's a space dedicated to writing and sharing insightful blogs about the knowledge gained in the technology field. Our platform features top-rated students who passionately share their skills and offer valuable references to help fellow students excel.
+
+                Join Colidea to explore a world of tech expertise, where students can voice their insights and amplify their impact.</p>
+            <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+                <a href="/createAccount" class="btn btn-dark px-4 gap-3">Create Account</a>
+                <a href="/learnMore" class="btn btn-outline-secondary px-4">Learn More</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container px-4 py-5">
+        <h2 class="pb-2 border-bottom">Lorem, ipsum dolor.</h2>
+
+        <div class="row row-cols-1 row-cols-md-2 align-items-md-center g-5 py-5">
+            <div class="col d-flex flex-column align-items-start gap-2">
+                <h2 class="fw-bold text-body-emphasis">Lorem ipsum dolor sit amet consectetur adipisicing.</h2>
+                <p class="text-body-secondary">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Minima adipisci
+                    mollitia cum fugiat recusandae quis, nemo qui rerum. Obcaecati, minus?</p>
+                <a href="#" class="btn btn-dark btn-lg">Read Blogs</a>
+            </div>
+
+            <div class="col">
+                <div class="row row-cols-1 row-cols-sm-2 g-4">
+                    <div class="col d-flex flex-column gap-2">
+                        <div
+                            class="feature-icon-small d-inline-flex align-items-center justify-content-center text-bg-dark bg-gradient fs-4">
+                            <svg class="bi" width="1em" height="1em">
+                            </svg>
+                        </div>
+                        <h4 class="fw-semibold mb-0 text-body-emphasis">Feature</h4>
+                        <p class="text-body-secondary">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Velit,
+                            quod.</p>
+                    </div>
+
+                    <div class="col d-flex flex-column gap-2">
+                        <div
+                            class="feature-icon-small d-inline-flex align-items-center justify-content-center text-bg-dark bg-gradient fs-4">
+                            <svg class="bi" width="1em" height="1em">
+                                <use xlink:href="#gear-fill"></use>
+                            </svg>
+                        </div>
+                        <h4 class="fw-semibold mb-0 text-body-emphasis">Feature</h4>
+                        <p class="text-body-secondary">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Velit,
+                            quod.</p>
+                    </div>
+
+                    <div class="col d-flex flex-column gap-2">
+                        <div
+                            class="feature-icon-small d-inline-flex align-items-center justify-content-center text-bg-dark bg-gradient fs-4">
+                            <svg class="bi" width="1em" height="1em">
+                                <use xlink:href="#speedometer"></use>
+                            </svg>
+                        </div>
+                        <h4 class="fw-semibold mb-0 text-body-emphasis">Feature</h4>
+                        <p class="text-body-secondary">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Velit,
+                            quod.</p>
+                    </div>
+
+                    <div class="col d-flex flex-column gap-2">
+                        <div
+                            class="feature-icon-small d-inline-flex align-items-center justify-content-center text-bg-dark bg-gradient fs-4">
+                            <svg class="bi" width="1em" height="1em">
+                                <use xlink:href="#table"></use>
+                            </svg>
+                        </div>
+                        <h4 class="fw-semibold mb-0 text-body-emphasis">Feature</h4>
+                        <p class="text-body-secondary">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Velit,
+                            quod.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <main class="container py-5">
+        <h1>Our Trending Blogs</h1>
+
+        <hr class="my-5">
+
+        <div class="row" data-masonry="{&quot;percentPosition&quot;: true }"
+            style="position: relative; height: 1851.8px;">
+            <div class="col-sm-6 col-lg-4 mb-4" style="position: absolute; left: 0%; top: 0px;">
+                <div class="card">
+                    <svg class="bd-placeholder-img card-img-top" width="100%" height="200"
+                        xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap"
+                        preserveAspectRatio="xMidYMid slice" focusable="false">
+                        <title>Placeholder</title>
+                        <rect width="100%" height="100%" fill="#868e96"></rect><text x="50%" y="50%" fill="#dee2e6"
+                            dy=".3em">Image cap</text>
+                    </svg>
+                    <div class="card-body">
+                        <h5 class="card-title">Card title that wraps to a new line</h5>
+                        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to
+                            additional content. This content is a little bit longer.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-4 mb-4" style="position: absolute; left: 0%; top: 361.6px;">
+                <div class="card p-3">
+                    <figure class="p-3 mb-0">
+                        <blockquote class="blockquote">
+                            <p>A well-known quote, contained in a blockquote element.</p>
+                        </blockquote>
+                        <figcaption class="blockquote-footer mb-0 text-body-secondary">
+                            Someone famous in <cite title="Source Title">Source Title</cite>
+                        </figcaption>
+                    </figure>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-4 mb-4" style="position: absolute; left: 0%; top: 532.2px;">
+                <div class="card">
+                    <svg class="bd-placeholder-img card-img-top" width="100%" height="200"
+                        xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap"
+                        preserveAspectRatio="xMidYMid slice" focusable="false">
+                        <title>Placeholder</title>
+                        <rect width="100%" height="100%" fill="#868e96"></rect><text x="50%" y="50%" fill="#dee2e6"
+                            dy=".3em">Image cap</text>
+                    </svg>
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">This card has supporting text below as a natural lead-in to additional
+                            content.</p>
+                        <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-4 mb-4" style="position: absolute; left: 0%; top: 909.8px;">
+                <div class="card text-bg-dark text-center p-3">
+                    <figure class="mb-0">
+                        <blockquote class="blockquote">
+                            <p>A well-known quote, contained in a blockquote element.</p>
+                        </blockquote>
+                        <figcaption class="blockquote-footer mb-0 text-white">
+                            Someone famous in <cite title="Source Title">Source Title</cite>
+                        </figcaption>
+                    </figure>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-4 mb-4" style="position: absolute; left: 0%; top: 1048.4px;">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">This card has a regular title and short paragraph of text below it.</p>
+                        <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-4 mb-4" style="position: absolute; left: 0%; top: 1226px;">
+                <div class="card">
+                    <svg class="bd-placeholder-img card-img" width="100%" height="260"
+                        xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Card image"
+                        preserveAspectRatio="xMidYMid slice" focusable="false">
+                        <title>Placeholder</title>
+                        <rect width="100%" height="100%" fill="#868e96"></rect><text x="50%" y="50%" fill="#dee2e6"
+                            dy=".3em">Card image</text>
+                    </svg>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-4 mb-4" style="position: absolute; left: 0%; top: 1511.6px;">
+                <div class="card p-3 text-end">
+                    <figure class="mb-0">
+                        <blockquote class="blockquote">
+                            <p>A well-known quote, contained in a blockquote element.</p>
+                        </blockquote>
+                        <figcaption class="blockquote-footer mb-0 text-body-secondary">
+                            Someone famous in <cite title="Source Title">Source Title</cite>
+                        </figcaption>
+                    </figure>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-4 mb-4" style="position: absolute; left: 0%; top: 1650.2px;">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">This is another card with title and supporting text below. This card has
+                            some additional content to make it slightly taller overall.</p>
+                        <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="bd-footer py-4 py-md-5 mt-5 bg-body-tertiary">
+        <div class="container py-4 py-md-5 px-4 px-md-3 text-body-secondary">
+            <div class="row">
+                <div class="col-lg-3 mb-3">
+                    <a class="d-inline-flex gap-2 align-items-center mb-2 text-body-emphasis text-decoration-none" href="/"
+                        aria-label="Bootstrap">
+                        <i class="fa-solid fa-objects-column"></i>
+                        <span class="fs-5">Colidea</span>
+                    </a>
+                    <ul class="list-unstyled small">
+                        <li class="mb-2">Designed and built with all the love in the world by the <a
+                                href="/">Colidea team</a> with the help of <a
+                                href="https://www.linkedin.com/in/harshalwarade/">our developer</a>.
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-6 col-lg-2 offset-lg-1 mb-3">
+                    <h5>Links</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="/">Home</a></li>
+                        <li class="mb-2"><a href="/">Docs</a></li>
+                        <li class="mb-2"><a href="/">Examples</a></li>
+                        <li class="mb-2"><a href="/">Icons</a></li>
+                        <li class="mb-2"><a href="/">Themes</a></li>
+                        <li class="mb-2"><a href="/">Blog</a></li>
+                        <li class="mb-2"><a href="/" target="_blank"
+                                rel="noopener">Swag Store</a></li>
+                    </ul>
+                </div>
+                <div class="col-6 col-lg-2 mb-3">
+                    <h5>Guides</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="/">Getting started</a></li>
+                        <li class="mb-2"><a href="/">Starter template</a></li>
+                        <li class="mb-2"><a href="/">Webpack</a></li>
+                        <li class="mb-2"><a href="/">Parcel</a></li>
+                        <li class="mb-2"><a href="/">Vite</a></li>
+                    </ul>
+                </div>
+                <div class="col-6 col-lg-2 mb-3">
+                    <h5>Projects</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="/" target="_blank"
+                                rel="noopener">Bootstrap 5</a></li>
+                        <li class="mb-2"><a href="/" target="_blank"
+                                rel="noopener">Bootstrap 4</a></li>
+                        <li class="mb-2"><a href="/" target="_blank"
+                                rel="noopener">Icons</a></li>
+                        <li class="mb-2"><a href="/" target="_blank" rel="noopener">RFS</a>
+                        </li>
+                        <li class="mb-2"><a href="/" target="_blank"
+                                rel="noopener">Examples repo</a></li>
+                    </ul>
+                </div>
+                <div class="col-6 col-lg-2 mb-3">
+                    <h5>Community</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="/" target="_blank"
+                                rel="noopener">Issues</a></li>
+                        <li class="mb-2"><a href="/" target="_blank"
+                                rel="noopener">Discussions</a></li>
+                        <li class="mb-2"><a href="/" target="_blank"
+                                rel="noopener">Corporate sponsors</a></li>
+                        <li class="mb-2"><a href="/" target="_blank"
+                                rel="noopener">Open Collective</a></li>
+                        <li class="mb-2"><a href="/"
+                                target="_blank" rel="noopener">Stack Overflow</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous">
+        </script>
+    <script src="/docs/5.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+        crossorigin="anonymous"></script>
+
+    <script async src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js"
+        integrity="sha384-GNFwBvfVxBkLMJpYMOABq3c+d3KnQxudP/mGPkzpZSTYykLBNsZEnG2D9G/X/+7D"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
