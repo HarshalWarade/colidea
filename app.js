@@ -247,11 +247,11 @@ app.post('/create-blog', authenticate, async (req, res) => {
             author: user._id
         });
 
-        console.log(newBlogPost); // Log the new blog post object
+        // console.log(newBlogPost); 
         
         await newBlogPost.save();
 
-        console.log("Blog post saved successfully!");
+        // console.log("Blog post saved successfully!");
         
         return res.redirect('/dashboard'); // Redirect back to the dashboard after creating the blog post
     } catch (error) {
@@ -476,7 +476,8 @@ app.get('/detailed-view/:postId', authenticate, async (req, res) => {
             const commentDoc = await BlogPost.populate(comment, { path: 'author', select: 'username' });
             comment.set('author', commentDoc.author); // Set the populated author to the comment
         }
-
+        // console.log(blog.comments[3].author._id);
+        // console.log(req.rootUser._id);
         return res.status(200).render('detailedView', { blog, title: blog.title, rootUser: req.rootUser });
     } catch (error) {
         console.error("Error fetching detailed view:", error);
@@ -493,6 +494,66 @@ app.get('/explore', authenticate, async function(req, res) {
         return res.status(422).send(`Error in fetching the page due to ${err}`);
     };
 });
+
+
+// deletions
+
+
+app.post('/delete-blog/:postId', authenticate, async (req, res) => {
+    try {
+        const postId = req.params.postId;
+        const user = req.rootUser; // Get the logged-in user
+
+        // Find the post by ID and ensure that the logged-in user is the author
+        const post = await BlogPost.findOneAndRemove({ _id: postId, author: user._id });
+
+        if (!post) {
+            return res.status(404).json({ error: "Post not found or you are not authorized to delete it." });
+        }
+
+        // Remove this post's ID from users' likes array
+        await User.updateMany({ _id: { $in: post.likes } }, { $pull: { likes: post._id } });
+
+        res.status(200).json({ message: "Post deleted successfully" });
+    } catch (error) {
+        console.error("Error deleting post:", error);
+        return res.status(500).json({ error: "Internal server error" });
+    }
+});
+
+// deleting comment
+app.post('/delete-comment/:postId/:commentId', authenticate, async (req, res) => {
+    try {
+        const postId = req.params.postId;
+        const commentId = req.params.commentId;
+        const user = req.rootUser; // Get the logged-in user
+
+        // Find the post by ID
+        const post = await BlogPost.findById(postId);
+
+        if (!post) {
+            return res.status(404).json({ error: "Post not found" });
+        }
+
+        // Find the comment by ID and ensure that the logged-in user is the author
+        const comment = post.comments.id(commentId);
+        if (!comment || !comment.author.equals(user._id)) {
+            return res.status(404).json({ error: "Comment not found or you are not authorized to delete it." });
+        }
+
+        // Remove the comment from the comments array using .pull()
+        post.comments.pull(commentId);
+        await post.save();
+
+        res.status(200).json({ message: "Comment deleted successfully" });
+    } catch (error) {
+        console.error("Error deleting comment:", error);
+        return res.status(500).json({ error: "Internal server error" });
+    }
+});
+
+
+
 
 app.listen(port, (err) => {
     if (err) {
