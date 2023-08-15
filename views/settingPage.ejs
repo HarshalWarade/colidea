@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        Settings
+    </title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.2.1/css/all.css">
+    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.2.1/css/sharp-solid.css">
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/masonry/">
+    <link rel="stylesheet" href="/css/output.css">
+</head>
+
+<body class="bg-gray-900">
+    <nav class="bg-gray-800 shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex">
+                    <a href="/dashboard" class="flex-shrink-0 flex items-center">
+                        <i class="text-gray-50 text-xl fa-solid fa-objects-column"></i>
+                        <span class="text-gray-300 text-lg ml-2 font-semibold">Colidea</span>
+                    </a>
+                </div>
+                <form action="/search" class="flex items-center" style="width: 40%;">
+                    <input class="h-9 bg-slate-700 rounded-md my-auto w-full outline-none pl-4 text-slate-300"
+                        type="search" name="query" id="searchInput" placeholder="Type here to search..."
+                        autocomplete="off" required>
+                    <button id="searchButton"
+                        class="px-4 h-9 py-2 bg-slate-900 rounded-md text-slate-400 text-center">search</button>
+                </form>
+                <div class="flex items-center">
+                    <div class="hidden md:block">
+                        <a href="/following-blogs"
+                            class="text-gray-300 hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium">Home</a>
+                        <a href="#"
+                            class="text-gray-300 hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium">About</a>
+                        <a href="/explore"
+                            class="text-gray-300 hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium">Explore</a>
+                        <a href="/edit-profile"
+                            class="bg-gray-700 text-gray-300 hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium">Edit Profile</a>
+                    </div>
+                </div>
+                <div class="flex md:hidden">
+                    <button class="text-gray-300 hover:bg-gray-700 p-2 rounded-md">
+                        <svg class="h-6 w-6" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            viewBox="0 0 24 24" stroke="currentColor">
+                            <path d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+
+
+    <form class="grid grid-cols-2 mt-10 w-2/3 mx-auto gap-6 p-6 bg-gray-800 rounded-lg shadow-md" action="/update-settings" method="POST">
+        <div class="flex flex-col gap-2">
+            <label for="firstName" class="block text-sm font-medium text-gray-300">First Name:</label>
+            <input type="text" id="firstName" name="firstName" value="<%= user.firstName %>" required
+                class="mt-1 outline-none pl-3 h-10 block w-full shadow-sm sm:text-sm bg-gray-700 text-gray-200 border-gray-600 rounded-md">
+        </div>
+        <div class="flex flex-col gap-2">
+            <label for="lastName" class="block text-sm font-medium text-gray-300">Last Name:</label>
+            <input type="text" id="lastName" name="lastName" value="<%= user.lastName %>" required
+                class="mt-1 outline-none pl-3 h-10 block w-full shadow-sm sm:text-sm bg-gray-700 text-gray-200 border-gray-600 rounded-md">
+        </div>
+        <div class="flex flex-col gap-2">
+            <label for="inputCountry" class="block text-sm font-medium text-gray-700">Country:</label>
+            <select id="inputCountry" name="country" class="mt-1 text-gray-200 bg-gray-700 outline-none pl-3 h-10 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" required>
+                <option value="India" <%= user.country === 'India' ? 'selected' : '' %>>India</option>
+                <option value="Afghanistan" <%= user.country === 'Afghanistan' ? 'selected' : '' %>>Afghanistan</option>
+                <option value="Algeria" <%= user.country === 'Algeria' ? 'selected' : '' %>>Algeria</option>
+                <option value="Argentina" <%= user.country === 'Argentina' ? 'selected' : '' %>>Argentina</option>
+                <option value="Australia" <%= user.country === 'Australia' ? 'selected' : '' %>>Australia</option>
+                <option value="Azerbaijan" <%= user.country === 'Azerbaijan' ? 'selected' : '' %>>Azerbaijan</option>
+                <option value="Bangladesh" <%= user.country === 'Bangladesh' ? 'selected' : '' %>>Bangladesh</option>
+                <option value="Belarus" <%= user.country === 'Belarus' ? 'selected' : '' %>>Belarus</option>
+                <option value="Benin" <%= user.country === 'Benin' ? 'selected' : '' %>>Benin</option>
+                <option value="Bolivia" <%= user.country === 'Bolivia' ? 'selected' : '' %>>Bolivia</option>
+                <option value="Brazil" <%= user.country === 'Brazil' ? 'selected' : '' %>>Brazil</option>
+                <option value="Burundi" <%= user.country === 'Burundi' ? 'selected' : '' %>>Burundi</option>
+                <option value="Cambodia" <%= user.country === 'Cambodia' ? 'selected' : '' %>>Cambodia</option>
+                <option value="Cameroon" <%= user.country === 'Cameroon' ? 'selected' : '' %>>Cameroon</option>
+                <option value="Canada" <%= user.country === 'Canada' ? 'selected' : '' %>>Canada</option>
+                <option value="Chad" <%= user.country === 'Chad' ? 'selected' : '' %>>Chad</option>
+                <option value="China" <%= user.country === 'China' ? 'selected' : '' %>>China</option>
+                <option value="Colombia" <%= user.country === 'Colombia' ? 'selected' : '' %>>Colombia</option>
+                <option value="Côte d'Ivoire" <%= user.country === "Côte d'Ivoire" ? 'selected' : '' %>>Côte d'Ivoire</option>
+                <option value="Democratic Republic of the Congo" <%= user.country === 'Democratic Republic of the Congo' ? 'selected' : '' %>>Democratic Republic of the Congo</option>
+                <option value="Dominican Republic" <%= user.country === 'Dominican Republic' ? 'selected' : '' %>>Dominican Republic</option>
+                <option value="Egypt" <%= user.country === 'Egypt' ? 'selected' : '' %>>Egypt</option>
+                <option value="Ethiopia" <%= user.country === 'Ethiopia' ? 'selected' : '' %>>Ethiopia</option>
+                <option value="France" <%= user.country === 'France' ? 'selected' : '' %>>France</option>
+                <option value="Germany" <%= user.country === 'Germany' ? 'selected' : '' %>>Germany</option>
+                <option value="Ghana" <%= user.country === 'Ghana' ? 'selected' : '' %>>Ghana</option>
+                <option value="Guinea" <%= user.country === 'Guinea' ? 'selected' : '' %>>Guinea</option>
+                <option value="Haiti" <%= user.country === 'Haiti' ? 'selected' : '' %>>Haiti</option>
+                <option value="Honduras" <%= user.country === 'Honduras' ? 'selected' : '' %>>Honduras</option>
+                <option value="Hungary" <%= user.country === 'Hungary' ? 'selected' : '' %>>Hungary</option>
+                <option value="India" <%= user.country === 'India' ? 'selected' : '' %>>India</option>
+                <option value="Indonesia" <%= user.country === 'Indonesia' ? 'selected' : '' %>>Indonesia</option>
+                <option value="Iran" <%= user.country === 'Iran' ? 'selected' : '' %>>Iran</option>
+                <option value="Iraq" <%= user.country === 'Iraq' ? 'selected' : '' %>>Iraq</option>
+                <option value="Italy" <%= user.country === 'Italy' ? 'selected' : '' %>>Italy</option>
+                <option value="Japan" <%= user.country === 'Japan' ? 'selected' : '' %>>Japan</option>
+                <option value="Kenya" <%= user.country === 'Kenya' ? 'selected' : '' %>>Kenya</option>
+                <option value="Madagascar" <%= user.country === 'Madagascar' ? 'selected' : '' %>>Madagascar</option>
+                <option value="Malawi" <%= user.country === 'Malawi' ? 'selected' : '' %>>Malawi</option>
+                <option value="Malaysia" <%= user.country === 'Malaysia' ? 'selected' : '' %>>Malaysia</option>
+                <option value="Mexico" <%= user.country === 'Mexico' ? 'selected' : '' %>>Mexico</option>
+                <option value="Morocco" <%= user.country === 'Morocco' ? 'selected' : '' %>>Morocco</option>
+                <option value="Mozambique" <%= user.country === 'Mozambique' ? 'selected' : '' %>>Mozambique</option>
+                <option value="Myanmar" <%= user.country === 'Myanmar' ? 'selected' : '' %>>Myanmar</option>
+                <option value="Nepal" <%= user.country === 'Nepal' ? 'selected' : '' %>>Nepal</option>
+                <option value="Niger" <%= user.country === 'Niger' ? 'selected' : '' %>>Niger</option>
+                <option value="Nigeria" <%= user.country === 'Nigeria' ? 'selected' : '' %>>Nigeria</option>
+                <option value="North Korea" <%= user.country === 'North Korea' ? 'selected' : '' %>>North Korea</option>
+                <option value="Pakistan" <%= user.country === 'Pakistan' ? 'selected' : '' %>>Pakistan</option>
+                <option value="Peru" <%= user.country === 'Peru' ? 'selected' : '' %>>Peru</option>
+                <option value="Philippines" <%= user.country === 'Philippines' ? 'selected' : '' %>>Philippines</option>
+                <option value="Poland" <%= user.country === 'Poland' ? 'selected' : '' %>>Poland</option>
+                <option value="Romania" <%= user.country === 'Romania' ? 'selected' : '' %>>Romania</option>
+                <option value="Russia" <%= user.country === 'Russia' ? 'selected' : '' %>>Russia</option>
+                <option value="Rwanda" <%= user.country === 'Rwanda' ? 'selected' : '' %>>Rwanda</option>
+                <option value="Saudi Arabia" <%= user.country === 'Saudi Arabia' ? 'selected' : '' %>>Saudi Arabia</option>
+                <option value="Senegal" <%= user.country === 'Senegal' ? 'selected' : '' %>>Senegal</option>
+                <option value="Sierra Leone" <%= user.country === 'Sierra Leone' ? 'selected' : '' %>>Sierra Leone</option>
+                <option value="South Africa" <%= user.country === 'South Africa' ? 'selected' : '' %>>South Africa</option>
+                <option value="South Korea" <%= user.country === 'South Korea' ? 'selected' : '' %>>South Korea</option>
+                <option value="South Sudan" <%= user.country === 'South Sudan' ? 'selected' : '' %>>South Sudan</option>
+                <option value="Spain" <%= user.country === 'Spain' ? 'selected' : '' %>>Spain</option>
+                <option value="Sri Lanka" <%= user.country === 'Sri Lanka' ? 'selected' : '' %>>Sri Lanka</option>
+                <option value="Sudan" <%= user.country === 'Sudan' ? 'selected' : '' %>>Sudan</option>
+                <option value="Syria" <%= user.country === 'Syria' ? 'selected' : '' %>>Syria</option>
+                <option value="Taiwan" <%= user.country === 'Taiwan' ? 'selected' : '' %>>Taiwan</option>
+                <option value="Tajikistan" <%= user.country === 'Tajikistan' ? 'selected' : '' %>>Tajikistan</option>
+                <option value="Tanzania" <%= user.country === 'Tanzania' ? 'selected' : '' %>>Tanzania</option>
+                <option value="Thailand" <%= user.country === 'Thailand' ? 'selected' : '' %>>Thailand</option>
+                <option value="Tunisia" <%= user.country === 'Tunisia' ? 'selected' : '' %>>Tunisia</option>
+                <option value="Turkey" <%= user.country === 'Turkey' ? 'selected' : '' %>>Turkey</option>
+                <option value="Uganda" <%= user.country === 'Uganda' ? 'selected' : '' %>>Uganda</option>
+                <option value="Ukraine" <%= user.country === 'Ukraine' ? 'selected' : '' %>>Ukraine</option>
+                <option value="United Arab Emirates" <%= user.country === 'United Arab Emirates' ? 'selected' : '' %>>United Arab Emirates</option>
+                <option value="United Kingdom" <%= user.country === 'United Kingdom' ? 'selected' : '' %>>United Kingdom</option>
+                <option value="United States" <%= user.country === 'United States' ? 'selected' : '' %>>United States</option>
+                <option value="Uzbekistan" <%= user.country === 'Uzbekistan' ? 'selected' : '' %>>Uzbekistan</option>
+                <option value="Venezuela" <%= user.country === 'Venezuela' ? 'selected' : '' %>>Venezuela</option>
+                <option value="Vietnam" <%= user.country === 'Vietnam' ? 'selected' : '' %>>Vietnam</option>
+                <option value="Yemen" <%= user.country === 'Yemen' ? 'selected' : '' %>>Yemen</option>
+                <option value="Zambia" <%= user.country === 'Zambia' ? 'selected' : '' %>>Zambia</option>
+                <option value="Zimbabwe" <%= user.country === 'Zimbabwe' ? 'selected' : '' %>>Zimbabwe</option>
+            </select>
+        </div>
+        <div class="flex flex-col gap-2">
+            <label for="email" class="block text-sm font-medium text-gray-300">Email:</label>
+            <input type="email" id="email" name="email" value="<%= user.email %>" required
+                class="mt-1 outline-none pl-3 h-10 block w-full shadow-sm sm:text-sm bg-gray-700 text-gray-200 border-gray-600 rounded-md">
+        </div>
+        <div class="flex flex-col gap-2" style="width: 100%;">
+            <label for="college" class="block text-sm font-medium text-gray-300">College:</label>
+            <input type="text" id="college" name="college" value="<%= user.college %>" required
+                class="mt-1 outline-none pl-3 h-10 block w-full shadow-sm sm:text-sm bg-gray-700 text-gray-200 border-gray-600 rounded-md" style="width: 100%;">
+        </div>
+        <div class="col-span-2">
+            <label for="bio" class="block text-sm font-medium text-gray-300">Bio:</label>
+            <textarea id="bio" name="bio"
+                class="mt-1 outline-none p-3 h-20 block w-full shadow-sm sm:text-sm bg-gray-700 text-gray-200 border-gray-600 rounded-md"><%= user.bio %></textarea>
+        </div>
+        <div class="col-span-2">
+            <button type="submit"
+                class="w-full bg-indigo-600 text-white p-2 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                Save Changes
+            </button>
+        </div>
+    </form>
+    
+    
+</body>
+</html>

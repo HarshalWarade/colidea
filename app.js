@@ -553,7 +553,34 @@ app.post('/delete-comment/:postId/:commentId', authenticate, async (req, res) =>
 });
 
 
+// change settings
 
+app.get('/edit-profile', authenticate, async function(req, res) {
+    const user = req.rootUser;
+    return res.status(200).render('settingPage', {user: user});
+})
+
+app.post('/update-settings', authenticate, async (req, res) => {
+    try {
+        const user = req.rootUser;
+        const { firstName, lastName, country, email, college, bio } = req.body;
+
+        // Update the user's information in the database
+        user.firstName = firstName;
+        user.lastName = lastName;
+        user.country = country;
+        user.email = email;
+        user.college = college;
+        user.bio = bio;
+        
+        await user.save();
+
+        res.redirect('/dashboard');
+    } catch (error) {
+        console.error('Error updating settings:', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+});
 
 app.listen(port, (err) => {
     if (err) {
