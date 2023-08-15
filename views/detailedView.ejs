@@ -95,13 +95,17 @@
             <div class="grid gap-2">
                 <% blog.comments.forEach(comment=> { %>
                     <div class="bg-slate-800 rounded-md p-3">
-                        <a href="/profile/<%= comment.author._id %>" class="text-slate-400 text-sm">@<%= comment.author.username
+                        <%if(comment.author === null) {%>
+                            <p class="text-slate-200">No comments yet!</p>
+                        <%} else {%>
+                            <a href="/profile/<%= comment.author._id %>" class="text-slate-400 text-sm">@<%= comment.author.username
                                 %></a>
                         <p class="text-slate-300">
                             <%= comment.text %>
                         </p>
                         <p class="float-right text-slate-600">Date: <%= comment.createdAt %>
                         </p>
+                        <%}%>
                     </div>
                     <% }); %>
             </div>
