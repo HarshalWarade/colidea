@@ -349,7 +349,7 @@ app.post('/comment/:postId', authenticate, async (req, res) => {
         // Save the updated blog post
         await blogPost.save();
 
-        res.redirect(`/detailed-view/${postId}`); // Redirect to the blog post's detailed view
+        res.redirect(req.headers.referer); // Redirect to the blog post's detailed view
     } catch (error) {
         console.error(error);
         res.status(500).send('Internal server error');
@@ -365,8 +365,11 @@ app.get('/following-blogs', authenticate, async (req, res) => {
 
         // Find blogs of the following users
         const followingBlogs = await BlogPost.find({ author: { $in: followingUsers.map(u => u._id) } }).populate('author');
-
+        const everyOne = await User.find({});
+        // console.log(everyOne[0]);
         res.render('following-blogs', {
+            rootUser: req.rootUser,
+            everyOne: everyOne,
             title: 'Following Blogs',
             followingBlogs
         });
@@ -481,7 +484,15 @@ app.get('/detailed-view/:postId', authenticate, async (req, res) => {
     }
 });
 
-
+app.get('/explore', authenticate, async function(req, res) {
+    try {
+        const everyOne = await User.find({});
+        return res.status(200).render('explorePeople', {everyOne: everyOne});
+    } catch (err) {
+        console.log(err);
+        return res.status(422).send(`Error in fetching the page due to ${err}`);
+    };
+});
 
 app.listen(port, (err) => {
     if (err) {

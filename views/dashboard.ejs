@@ -37,8 +37,8 @@
                             class="text-gray-300 hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium">Home</a>
                         <a href="#"
                             class="text-gray-300 hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium">About</a>
-                        <a href="#"
-                            class="text-gray-300 hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium">Services</a>
+                        <a href="/explore"
+                            class="text-gray-300 hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium">Explore</a>
                         <a href="/dashboard"
                             class="bg-gray-700 text-gray-300 hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium">Dashboard</a>
                     </div>
@@ -124,8 +124,7 @@
             <div class="collegeAdding text-slate-300">
                 <% if (!user.college) { %>
                     <form action="/add-college" class="flex gap-4" method="post">
-                        <textarea name="college" class="bg-slate-700 py-2 w-full px-2 outline-none rounded-md"
-                            placeholder="Add your college here. Don't hit enter for new line"></textarea>
+                        <textarea name="college" class="bg-slate-700 py-2 w-full px-2 outline-none rounded-md" placeholder="Add your college here. Don't hit enter for new line" >Prof. Ram Meghe College of Engineering and Management Badnera-Amravati</textarea>
                         <button type="submit">Add</button>
                     </form>
                     <% } else { %>
@@ -209,10 +208,12 @@
                                                 </button>
                                                 <% } %>
                                     </form>
-                                    <button class="bg-blue-800 text-slate-300 rounded-md px-3 py-2 showCommentsButton"
+                                    <form action="/detailed-view/<%= blog._id %>" method="get">
+                                        <button class="bg-blue-800 text-slate-300 rounded-md px-3 py-2 showCommentsButton"
                                         data-blog-id="<%= blog._id %>">
                                         Show Comments (<%= blog.comments.length %>)
-                                    </button>
+                                        </button>
+                                    </form>
                                 </div>
             
                                 <div class="commentsSection mt-4" style="display: none;">
