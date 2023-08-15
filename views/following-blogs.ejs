@@ -139,14 +139,15 @@
 
 
     <div id="commentModal" class="modal">
-        <div class="modal-content bg-slate-800 rounded-md p-4">
+        <div class="modal-content bg-slate-800 rounded-md p-4 mx-auto my-1/2">
             <span class="close text-white cursor-pointer">&times;</span>
-            <form id="commentFormModal" method="POST" class="commentForm mt-4">
-                <input type="text" name="comment" class="w-full h-10 bg-slate-700 rounded-md px-3 py-2 text-slate-300"
-                    placeholder="Write a comment..." autocomplete="off" required>
-                <!-- Add an input field for the blog post ID -->
+            <form id="commentFormModal" method="POST" class="commentForm mt-4 flex">
+                <input type="text" name="comment" class="w-11/12 h-10 bg-slate-700 rounded-md px-3 py-2 text-slate-300 outline-none"
+                    placeholder="Comment here..." autocomplete="off" required>
                 <input type="hidden" name="blogId" id="commentBlogId">
-                <button class="bg-blue-800 text-slate-300 rounded-md px-3 py-2 mt-2" type="submit">Post</button>
+                <div class="w-1/12 flex items-center justify-center">
+                    <button class="text-slate-300 rounded-md px-3 py-2" type="submit"><i class="fa-duotone fa-paper-plane"></i></button>
+                </div>
             </form>
         </div>
     </div>

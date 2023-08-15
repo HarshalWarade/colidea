@@ -86,15 +86,36 @@
                 </button>
             <% } %>
         </form>
-        <button id="showCommentsButton" class="bg-blue-800 text-slate-300 rounded-md px-3 py-2">
-            Show All Comments
-        </button>
+        <button class="text-blue-300 rounded-md px-3 py-2 commentButton"
+        data-blog-id="<%= blog._id %>">
+        <i class="fa-light fa-comment-dots text-lg"></i>
+    </button>
     </div>
+
+
+    <div id="commentModal" class="modal">
+        <div class="modal-content bg-slate-800 rounded-md p-4 mx-auto my-1/2">
+            <span class="close text-white cursor-pointer">&times;</span>
+            <form id="commentFormModal" method="POST" class="commentForm mt-4 flex">
+                <input type="text" name="comment" class="w-11/12 h-10 bg-slate-700 rounded-md px-3 py-2 text-slate-300 outline-none"
+                    placeholder="Comment here..." autocomplete="off" required>
+                <input type="hidden" name="blogId" id="commentBlogId">
+                <div class="w-1/12 flex items-center justify-center">
+                    <button class="text-slate-300 rounded-md px-3 py-2" type="submit"><i class="fa-duotone fa-paper-plane"></i></button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    
+    
+
+
     <div class="mx-auto w-4/6" style="margin-top: 20px;">
         <div id="commentsSection" style="display: block;">
             <div class="grid gap-2 mb-7">
                 <% blog.comments.forEach(comment=> { %>
-                    <div class="bg-slate-800 rounded-md p-3">
+                    <div class="bg-slate-800 rounded-md p-3 grid grid-rows-3">
                         <a href="/profile/<%= comment.author._id %>" class="text-slate-400 text-sm">@<%= comment.author.username
                                 %>
                                 <%if(comment.author.username==='hdwarade') {%>
@@ -108,13 +129,15 @@
                         <p class="text-slate-300">
                             <%= comment.text %>
                         </p>
-                        <p class="float-right text-slate-600">Date: <%= comment.createdAt %>
+                        <div class="flex justify-end">
+                            <p class="text-slate-600">Date: <%= comment.createdAt %>
+                                <% if (comment.author._id.toString() === rootUser._id.toString()) { %>
+                                    <button class="text-blue-300 py-1 rounded-md hover:text-red-400" onclick="deleteComment('<%= blog._id %>', '<%= comment._id %>')">
+                                        <i class="fa-thin fa-trash-can"></i>
+                                    </button>
+                                <% } %>
+                        </div>
                         </p>
-                        <% if (comment.author._id.toString() === rootUser._id.toString()) { %>
-                            <button class="text-red-500 py-1 rounded-md hover:text-red-700" onclick="deleteComment('<%= blog._id %>', '<%= comment._id %>')">
-                                <i class="fas fa-trash-alt"></i>
-                            </button>
-                        <% } %>
                     </div>
                     <% }); %>
             </div>
@@ -159,6 +182,36 @@
         }
     </script>
     
+
+    <!-- comment Modal -->
+
+
+    <script>
+        const commentButtons = document.querySelectorAll('.commentButton');
+        const commentModal = document.getElementById('commentModal');
+        const commentFormModal = document.getElementById('commentFormModal');
+        const commentBlogIdInput = document.getElementById('commentBlogId');
+        const closeCommentModal = commentModal.querySelector('.close');
+    
+        commentButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const blogId = button.getAttribute('data-blog-id');
+                commentBlogIdInput.value = blogId;
+                commentFormModal.action = `/comment/${blogId}`;
+                commentModal.style.display = 'block';
+            });
+        });
+    
+        closeCommentModal.addEventListener('click', () => {
+            commentModal.style.display = 'none';
+        });
+    
+        window.addEventListener('click', (event) => {
+            if (event.target === commentModal) {
+                commentModal.style.display = 'none';
+            }
+        });
+    </script>
 
 
 </body>
