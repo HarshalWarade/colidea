@@ -54,7 +54,29 @@
         </div>
     </nav>
 
-    <h1 class="text-slate-400 h-20 flex pl-7 text-xl font-bold items-center">People you may know</h1>
+    <h1 class="text-slate-400 h-20 flex pl-7 text-xl font-bold items-center">People you may know from "<%=userCollege%>"</h1>
+    <div class="fetchers grid grid-cols-6 gap-4 p-7">
+        <% collegeFriends.forEach(user=> { %>
+            <div class="user-card bg-slate-700 pl-2 gap-3 py-4 rounded-md" style="display: flex; align-items: center; justify-content: center; flex-direction: column;">
+                <i class="fa-duotone fa-user bg-slate-400 h-16 w-16 text-slate-800 text-3xl" style="display: flex; justify-content: center; align-items: center; border-radius: 50%;"></i>
+                <a href="/profile/<%= user._id %>" style="display: flex; justify-content: center; align-items: center; flex-direction: column;">
+                    <p class="text-slate-100"><%=user.firstName%> <%=user.lastName%></p>
+                    <%if(user.username === 'hdwarade') {%>
+                    <div class="flex gap-2">
+                        <p class="flex justify-center items-center text-slate-400">@<%= user.username %> (<%= user.country %>)</p>
+                        <i class="flex justify-center items-center text-blue-500 fa-solid fa-badge-check" style="cursor: pointer;"
+                        title="Developer | Verified"></i>
+                    </div>
+                    <% } else { %>
+                    <p class="text-slate-400">@<%= user.username %> (<%= user.country %>)</p>
+                    <%}%>
+                    <p class="text-slate-500">Followers: <%=user.followers.length%></p>
+                </a>
+            </div>
+        <% }) %>
+    </div>
+
+    <h1 class="text-slate-400 h-20 flex pl-7 text-xl font-bold items-center">Other users</h1>
 
     <div class="fetchers grid grid-cols-6 gap-4 p-7">
         <% everyOne.forEach(user=> { %>

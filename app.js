@@ -487,8 +487,10 @@ app.get('/detailed-view/:postId', authenticate, async (req, res) => {
 
 app.get('/explore', authenticate, async function(req, res) {
     try {
-        const everyOne = await User.find({});
-        return res.status(200).render('explorePeople', {everyOne: everyOne});
+        const everyOne = await User.find({ college: { $ne: req.rootUser.college } });
+        const userCollege = req.rootUser.college;
+        const fromSameCollege = await User.find({college: userCollege});
+        return res.status(200).render('explorePeople', {everyOne: everyOne, collegeFriends: fromSameCollege, userCollege: userCollege});
     } catch (err) {
         console.log(err);
         return res.status(422).send(`Error in fetching the page due to ${err}`);
