@@ -16,7 +16,6 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded());
 
-// secret directory
 dotenv.config({ path: 'config.env' });
 
 const port = process.env.PORT;
@@ -31,7 +30,6 @@ app.set('views', path.join(__dirname, 'views'));
 app.get('/', async function(req, res) {
     return res.status(200).render('basic', {title: "Welcome | Colidea", link1: process.env.LINK1, link2: process.env.LINK2});
 })
-// route towards creating account
 app.get('/createAccount', async function(req, res) {
     return res.status(200).render('createAccount', {title: "Create Account | Colidea", link1: process.env.LINK1, link2: process.env.LINK2});
 })
@@ -101,8 +99,6 @@ app.post('/signinrequest', async function (req, res) {
               return res.status(400).json({ error: "Wrong credentials!" });
             }
             
-        // const token = jwt.sign({ _id: foundUser._id }, process.env.SECRETKEY);
-        
         
         res.cookie("jwtoken", token, {
             expires: new Date(Date.now() + 432000000),
@@ -116,7 +112,6 @@ app.post('/signinrequest', async function (req, res) {
         return res.status(400).json({ error: "Wrong credentials!" });
     }
     } catch (error) {
-      // console.log(`SignIn error: ${error}`);
       return res.status(500).json({ error: "Internal server error" });
     }
 });
@@ -143,9 +138,9 @@ app.get('/dashboard', authenticate, async function(req, res) {
             myLastName: user.lastName,
             myUsername: user.username,
             myCountry: user.country,
-            rootUser: user, // Pass the user object to the template
+            rootUser: user,
             user: user,
-            followersCount: user.followers.length, // Also pass the user object to the template
+            followersCount: user.followers.length,
             followingsCount: user.followings.length,
             bio: user.bio,
             blogsCount: userBlogs.length,
@@ -169,7 +164,7 @@ app.post('/add-bio', authenticate, async (req, res) => {
             { new: true }
         );
 
-        return res.redirect('/dashboard'); // Redirect to the dashboard after updating the bio
+        return res.redirect('/dashboard');
     } catch (error) {
         console.error("Error adding bio:", error);
         res.status(500).json({ error: "Internal server error" });
@@ -188,7 +183,7 @@ app.post('/add-college', authenticate, async (req, res) => {
             { new: true }
         );
 
-        return res.redirect('/dashboard'); // Redirect to the dashboard after updating the college
+        return res.redirect('/dashboard');
     } catch (error) {
         console.error("Error adding college:", error);
         res.status(500).json({ error: "Internal server error" });
@@ -209,7 +204,7 @@ app.get("/search", authenticate, async (req, res) => {
 
         return res.status(200).render("searchResults", {
             results,
-            rootUser: req.rootUser, // Ensure req.user is correctly set
+            rootUser: req.rootUser,
             title: "Search Results",link1: process.env.LINK1, link2: process.env.LINK2,
         });
     } catch (error) {
@@ -227,8 +222,8 @@ app.get("/search", authenticate, async (req, res) => {
 app.get('/search-results', authenticate, async (req, res) => {
     try {
         const query = req.query.query;
-        const results = await User.find({ username: query }); // Replace this with your actual query logic
-        res.render('searchResults', { results, user: req.rootUser, link1: process.env.LINK1, link2: process.env.LINK2 }); // Pass the rootUser to the template
+        const results = await User.find({ username: query });
+        res.render('searchResults', { results, user: req.rootUser, link1: process.env.LINK1, link2: process.env.LINK2 });
     } catch (err) {
         console.log(err);
         return res.send(err);
@@ -238,22 +233,22 @@ app.get('/search-results', authenticate, async (req, res) => {
 app.post('/create-blog', authenticate, async (req, res) => {
     try {
         const { title, content } = req.body;
-        const user = req.rootUser; // Get the logged-in user
+        const user = req.rootUser;
         
-        // Create a new blog post
+        
         const newBlogPost = new BlogPost({
             title,
             content,
             author: user._id
         });
 
-        // console.log(newBlogPost); 
+        
         
         await newBlogPost.save();
 
-        // console.log("Blog post saved successfully!");
         
-        return res.redirect('/dashboard'); // Redirect back to the dashboard after creating the blog post
+        
+        return res.redirect('/dashboard');
     } catch (error) {
         console.error("Error creating blog post:", error);
         return res.status(500).json({ error: "Internal server error" });
@@ -265,7 +260,7 @@ app.get("/profile/:userId", authenticate, async (req, res) => {
     
     try {
         const user = await User.findById(userId).populate('followers').populate('followings');
-        // const userBlogs = await BlogPost.find({author: user._id});    
+           
         const userBlogs = await BlogPost.find({ author: user._id }).populate('author');
         if (!user) {
             return res.status(404).send("User not found");
@@ -284,9 +279,9 @@ app.get("/profile/:userId", authenticate, async (req, res) => {
 
 app.get('/my-blogs', authenticate, async (req, res) => {
     try {
-        const user = req.rootUser; // Get the logged-in user
+        const user = req.rootUser;
 
-        // Query the database to retrieve blogs authored by the user
+        
         const userBlogs = await BlogPost.find({ author: user._id });
 
         return res.status(200).redirect('/dashboard');
@@ -299,7 +294,7 @@ app.get('/my-blogs', authenticate, async (req, res) => {
 app.post('/like/:blogId', authenticate, async (req, res) => {
     try {
         const blogId = req.params.blogId;
-        const user = req.rootUser; // Make sure req.user is populated properly
+        const user = req.rootUser;
         const blog = await BlogPost.findById(blogId);
 
         if (!blog) {
@@ -307,19 +302,18 @@ app.post('/like/:blogId', authenticate, async (req, res) => {
         }
 
         if (blog.likes.includes(user._id)) {
-            // User already liked the blog, so unlike it
+            
             blog.likes.pull(user._id);
         } else {
-            // User hasn't liked the blog yet, so like it
+            
             blog.likes.push(user._id);
         }
 
         await blog.save();
 
-        // Get the referring page URL from the request headers
         const referringPage = req.headers.referer || '/dashboard';
 
-        return res.redirect(referringPage); // Redirect back to the referring page
+        return res.redirect(referringPage);
     } catch (error) {
         console.error('Error liking/unliking:', error);
         res.status(500).json({ error: 'An error occurred while liking/unliking the blog.' });
@@ -333,23 +327,23 @@ app.post('/comment/:postId', authenticate, async (req, res) => {
         const postId = req.params.postId;
         const commentText = req.body.comment;
 
-        // Find the blog post by ID
+
         const blogPost = await BlogPost.findById(postId);
         if (!blogPost) {
             return res.status(404).send('Blog post not found');
         }
 
-        // Add the comment to the blog post's comments array
+
         blogPost.comments.push({
-            author: req.rootUser._id, // Assuming you have user authentication
+            author: req.rootUser._id,
             text: commentText,
             createdAt: new Date()
         });
 
-        // Save the updated blog post
+
         await blogPost.save();
 
-        res.redirect(req.headers.referer); // Redirect to the blog post's detailed view
+        res.redirect(req.headers.referer);
     } catch (error) {
         console.error(error);
         res.status(500).send('Internal server error');
@@ -358,15 +352,13 @@ app.post('/comment/:postId', authenticate, async (req, res) => {
 
 app.get('/following-blogs', authenticate, async (req, res) => {
     try {
-        const user = req.rootUser; // Get the logged-in user
+        const user = req.rootUser;
 
-        // Find the users that the logged-in user is following
         const followingUsers = await User.find({ _id: { $in: user.followings } });
 
-        // Find blogs of the following users
         const followingBlogs = await BlogPost.find({ author: { $in: followingUsers.map(u => u._id) } }).populate('author');
         const everyOne = await User.find({});
-        // console.log(everyOne[0]);
+
         res.render('following-blogs', {
             rootUser: req.rootUser,
             everyOne: everyOne,
@@ -383,9 +375,8 @@ app.get('/following-blogs', authenticate, async (req, res) => {
 app.post('/delete-blog/:id', authenticate, async (req, res) => {
     try {
         const blogId = req.params.id;
-        const user = req.rootUser; // Get the logged-in user
+        const user = req.rootUser;
 
-        // Find the blog by ID and ensure that the logged-in user is the author
         const blog = await BlogPost.findOneAndRemove({ _id: blogId, author: user._id });
 
         if (!blog) {
@@ -400,16 +391,13 @@ app.post('/delete-blog/:id', authenticate, async (req, res) => {
 });
 
 
-// Like a blog post
 app.post('/like/:postId', authenticate, async (req, res) => {
     try {
         const postId = req.params.postId;
         const user = req.rootUser;
 
-        // Find the blog post by ID
         const blogPost = await BlogPost.findById(postId);
 
-        // Add the user's ID to the likes array if not already liked
         if (!blogPost.likes.includes(user._id)) {
             blogPost.likes.push(user._id);
             await blogPost.save();
@@ -422,45 +410,6 @@ app.post('/like/:postId', authenticate, async (req, res) => {
     }
 });
 
-// Comment on a blog post
-// app.post('/comment/:postId', authenticate, async (req, res) => {
-//     try {
-//         const postId = req.params.postId;
-//         const user = req.rootUser;
-//         const { text } = req.body;
-
-//         // Find the blog post by ID
-//         const blogPost = await BlogPost.findById(postId);
-
-//         // Add the comment details to the comments array
-//         blogPost.comments.push({ author: user._id, text: text, createdAt: new Date() });
-//         await blogPost.save();
-
-//         return res.redirect(req.headers.referer);
-//     } catch (error) {
-//         console.error("Error commenting on blog post:", error);
-//         return res.status(500).json({ error: "Internal server error" });
-//     }
-// });
-
-
-
-// app.get('/detailed-view/:postId', authenticate, async (req, res) => {
-//     try {
-//         const postId = req.params.postId;
-//         const blog = await BlogPost.findById(postId).populate('author', 'username');
-
-//         if (!blog) {
-//             return res.status(404).send("Blog post not found");
-//         }
-//         console.log(blog.author.username);
-//         return res.status(200).render('detailedView', { blog, title: blog.title });
-//     } catch (error) {
-//         console.error("Error fetching detailed view:", error);
-//         return res.status(500).send("Internal server error");
-//     }
-// });
-
 
 app.get('/detailed-view/:postId', authenticate, async (req, res) => {
     try {
@@ -471,13 +420,10 @@ app.get('/detailed-view/:postId', authenticate, async (req, res) => {
             return res.status(404).send("Blog post not found");
         }
 
-        // Loop through comments, convert to Mongoose documents, and populate their authors individually
         for (const comment of blog.comments) {
             const commentDoc = await BlogPost.populate(comment, { path: 'author', select: 'username' });
-            comment.set('author', commentDoc.author); // Set the populated author to the comment
+            comment.set('author', commentDoc.author);
         }
-        // console.log(blog.comments[3].author._id);
-        // console.log(req.rootUser._id);
         return res.status(200).render('detailedView', { blog, title: blog.title, rootUser: req.rootUser });
     } catch (error) {
         console.error("Error fetching detailed view:", error);
@@ -498,22 +444,20 @@ app.get('/explore', authenticate, async function(req, res) {
 });
 
 
-// deletions
-
 
 app.post('/delete-blog/:postId', authenticate, async (req, res) => {
     try {
         const postId = req.params.postId;
-        const user = req.rootUser; // Get the logged-in user
+        const user = req.rootUser;
 
-        // Find the post by ID and ensure that the logged-in user is the author
+
         const post = await BlogPost.findOneAndRemove({ _id: postId, author: user._id });
 
         if (!post) {
             return res.status(404).json({ error: "Post not found or you are not authorized to delete it." });
         }
 
-        // Remove this post's ID from users' likes array
+
         await User.updateMany({ _id: { $in: post.likes } }, { $pull: { likes: post._id } });
 
         res.status(200).json({ message: "Post deleted successfully" });
@@ -523,27 +467,27 @@ app.post('/delete-blog/:postId', authenticate, async (req, res) => {
     }
 });
 
-// deleting comment
+
 app.post('/delete-comment/:postId/:commentId', authenticate, async (req, res) => {
     try {
         const postId = req.params.postId;
         const commentId = req.params.commentId;
-        const user = req.rootUser; // Get the logged-in user
+        const user = req.rootUser;
 
-        // Find the post by ID
+
         const post = await BlogPost.findById(postId);
 
         if (!post) {
             return res.status(404).json({ error: "Post not found" });
         }
 
-        // Find the comment by ID and ensure that the logged-in user is the author
+
         const comment = post.comments.id(commentId);
         if (!comment || !comment.author.equals(user._id)) {
             return res.status(404).json({ error: "Comment not found or you are not authorized to delete it." });
         }
 
-        // Remove the comment from the comments array using .pull()
+
         post.comments.pull(commentId);
         await post.save();
 
@@ -555,7 +499,7 @@ app.post('/delete-comment/:postId/:commentId', authenticate, async (req, res) =>
 });
 
 
-// change settings
+
 
 app.get('/edit-profile', authenticate, async function(req, res) {
     const user = req.rootUser;
@@ -567,7 +511,7 @@ app.post('/update-settings', authenticate, async (req, res) => {
         const user = req.rootUser;
         const { firstName, lastName, country, email, college, bio } = req.body;
 
-        // Update the user's information in the database
+
         user.firstName = firstName;
         user.lastName = lastName;
         user.country = country;
