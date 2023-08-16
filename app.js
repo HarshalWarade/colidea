@@ -1,6 +1,7 @@
 
 const usernames = new Set();
 
+const nodemailer = require('nodemailer');
 
 const express = require('express');
 const dotenv = require('dotenv');
@@ -23,6 +24,11 @@ const port = process.env.PORT;
 const User = require('./models/userSchema');
 
 require('./conn/conn')
+
+
+
+
+
 app.use(express.static('assets'));
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
@@ -189,6 +195,7 @@ app.post('/add-college', authenticate, async (req, res) => {
         res.status(500).json({ error: "Internal server error" });
     }
 });
+
 
 
 app.get("/search", authenticate, async (req, res) => {
@@ -527,6 +534,32 @@ app.post('/update-settings', authenticate, async (req, res) => {
         res.status(500).json({ error: 'Internal server error' });
     }
 });
+
+
+// show followers
+
+app.get('/get-followers', authenticate, async (req, res) => {
+    try {
+        const userId = req.rootUser._id;
+        const user = await User.findById(userId).populate('followers', 'firstName lastName username');
+        const followers = user.followers;
+
+        res.status(200).render("followersList", {followers: followers});
+    } catch (error) {
+        console.error('Error fetching followers:', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+});
+
+app.get('/get-followings', authenticate, async function(req, res) {
+    try {
+        const userId = req.rootUser._id;
+    } catch (err) {
+        console.log('Error', err);
+        res.status(422).send("Error while fetching your followings list, we're working on it!");
+    }
+})
+
 
 app.listen(port, (err) => {
     if (err) {

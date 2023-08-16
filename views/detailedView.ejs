@@ -64,11 +64,11 @@
             <%= blog.content %>
         </p>
         <% if(blog.author.username === 'hdwarade') { %>
-            <a href="/profile/<%= blog.author._id %>" class="mr-6 pb-3 text-slate-300" style="align-items: center; gap: .4rem;display: flex; justify-content: flex-end;"><%=blog.author.username%>
+            <a href="/profile/<%= blog.author._id %>" class="mr-6 pb-3 text-slate-300" style="align-items: center; gap: .4rem;display: flex; justify-content: flex-end;">@<%=blog.author.username%>
                 <i class="text-blue-500 fa-solid fa-badge-check" style="cursor: pointer;"
                     title="Developer | Verified"></i></a>
         <% } else {%>
-            <a href="/profile/<%= blog.author._id %>" class="mr-6 pb-3 text-slate-300" style="align-items: center; gap: .4rem;display: flex; justify-content: flex-end;"><%=blog.author.username%></a>
+            <a href="/profile/<%= blog.author._id %>" class="mr-6 pb-3 text-slate-300" style="align-items: center; gap: .4rem;display: flex; justify-content: flex-end;">@<%=blog.author.username%></a>
         <% } %>
     </div>
     <div class="allPost w-4/6 mx-auto rounded-md"

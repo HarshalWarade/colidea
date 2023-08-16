@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HOME | Colidea</title>
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+        integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/mainHome.css">
+    <link rel="stylesheet" href="/css/loginGeneral.css">
+    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.2.1/css/all.css">
+    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.2.1/css/sharp-solid.css">
+    <link rel="stylesheet" href="/css/output.css">
+</head>
+
+<body class="bg-gray-900">
+    <nav class="bg-gray-800 shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex">
+                    <a href="/dashboard" class="flex-shrink-0 flex items-center">
+                        <i class="text-gray-50 text-xl fa-solid fa-objects-column"></i>
+                        <span class="text-gray-300 text-lg ml-2 font-semibold">Colidea</span>
+                    </a>
+                </div>
+                <form action="/search" class="flex items-center" style="width: 40%;">
+                    <input class="h-9 bg-slate-700 rounded-md my-auto w-full outline-none pl-4 text-slate-300"
+                        type="search" name="query" id="searchInput" placeholder="Type here to search..."
+                        autocomplete="off" required>
+                    <button id="searchButton"
+                        class="px-4 h-9 py-2 bg-slate-900 rounded-md text-slate-400 text-center">search</button>
+                </form>
+                <div class="flex items-center">
+                    <div class="hidden md:block">
+                        <a href="/dashboard"
+                            class="text-gray-300 hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium">Go to Dashboard</a>
+                    </div>
+                </div>
+                <div class="flex md:hidden">
+                    <button class="text-gray-300 hover:bg-gray-700 p-2 rounded-md">
+                        <svg class="h-6 w-6" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            viewBox="0 0 24 24" stroke="currentColor">
+                            <path d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+    
+    <div class="">
+        <h1 class="text-slate-400 text-2xl h-32 flex items-center justify-center font-bold">Your followers</h1>
+        <div class="listofFollowers grid grid-cols-5 gap-4 w-11/12 mx-auto">
+            <% followers.forEach(follower=> { %>
+                <a href="/profile/<%= follower._id%>" class="bg-slate-700 p-3 rounded-md" style="display: grid; grid-template-columns: 1fr 3fr;">
+                    <div class="icon flex items-start justify-start">
+                        <i class="fa-duotone fa-user bg-slate-400 h-16 w-16 text-slate-800 text-3xl" style="display: flex; justify-content: center; align-items: center; border-radius: 50%;"></i>
+                    </div>
+                    <div class="infor flex items-end justify-center flex-col">
+                        <p class="text-slate-200"><%=follower.firstName%> <%=follower.lastName%></p>
+                        <%if(follower.username === 'hdwarade') {%>
+                            <div class="flex gap-2">
+                                <p class="text-slate-500">@<%=follower.username%></p>
+                                <i class="flex justify-center items-center text-blue-500 fa-solid fa-badge-check" style="cursor: pointer;"
+                                title="Developer | Verified"></i>
+                            </div>
+                            <% } else { %>
+                                <p class="text-slate-500">@<%=follower.username%></p>
+                            <%}%>
+                    </div>
+                
+                </a>
+            <% }) %>
+        </div>
+    </div>
+    
+</body>
+</html>
