@@ -76,7 +76,6 @@ app.post('/generateAccount', async function(req, res) {
         else {
             const user = new User({firstName, lastName, username, phone, email, password, confirmPassword, dob, country});
             await user.save();
-            console.log("Success");
             return res.status(200).redirect("/signin");
         }
         
@@ -113,8 +112,6 @@ app.post('/signinrequest', async function (req, res) {
         
         return res.status(200).redirect('/dashboard');
     } else {
-        console.log(foundUser.email);
-        console.log(foundUser.password);
         return res.status(400).json({ error: "Wrong credentials!" });
     }
     } catch (error) {
@@ -273,7 +270,6 @@ app.get("/profile/:userId", authenticate, async (req, res) => {
             return res.status(404).send("User not found");
         }
         var verified = false;
-        console.log(user.username)
         if(user.username === 'hdwarade') {
             verified = true;
         }
@@ -541,6 +537,21 @@ app.post('/update-settings', authenticate, async (req, res) => {
 app.get('/get-followers', authenticate, async (req, res) => {
     try {
         const userId = req.rootUser._id;
+        const user = await User.findById(userId).populate('followers', 'firstName lastName username');
+        const followers = user.followers;
+
+        res.status(200).render("followersList", {followers: followers});
+    } catch (error) {
+        console.error('Error fetching followers:', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+});
+
+
+// show dynamic followers
+app.get('/get-followers/:userID', authenticate, async (req, res) => {
+    try {
+        const userId = req.params.userID;
         const user = await User.findById(userId).populate('followers', 'firstName lastName username');
         const followers = user.followers;
 
