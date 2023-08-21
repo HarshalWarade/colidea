@@ -19,6 +19,11 @@
     <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.2.1/css/all.css">
     <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.2.1/css/sharp-solid.css">
     <link rel="stylesheet" href="/css/output.css">
+    <link rel="stylesheet" href="/css/additional.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simplebar/5.3.0/simplebar.min.css">
+
+    <!-- Include SimpleBar JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/simplebar/5.3.0/simplebar.min.js"></script>
 </head>
 <body class="bg-gray-900">
     <nav class="bg-gray-800 shadow-lg">
@@ -46,6 +51,12 @@
                             class="text-gray-300 hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium">Explore</a>
                         <a href="/dashboard"
                             class="text-gray-300 hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium">Dashboard</a>
+                        </div>
+                        <form action="/logout" method="get">
+                            <button type="submit"
+                                class="ml-1 text-gray-300 hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium"
+                                title="Sign Out"><i class="fa-duotone fa-power-off"></i></button>
+                        </form>
                     </div>
                 </div>
                 <div class="flex md:hidden">
@@ -96,10 +107,10 @@
                 
                 <div class="mainIterationHolder grid grid-cols-1 lg:w-2/3 mx-auto gap-4">
                     <% followingBlogs.forEach(blog => { %>
-                        <div class="bg-slate-800 p-4 rounded-md">
+                        <div class="bg-slate-800 p-4 rounded-md subdiv">
                             <h2 class="text-xl font-bold text-slate-200"><%= blog.title %></h2>
                             <hr class="text-slate-200 mt-2">
-                            <p class="text-slate-400 mt-2"><%= blog.content %></p>
+                            <pre class="text-slate-300 mt-2 max-h-72" id="taghere" style="white-space: pre-wrap;" data-simplebar><p><%= blog.content %></p></pre> 
                             <div class="mt-7">
                                 <% if(blog.author.username == "hdwarade") { %>
                                     <a href="/profile/<%= blog.author._id %>" class="text-slate-400 text-sm"><%=blog.author.username%> <i class="text-blue-400 fa-solid fa-badge-check" title="Verified" style="cursor: pointer;"></i></a>

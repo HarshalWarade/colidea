@@ -277,7 +277,7 @@ app.get("/profile/:userId", authenticate, async (req, res) => {
         if(user.username === 'hdwarade') {
             verified = true;
         }
-        res.render("profile", { verified, userBlogs, user: user, title: user.username, rootUser: req.rootUser, link1: process.env.LINK1, link2: process.env.LINK2, followersCnt: user.followers.length, followingsCnt: user.followings.length });
+        res.render("profile", { verified, userBlogs, user: user, title: user.username, rootUser: req.rootUser, link1: process.env.LINK1, link2: process.env.LINK2, followersCnt: user.followers.length, followingsCnt: user.followings.length, profiledName: user.firstName });
     } catch (error) {
         console.error("Error fetching user profile:", error);
         res.status(500).send("Internal server error");
@@ -557,6 +557,16 @@ app.get('/get-followings', authenticate, async function(req, res) {
     } catch (err) {
         console.log('Error', err);
         res.status(422).send("Error while fetching your followings list, we're working on it!");
+    }
+})
+
+app.get('/logout', authenticate, async function(req, res) {
+    try {
+        // cookie clear karav laagel
+        res.clearCookie('jwtoken');
+        return res.status(200).redirect('/');
+    } catch (err) {
+        return res.status(422).send("There was an error while trying to logout... Please try doing it after some time!");
     }
 })
 

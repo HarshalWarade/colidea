@@ -1,0 +1,38 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Mulish:wght@200;300;400;500;600;700;800;900;1000&family=Open+Sans:wght@300;400;500;600;700;800&family=Ysabeau+Infant:wght@1;100;200;300;400;500;600;700;800;900;1000&display=swap');
+
+div.mainIterationHolder {
+    font-family: 'Montserrat', sans-serif;
+}
+
+div.mainIterationHolder>div>pre {
+    font-family: 'Montserrat', sans-serif;
+    text-align: justify;
+    line-height: 30px;
+}
+
+/* div.blogPosts>div>pre {
+    font-family: 'Montserrat', sans-serif;
+    text-align: justify;
+    max-height: 40vh;
+    overflow-y: auto;
+    line-height: 30px;
+}
+
+div.blogPosts>div::-webkit-scrollbar-thumb {
+    width: 6px;
+    background-color: red;
+    border-radius: 3px;
+}
+
+div.blogPosts>div::-webkit-scrollbar-track {
+    background-color: green;
+}
+
+.simplebar-scrollbar:before {
+    background-color: rebeccapurple;
+    width: 0;
+}
+
+.simplebar-track.simplebar-vertical:before {
+    background-color: green;
+} */

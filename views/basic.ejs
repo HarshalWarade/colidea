@@ -37,7 +37,12 @@
                         <a class="nav-link disabled" aria-disabled="true">Premium</a>
                     </li>
                 </ul>
-                <a href="/signin" class="btn btn-dark">Login</a>
+                <div style="display: flex; gap: 1rem;">
+                    <form action="/dashboard" method="get">
+                        <button onclick="gotodashboard()" class="btn btn-dark">Go to Dashboard</button>
+                    </form>
+                    <a href="/signin" class="btn btn-outline-dark">Login</a>
+                </div>
             </div>
         </div>
     </nav>
@@ -57,7 +62,7 @@
                 their impact.</p>
             <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
                 <a href="/createAccount" class="btn btn-dark px-4 gap-3">Create Account</a>
-                <a href="/" class="btn btn-outline-secondary px-4">About Developer</a>
+                <a href="https://www.linkedin.com/in/harshalwarade/" class="btn btn-outline-secondary px-4">About Developer <i class="fa-brands fa-linkedin-in"></i></a>
             </div>
         </div>
     </div>
@@ -81,7 +86,7 @@
                             <svg class="bi" width="1em" height="1em">
                             </svg>
                         </div>
-                        <h4 class="fw-semibold mb-0 text-body-emphasis">Connect with people</h4>
+                        <h4 class="fw-semibold mb-0 text-body-emphasis">Connect with people <i class="fa-solid fa-users-medical"></i></h4>
                         <p class="text-body-secondary" style="text-align: justify;">Connect with individuals from
                             various institutes without any limitations.</p>
                     </div>
@@ -93,7 +98,7 @@
                                 <use xlink:href="#gear-fill"></use>
                             </svg>
                         </div>
-                        <h4 class="fw-semibold mb-0 text-body-emphasis">Explore talent</h4>
+                        <h4 class="fw-semibold mb-0 text-body-emphasis">Explore talent <i class="fa-duotone fa-stars"></i></h4>
                         <p class="text-body-secondary" style="text-align: justify;">Feel free to explore various
                             trending skills that you might be familiar with, and take the opportunity to read up on
                             them.</p>
@@ -106,7 +111,7 @@
                                 <use xlink:href="#speedometer"></use>
                             </svg>
                         </div>
-                        <h4 class="fw-semibold mb-0 text-body-emphasis">Share skills</h4>
+                        <h4 class="fw-semibold mb-0 text-body-emphasis">Share skills <i class="fa-regular fa-users-rays"></i></h4>
                         <p class="text-body-secondary" style="text-align: justify;">While we can't physically shake
                             hands online, we can definitely exchange knowledge and skills.</p>
                     </div>
@@ -118,7 +123,7 @@
                                 <use xlink:href="#table"></use>
                             </svg>
                         </div>
-                        <h4 class="fw-semibold mb-0 text-body-emphasis">Be a star</h4>
+                        <h4 class="fw-semibold mb-0 text-body-emphasis">Be a star <i class="fa-solid fa-sparkles"></i></h4>
                         <p class="text-body-secondary" style="text-align: justify;">Build huge netwrok with lots of
                             followers to get a verified badge.</p>
                     </div>
@@ -266,6 +271,12 @@
     <script async src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js"
         integrity="sha384-GNFwBvfVxBkLMJpYMOABq3c+d3KnQxudP/mGPkzpZSTYykLBNsZEnG2D9G/X/+7D"
         crossorigin="anonymous"></script>
+
+    <script>
+        function gotodashboard() {
+            window.location.href = '/dashboard';
+        }
+    </script>
 </body>
 
 </html>

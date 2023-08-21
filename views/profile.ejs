@@ -42,6 +42,12 @@
                                 class="text-gray-300 hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium">Explore</a>
                             <a href="/dashboard"
                                 class="bg-gray-700 text-gray-300 hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium">Dashboard</a>
+                            </div>
+                            <form action="/logout" method="get">
+                                <button type="submit"
+                                    class="ml-1 text-gray-300 hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium"
+                                    title="Sign Out"><i class="fa-duotone fa-power-off"></i></button>
+                            </form>
                         </div>
                     </div>
                     <div class="flex md:hidden">
@@ -133,6 +139,7 @@
             </div>
         </div>
 
+        <h1 class="text-slate-400 text-center text-2xl font-bold" style="height: 10vh; display: flex; justify-content: center; align-items: center;"><%=profiledName%>'s Blogs</h1>
 
         <div class="blogPosts mt-8 w-full px-4 mx-auto grid grid-cols-3 gap-4">
             <% userBlogs.forEach(blog=> { %>
@@ -140,9 +147,9 @@
                     <h2 class="text-slate-200 text-xl font-bold">
                         <%= blog.title %>
                     </h2>
-                    <p class="text-slate-300 mt-2">
-                        <%= blog.content %>
-                    </p>
+                    <div class="card-text text-slate-300" style="height: min-content; max-height: 40vh; overflow-y: auto; white-space: pre-wrap;">
+                        <p class="card-text"><%= blog.content %></p>
+                    </div>  
                     <div class="interactionSection grid mt-4">
                         <div class="containedPack flex justify-between">
                             <form action="/like/<%= blog._id %>" method="POST">

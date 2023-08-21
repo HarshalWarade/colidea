@@ -13,6 +13,8 @@
     <link rel="stylesheet" href="<%=link2%>">
     <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/masonry/">
     <link rel="stylesheet" href="/css/output.css">
+    <link rel="stylesheet" href="/css/additional.css">
+
 </head>
 
 <body class="bg-gray-900">
@@ -42,7 +44,10 @@
                             class="text-gray-300 hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium">Explore</a>
                         <a href="/dashboard"
                             class="bg-gray-700 text-gray-300 hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium">Dashboard</a>
-                    </div>
+                        </div>
+                        <form action="/logout" method="get">
+                            <button type="submit" class="ml-1 text-gray-300 hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium" title="Sign Out"><i class="fa-duotone fa-power-off"></i></button>
+                        </form>
                 </div>
                 <div class="flex md:hidden">
                     <button class="text-gray-300 hover:bg-gray-700 p-2 rounded-md">
@@ -186,61 +191,63 @@
         </div>
     </div>
 
-    <div class="container">
+    <div class="container" style="margin-bottom: 50px;">
         <% if (userBlogs.length===0) { %>
             <p class="text-slate-700 text-center mt-16 text-3xl">You haven't posted any blogs yet.</p>
             <% } else { %>
-                <h1 class="h-20 text-2xl text-slate-500 font-bold"
-                    style="display: flex; justify-content: center; align-items: center;">My Blogs</h1>
-                <div class="blogPosts mt-8 w-full px-4 mx-auto grid grid-cols-3 gap-4">
+                <h1 class="h-20 text-2xl text-slate-500 font-bold text-center">My Blogs</h1>
+                <div class="row row-cols-1 row-cols-md-3 g-4">
                     <% userBlogs.forEach(blog=> { %>
-                        <div class="blogPost bg-slate-700 rounded-md mb-6 p-4">
-                            <h2 class="text-slate-200 text-xl font-bold">
-                                <%= blog.title %>
-                            </h2>
-                            <p class="text-slate-300 mt-2">
-                                <%= blog.content %>
-                            </p>
-                            <div class="interactionSection flex justify-between mt-4">
-                                <form action="/like/<%= blog._id %>" method="POST">
-                                    <% if (blog.likes.includes(rootUser._id.toString())) { %>
-                                        <!-- Show Unlike button if the user has already liked the blog -->
-                                        <button class="text-white rounded-md py-2" type="submit">
-                                            <i class="fa-solid fa-thumbs-up"></i>
-                                            <%= blog.likes.length %>
-                                        </button>
-                                        <% } else { %>
-                                            <!-- Show Like button if the user hasn't liked the blog -->
-                                            <button class="text-slate-300 rounded-md py-2" type="submit">
-                                                <i class="fa-light fa-thumbs-up"></i>
-                                                <%= blog.likes.length %>
-                                            </button>
+                        <div class="col">
+                            <div class="card bg-slate-700 rounded-md">
+                                <div class="card-body">
+                                    <h2 class="card-title text-slate-200 text-xl font-bold">
+                                        <%= blog.title %>
+                                    </h2>
+                                    <hr class="text-slate-300 mt-3">
+                                    <div class="card-text text-slate-300" style="height: min-content; max-height: 40vh; overflow-y: auto; white-space: pre-wrap;">
+                                        <p class="card-text"><%= blog.content %></p>
+                                    </div>                            
+                                    <div class="interactionSection flex justify-between mt-4">
+                                        <form action="/like/<%= blog._id %>" method="POST">
+                                            <% if (blog.likes.includes(rootUser._id.toString())) { %>
+                                                <!-- already liked -->
+                                                <button class="text-white rounded-md py-2" type="submit">
+                                                    <i class="fa-solid fa-thumbs-up"></i>
+                                                    <%= blog.likes.length %>
+                                                </button>
+                                                <% } else { %>
+                                                    <!-- Not liked it yet! -->
+                                                    <button class="text-slate-300 rounded-md py-2" type="submit">
+                                                        <i class="fa-light fa-thumbs-up"></i>
+                                                        <%= blog.likes.length %>
+                                                    </button>
                                             <% } %>
-                                </form>
-                                <form action="/detailed-view/<%= blog._id %>" method="get">
-                                    <button class="bg-blue-800 text-slate-300 rounded-md px-3 py-2 showCommentsButton"
-                                        data-blog-id="<%= blog._id %>">
-                                        Show Comments (<%= blog.comments.length %>)
-                                    </button>
-                                </form>
-                                <form action="/delete-blog/<%= blog._id %>" method="post">
-                                    <button class="text-red-500 py-1 rounded-md hover:text-red-700 mr-2"
-                                        onclick="confirmDelete('<%= blog._id %>')">
-                                        <i class="fas fa-trash-alt"></i>
-                                    </button>
-                                </form>
-                            </div>
-
-                            <div class="commentsSection mt-4" style="display: none;">
-                                <% blog.comments.forEach(comment=> { %>
-                                    <div class="comment bg-slate-800 rounded-md p-2 mt-2">
-                                        <a href="/profile/<%= comment.author._id %>" class="text-slate-600">@<%=
-                                                comment.author.username %></a>
-                                        <p class="text-slate-300 mt-1">
-                                            <%= comment.text %>
-                                        </p>
+                                        </form>
+                                        <form action="/detailed-view/<%= blog._id %>" method="get">
+                                            <button class="text-slate-400 rounded-md px-3 py-2 showCommentsButton"
+                                                data-blog-id="<%= blog._id %>">
+                                                Show Comments (<%= blog.comments.length %>)
+                                            </button>
+                                        </form>
+                                        <form action="/delete-blog/<%= blog._id %>" method="post">
+                                            <button class="text-red-500 py-1 rounded-md hover:text-red-700 mr-2"
+                                                onclick="confirmDelete('<%= blog._id %>')">
+                                                <i class="fas fa-trash-alt"></i>
+                                            </button>
+                                        </form>
                                     </div>
-                                    <% }); %>
+        
+                                    <div class="commentsSection mt-4" style="display: none;">
+                                        <% blog.comments.forEach(comment=> { %>
+                                            <div class="comment bg-slate-800 rounded-md p-2 mt-2">
+                                                <a href="/profile/<%= comment.author._id %>" class="text-slate-600">@<%=
+                                                        comment.author.username %></a>
+                                                <p class="text-slate-300 mt-1">
+                                                    <%= comment.text %>
+                                                </p>
+                                            </div>
+                                        <% }); %>
                                         <form action="/comment/<%= blog._id %>" method="POST" class="commentForm mt-2">
                                             <input type="text" name="comment"
                                                 class="w-full h-10 bg-slate-700 rounded-md px-3 py-2 text-slate-300"
@@ -248,13 +255,14 @@
                                             <button class="bg-blue-800 text-slate-300 rounded-md px-3 py-2 ml-2"
                                                 type="submit">Post</button>
                                         </form>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <% }); %>
+                    <% }); %>
                 </div>
                 <% } %>
     </div>
-
 
     <script>
         // JavaScript to manage the modal
