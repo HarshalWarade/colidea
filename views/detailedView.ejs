@@ -67,12 +67,7 @@
         <h1 class="h-20 flex items-center justify-center text-2xl text-slate-200 font-bold">
             <%= blog.title %>
         </h1>
-        <div class="card-text text-slate-300"
-            style="padding: 0 20px; line-height: 30px ;height: min-content; overflow-y: auto; white-space: pre-wrap;">
-            <p class="card-text">
-                <%= blog.content %>
-            </p>
-        </div>
+        <div class="card-text text-slate-300" style="padding: 0 20px; line-height: 30px ;height: min-content; overflow-y: auto; white-space: pre-wrap;"><p class="card-text"><%= blog.content %></p></div>
         <% if(blog.author.username==='hdwarade' ) { %>
             <a href="/profile/<%= blog.author._id %>" class="mr-6 pb-3 text-slate-300"
                 style="align-items: center; gap: .4rem;display: flex; justify-content: flex-end;">@
