@@ -549,18 +549,18 @@ app.get('/get-followers', authenticate, async (req, res) => {
 
 
 // show dynamic followers
-app.get('/get-followers/:userID', authenticate, async (req, res) => {
-    try {
-        const userId = req.params.userID;
-        const user = await User.findById(userId).populate('followers', 'firstName lastName username');
-        const followers = user.followers;
+// app.get('/get-followers/:userID', authenticate, async (req, res) => {
+//     try {
+//         const userId = req.params.userID;
+//         const user = await User.findById(userId).populate('followers', 'firstName lastName username');
+//         const followers = user.followers;
 
-        res.status(200).render("followersList", {followers: followers});
-    } catch (error) {
-        console.error('Error fetching followers:', error);
-        res.status(500).json({ error: 'Internal server error' });
-    }
-});
+//         res.status(200).render("followersList", {followers: followers});
+//     } catch (error) {
+//         console.error('Error fetching followers:', error);
+//         res.status(500).json({ error: 'Internal server error' });
+//     }
+// });
 
 app.get('/get-followings', authenticate, async function(req, res) {
     try {

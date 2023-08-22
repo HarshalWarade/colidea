@@ -151,9 +151,8 @@
                     <h2 class="text-slate-200 text-xl font-bold">
                         <%= blog.title %>
                     </h2>
-                    <div class="card-text text-slate-300" style="height: min-content; max-height: 40vh; overflow-y: auto; white-space: pre-wrap;">
-                        <p class="card-text"><%= blog.content %></p>
-                    </div>  
+                    <hr class="text-slate-100 mt-2">
+                    <div class="card-text text-slate-300" style="height: min-content; max-height: 40vh; overflow-y: auto; white-space: pre-wrap; padding-top: 20px;"><p class="card-text"><%= blog.content %></p></div>
                     <div class="interactionSection grid mt-4">
                         <div class="containedPack flex justify-between">
                             <form action="/like/<%= blog._id %>" method="POST">
