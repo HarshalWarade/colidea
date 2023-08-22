@@ -562,6 +562,60 @@ app.get('/get-followers', authenticate, async (req, res) => {
 //     }
 // });
 
+app.post('/deleteAccount/:userID', authenticate, async function(req, res) {
+    try {
+        const userId = req.params.userID;
+        const { delUsername } = req.body;
+        const user = await User.findById(userId);
+
+        if (!user) {
+            return res.status(404).render("faultPage", {msg: "User not found"});
+        }
+
+        if (delUsername === req.rootUser.username) {
+            // delet all the blogs that belonged to that user
+            await BlogPost.deleteMany({ author: userId });
+
+            // removing that user's likes from all those blogs which he liked
+            await BlogPost.updateMany(
+                { likes: userId },
+                { $pull: { likes: userId } }
+            );
+
+            // removing every comment he had ever made on any blog
+            await BlogPost.updateMany(
+                { 'comments.author': userId },
+                { $pull: { comments: { author: userId } } }
+            );
+
+            // Find user's followers and update their followings
+            const followers = await User.find({ followings: userId });
+            for (const follower of followers) {
+                follower.followings.pull(userId);
+                await follower.save();
+            }
+
+            // Find user's followings and update their followers
+            const followings = await User.find({ followers: userId });
+            for (const following of followings) {
+                following.followers.pull(userId);
+                await following.save();
+            }
+
+            // Delete the user document
+            await User.findByIdAndDelete(userId);
+
+            return res.status(200).redirect('/');
+        } else {
+            return res.status(422).render("faultPage", {msg: "Username does not match!!"});
+        }
+    } catch (err) {
+        console.log(err);
+        return res.status(500).render("faultPage", {msg: "Internal server error."});
+    }
+});
+
+
 app.get('/get-followings', authenticate, async function(req, res) {
     try {
         const userId = req.rootUser._id;

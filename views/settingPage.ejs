@@ -70,7 +70,7 @@
                 class="mt-1 outline-none pl-3 h-10 block w-full shadow-sm sm:text-sm bg-gray-700 text-gray-200 border-gray-600 rounded-md">
         </div>
         <div class="flex flex-col gap-2">
-            <label for="inputCountry" class="block text-sm font-medium text-gray-700">Country:</label>
+            <label for="inputCountry" class="block text-sm font-medium text-gray-300">Country:</label>
             <select id="inputCountry" name="country" class="mt-1 text-gray-200 bg-gray-700 outline-none pl-3 h-10 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" required>
                 <option value="India" <%= user.country === 'India' ? 'selected' : '' %>>India</option>
                 <option value="Afghanistan" <%= user.country === 'Afghanistan' ? 'selected' : '' %>>Afghanistan</option>
@@ -178,7 +178,16 @@
             </button>
         </div>
     </form>
-    
+
+    <form class="grid grid-cols-1 mt-10 w-2/3 mx-auto gap-6 p-6 bg-gray-800 rounded-lg shadow-md mb-11" action="/deleteAccount/<%=user._id%>" method="POST">
+        <p class="text-red-300" style="color: rgb(255, 52, 52);">Once clicked, it wont ask for confirmation, it will directly delete this account!</p>
+        <div class="flex flex-col gap-2">
+            <input name="delUsername" class="bg-slate-700 pl-2 rounded-md text-slate-300" style="height: 6vh; border: none; outline: none;" type="text" placeholder="Type your username here to delete this account" autocomplete="off" required>
+        </div>
+        <button type="submit" class="w-full bg-red-600 text-white p-2 rounded-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500" style="transition: 0.4s ease;">
+            DELETE ACCOUNT PERMANENTLY
+        </button>
+    </form>
     
 </body>
 </html>

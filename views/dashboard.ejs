@@ -130,33 +130,294 @@
 
             </h2>
 
-            <div class="collegeAdding text-slate-300">
+            <div class="collegeAdding text-slate-700">
                 <% if (!user.college) { %>
-                    <form action="/add-college" class="flex gap-4" method="post">
-                        <textarea name="college" class="bg-slate-700 py-2 w-full px-2 outline-none rounded-md"
-                            placeholder="Add your college here. Don't hit enter for new line">Prof. Ram Meghe College of Engineering and Management Badnera-Amravati</textarea>
-                        <button type="submit">Add</button>
+                    <form action="/add-college" class="flex flex-col gap-1 bg-slate-600" method="post">
+                        <select name="college" class="h-10 pl-2 bg-slate-700 text-slate-300 rounded-md">
+                            <option selected>Prof. Ram Meghe College of Engineering and Management, Badnera-Amravati</option>
+                            <option>Prof. Ram Meghe Institute of Technology and Research, Badnera-Amravati</option>
+                            <option>Sipna College of Engineering and Technology, Amravati</option>
+                            <option>P R Pote Engineering College</option>
+                            <option>Government College of Amravati</option>
+                            <option>VIT University</option>
+                            <option>SRM Institute of Science and Technology</option>
+                            <option>Manipal Institute of Technology</option>
+                            <option>Christ University</option>
+                            <option>Loyola College, Chennai</option>
+                            <option>St. Xavier's College, Mumbai</option>
+                            <option>Presidency College, Kolkata</option>
+                            <option>Hindu College, Delhi</option>
+                            <option>St. Stephen's College, Delhi</option>
+                            <option>Lady Shri Ram College for Women</option>
+                            <option>Amrita Vishwa Vidyapeetham</option>
+                            <option>Thapar Institute of Engineering and Technology</option>
+                            <option>Symbiosis International University</option>
+                            <option>ICFAI Business School</option>
+                            <option>SP Jain Institute of Management and Research</option>
+                            <option>Xavier School of Management (XLRI)</option>
+                            <option>Indian School of Business (ISB)</option>
+                            <option>Narsee Monjee Institute of Management Studies (NMIMS)</option>
+                            <option>FLAME University</option>
+                            <option>Ashoka University</option>
+                            <option>O.P. Jindal Global University</option>
+                            <option>Amity University</option>
+                            <option>Birla Institute of Technology and Science (BITS)</option>
+                            <option>Shri Ram College of Commerce</option>
+                            <option>National Institute of Fashion Technology (NIFT)</option>
+                            <option>National Institute of Design (NID)</option>
+                            <option>Srishti Institute of Art, Design, and Technology</option>
+                            <option>PES University</option>
+                            <option>Birla Institute of Technology, Mesra</option>
+                            <option>Amrita School of Engineering</option>
+                            <option>Lovely Professional University</option>
+                            <option>St. Joseph's College, Bangalore</option>
+                            <option>Jyoti Nivas College, Bangalore</option>
+                            <option>Symbiosis Centre for Management Studies</option>
+                            <option>Nirma University</option>
+                            <option>Manipal Academy of Higher Education</option>
+                            <option>FLAME University</option>
+                            <option>Jindal Global Business School</option>
+                            <option>Symbiosis School of Economics</option>
+                            <option>Shiv Nadar University</option>
+                            <option>Indian Maritime University</option>
+                            <option>ICFAI Law School</option>
+                            <option>Amrita School of Business</option>
+                            <option>Whistling Woods International</option>
+                            <option>Chitkara University</option>
+                            <option>Mody University</option>
+                            <option>Mount Carmel College, Bangalore</option>
+                            <option>Symbiosis Law School</option>
+                            <option>SRM University</option>
+                            <option>Chandigarh University</option>
+                            <option>Manipal School of Communication</option>
+                            <option>SCMS Cochin School of Business</option>
+                            <option>SP Jain School of Global Management</option>
+                            <option>LPU School of Business</option>
+                            <option>SRM Institute of Hotel Management</option>
+                            <option>Manipal School of Architecture and Planning</option>
+                            <option>Chitkara Business School</option>
+                            <option>Amity Business School</option>
+                            <option>Thapar School of Management</option>
+                            <option>Vellore Institute of Technology Business School</option>
+                            <option>SCMS School of Technology and Management</option>
+                            <option>Galgotias University</option>
+                            <option>GD Goenka University</option>
+                            <option>Amity School of Engineering and Technology</option>
+                            <option>Sharda University</option>
+                            <option>KIIT School of Management</option>
+                            <option>Bennett University</option>
+                            <option>Amity School of Communication</option>
+                            <option>Noida International University</option>
+                            <option>SRM Institute of Science and Technology</option>
+                            <option>Jindal School of Journalism and Communication</option>
+                            <option>Quantum University</option>
+                            <option>Amity School of Fashion Technology</option>
+                            <option>Symbiosis Institute of Media and Communication</option>
+                            <option>GD Goenka School of Fashion and Design</option>
+                            <option>Amity School of Architecture and Planning</option>
+                            <option>NIFT Mumbai</option>
+                            <option>VIT School of Fashion</option>
+                            <option>School of Fashion Technology, Pune</option>
+                            <option>Symbiosis Institute of Design</option>
+                            <option>Amity School of Hospitality</option>
+                            <option>Manipal School of Nursing</option>
+                            <option>Amrita School of Medicine</option>
+                            <option>Symbiosis Institute of Technology</option>
+                            <option>VIT School of Law</option>
+                            <option>Manipal College of Pharmaceutical Sciences</option>
+                            <option>Amity Law School</option>
+                            <option>Symbiosis School of Culinary Arts</option>
+                            <option>VIT School of Business</option>
+                            <option>Manipal College of Dental Sciences</option>
+                            <option>Amrita School of Arts and Sciences</option>
+                            <option>VIT School of Social Sciences</option>
+                            <option>Manipal School of Life Sciences</option>
+                            <option>Amity Institute of Psychology and Allied Sciences</option>
+                            <option>Symbiosis School for Liberal Arts</option>
+                            <option>VIT School of Computer Science and Engineering</option>
+                            <option>Manipal College of Allied Health Sciences</option>
+                            <option>Amity Institute of Biotechnology</option>
+                            <option>Symbiosis School of Biological Sciences</option>
+                            <option>VIT School of Electronics Engineering</option>
+                            <option>Manipal School of Information Sciences</option>
+                            <option>Amity Institute of Nanotechnology</option>
+                            <option>Symbiosis School of Economics</option>
+                            <option>VIT School of Mechanical Engineering</option>
+                            <option>Manipal College of Nursing</option>
+                            <option>Amity Institute of Aerospace Engineering</option>
+                            <option>Symbiosis School of International Studies</option>
+                            <option>VIT School of Electrical Engineering</option>
+                            <option>Manipal College of Physiotherapy</option>
+                            <option>Amity Institute of Marine Science and Technology</option>
+                            <option>Symbiosis Institute of Telecom Management</option>
+                            <option>VIT School of Civil Engineering</option>
+                            <option>Manipal College of Optometry</option>
+                            <option>Amity Institute of Virology and Immunology</option>
+                            <option>Symbiosis Institute of Business Management</option>
+                            <option>VIT School of Architecture</option>
+                            <option>Manipal College of Health Professions</option>
+                            <option>Amity Institute of Clinical Psychology</option>
+                            <option>Symbiosis Centre for Management Studies</option>
+                            <option>VIT School of Chemical Engineering</option>
+                            <option>Manipal Institute of Regenerative Medicine</option>
+                            <option>Amity Institute of Disaster Management</option>
+                            <option>Symbiosis Institute of Computer Studies and Research</option>
+                            <option>VIT School of Advanced Sciences</option>
+                            <option>Manipal School of Life Sciences</option>
+                            <option>Amity Institute of Behavioral and Allied Sciences</option>
+                            <option>Symbiosis Institute of Health Sciences</option>
+                            <option>VIT School of Fashion Design</option>
+                            <option>Manipal Institute of Digital Marketing</option>
+                            <option>Amity Institute of Space Science and Technology</option>
+                            <option>Indian Institute of Technology Bombay</option>
+                            <option>Indian Institute of Technology Delhi</option>
+                            <option>Indian Institute of Technology Kanpur</option>
+                            <option>Indian Institute of Technology Madras</option>
+                            <option>Indian Institute of Technology Kharagpur</option>
+                            <option>Indian Institute of Technology Roorkee</option>
+                            <option>Indian Institute of Technology Guwahati</option>
+                            <option>Indian Institute of Technology Bhubaneswar</option>
+                            <option>Indian Institute of Technology Gandhinagar</option>
+                            <option>Indian Institute of Technology Hyderabad</option>
+                            <option>Indian Institute of Technology Jodhpur</option>
+                            <option>Indian Institute of Technology Patna</option>
+                            <option>Indian Institute of Technology Indore</option>
+                            <option>Indian Institute of Technology Mandi</option>
+                            <option>Indian Institute of Technology (ISM) Dhanbad</option>
+                            <option>Indian Institute of Technology Varanasi</option>
+                            <option>Indian Institute of Technology Palakkad</option>
+                            <option>Indian Institute of Technology Tirupati</option>
+                            <option>Indian Institute of Technology Bhilai</option>
+                            <option>Indian Institute of Technology Goa</option>
+                            <option>Indian Institute of Technology Jammu</option>
+                            <option>Indian Institute of Technology Dharwad</option>
+                            <option>Indian Institute of Science Bangalore</option>
+                            <option>Indian Institute of Management Ahmedabad</option>
+                            <option>Indian Institute of Management Bangalore</option>
+                            <option>Indian Institute of Management Calcutta</option>
+                            <option>Indian Institute of Management Lucknow</option>
+                            <option>Indian Institute of Management Indore</option>
+                            <option>Indian Institute of Management Kozhikode</option>
+                            <option>Indian Institute of Management Shillong</option>
+                            <option>Indian Institute of Management Rohtak</option>
+                            <option>Indian Institute of Management Raipur</option>
+                            <option>Indian Institute of Management Udaipur</option>
+                            <option>Indian Institute of Management Tiruchirappalli</option>
+                            <option>Indian Institute of Management Kashipur</option>
+                            <option>Indian Institute of Management Nagpur</option>
+                            <option>Indian Institute of Management Visakhapatnam</option>
+                            <option>Indian Institute of Management Bodh Gaya</option>
+                            <option>Indian Institute of Management Amritsar</option>
+                            <option>Indian Institute of Management Sambalpur</option>
+                            <option>Indian Institute of Management Sirmaur</option>
+                            <option>Indian Institute of Management Jammu</option>
+                            <option>Indian Institute of Management Nagaland</option>
+                            <option>Indian Institute of Management Ranchi</option>
+                            <option>Indian Institute of Management Indore</option>
+                            <option>Indian Institute of Management Kozhikode</option>
+                            <option>Indian Institute of Management Shillong</option>
+                            <option>Indian Institute of Management Rohtak</option>
+                            <option>Indian Institute of Management Raipur</option>
+                            <option>Indian Institute of Management Udaipur</option>
+                            <option>Indian Institute of Management Tiruchirappalli</option>
+                            <option>Indian Institute of Management Kashipur</option>
+                            <option>Indian Institute of Management Nagpur</option>
+                            <option>Indian Institute of Management Visakhapatnam</option>
+                            <option>Indian Institute of Management Bodh Gaya</option>
+                            <option>Indian Institute of Management Amritsar</option>
+                            <option>Indian Institute of Management Sambalpur</option>
+                            <option>Indian Institute of Management Sirmaur</option>
+                            <option>Indian Institute of Management Jammu</option>
+                            <option>Indian Institute of Management Nagaland</option>
+                            <option>Indian Institute of Management Ranchi</option>
+                            <option>Delhi University</option>
+                            <option>Jawaharlal Nehru University</option>
+                            <option>Anna University</option>
+                            <option>University of Mumbai</option>
+                            <option>University of Calcutta</option>
+                            <option>Banaras Hindu University</option>
+                            <option>Indian Statistical Institute</option>
+                            <option>Indian Institute of Foreign Trade</option>
+                            <option>Aligarh Muslim University</option>
+                            <option>Jadavpur University</option>
+                            <option>Manipal Academy of Higher Education</option>
+                            <option>Amity University</option>
+                            <option>Visvesvaraya Technological University</option>
+                            <option>Savitribai Phule Pune University</option>
+                            <option>Indian Institute of Technology Ropar</option>
+                            <option>Indian Institute of Technology Mandi</option>
+                            <option>Indian Institute of Technology (ISM) Dhanbad</option>
+                            <option>Indian Institute of Technology Varanasi</option>
+                            <option>Indian Institute of Technology Palakkad</option>
+                            <option>Indian Institute of Technology Tirupati</option>
+                            <option>Indian Institute of Technology Bhilai</option>
+                            <option>Indian Institute of Technology Goa</option>
+                            <option>Indian Institute of Technology Jammu</option>
+                            <option>Indian Institute of Technology Dharwad</option>
+                            <option>Indian Institute of Science Bangalore</option>
+                            <option>Indian Institute of Management Ahmedabad</option>
+                            <option>Indian Institute of Management Bangalore</option>
+                            <option>Indian Institute of Management Calcutta</option>
+                            <option>Indian Institute of Management Lucknow</option>
+                            <option>Indian Institute of Management Indore</option>
+                            <option>Indian Institute of Management Kozhikode</option>
+                            <option>Indian Institute of Management Shillong</option>
+                            <option>Indian Institute of Management Rohtak</option>
+                            <option>Indian Institute of Management Raipur</option>
+                            <option>Indian Institute of Management Udaipur</option>
+                            <option>Indian Institute of Management Tiruchirappalli</option>
+                            <option>Indian Institute of Management Kashipur</option>
+                            <option>Indian Institute of Management Nagpur</option>
+                            <option>Indian Institute of Management Visakhapatnam</option>
+                            <option>Indian Institute of Management Bodh Gaya</option>
+                            <option>Indian Institute of Management Amritsar</option>
+                            <option>Indian Institute of Management Sambalpur</option>
+                            <option>Indian Institute of Management Sirmaur</option>
+                            <option>Indian Institute of Management Jammu</option>
+                            <option>Indian Institute of Management Nagaland</option>
+                            <option>Indian Institute of Management Ranchi</option>
+                            <option>Indian Institute of Management Indore</option>
+                            <option>Indian Institute of Management Kozhikode</option>
+                            <option>Indian Institute of Management Shillong</option>
+                            <option>Indian Institute of Management Rohtak</option>
+                            <option>Indian Institute of Management Raipur</option>
+                            <option>Indian Institute of Management Udaipur</option>
+                            <option>Indian Institute of Management Tiruchirappalli</option>
+                            <option>Indian Institute of Management Kashipur</option>
+                            <option>Indian Institute of Management Nagpur</option>
+                            <option>Indian Institute of Management Visakhapatnam</option>
+                            <option>Indian Institute of Management Bodh Gaya</option>
+                            <option>Indian Institute of Management Amritsar</option>
+                            <option>Indian Institute of Management Sambalpur</option>
+                            <option>Indian Institute of Management Sirmaur</option>
+                            <option>Indian Institute of Management Jammu</option>
+                            <option>Indian Institute of Management Nagaland</option>
+                            <option>Indian Institute of Management Ranchi</option>
+                            <option>Delhi University</option>
+                            <option>Jawaharlal Nehru University</option>
+                            <option>Anna University</option>
+                            <option>University of Mumbai</option>
+                            <option>University of Calcutta</option>
+                            <option>Banaras Hindu University</option>
+                        </select>
+                        <button type="submit">Add College</button>
                     </form>
                     <% } else { %>
-                        <p>
-                            <%= user.college %>
-                        </p>
+                        <p class="text-slate-400"><%= user.college %></p>
                         <% } %>
             </div>
 
 
-            <div class="bioAdding text-slate-300">
+            <div class="bioAdding text-slate-300 w-full">
                 <% if (!user.bio) { %>
-                    <form action="/add-bio" class="flex gap-4" method="post">
+                    <form action="/add-bio" class="flex flex-col gap-1" method="post">
                         <textarea name="bio" class="bg-slate-700 py-2 w-full px-2 outline-none rounded-md"
                             placeholder="Add your bio / About here. Don't hit enter for new line"></textarea>
                         <button type="submit">Add</button>
                     </form>
                     <% } else { %>
-                        <p>
-                            <%= user.bio %>
-                        </p>
-                        <% } %>
+                        <p style="height: min-content; max-height: 14vh; overflow-y: auto; white-space: pre-wrap;"><%= user.bio %></p>
+                    <% } %>
             </div>
         </div>
         <div class="settings" style="display: flex; justify-content: center; flex-direction: column;">
