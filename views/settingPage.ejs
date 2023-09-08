@@ -446,7 +446,7 @@
     </form>
 
     <form class="grid grid-cols-1 mt-10 w-2/3 mx-auto gap-6 p-6 bg-gray-800 rounded-lg shadow-md mb-11" action="/deleteAccount/<%=user._id%>" method="POST">
-        <p class="text-red-300" style="color: rgb(255, 52, 52);">Once clicked, it wont ask for confirmation, it will directly delete this account! It will delete your every action, such as blogs, comments, likes, followings, etc.</p>
+        <p class="text-red-300" style="color: rgb(255, 52, 52);">Be very carefull while deleting the account, it will delete your every action on this website, which could never be recovered!! Once gone, it's gone forever...</p>
         <div class="flex flex-col gap-2">
             <input name="delUsername" class="bg-slate-700 pl-2 rounded-md text-slate-300" style="height: 6vh; border: none; outline: none;" type="text" placeholder="Type your username here to delete this account" autocomplete="off" required>
         </div>
