@@ -11,7 +11,6 @@ const Authenticate = async (req, res, next) => {
             throw new Error('User not found');
         }
         req.token = token;
-        // rootUser will get all the document of the specific user.
         req.rootUser = rootUser;
         req.userID = rootUser._id;
         next();

@@ -110,7 +110,7 @@ app.post('/signinrequest', async function (req, res) {
             httpOnly: true
         });
         
-        return res.status(200).redirect('/dashboard');
+        return res.status(200).redirect(req.headers.referer);
     } else {
         return res.status(400).json({ error: "Wrong credentials!" });
     }
@@ -305,10 +305,8 @@ app.post('/like/:blogId', authenticate, async (req, res) => {
         }
 
         if (blog.likes.includes(user._id)) {
-            
             blog.likes.pull(user._id);
         } else {
-            
             blog.likes.push(user._id);
         }
 
@@ -330,19 +328,16 @@ app.post('/comment/:postId', authenticate, async (req, res) => {
         const postId = req.params.postId;
         const commentText = req.body.comment;
 
-
         const blogPost = await BlogPost.findById(postId);
         if (!blogPost) {
             return res.status(404).send('Blog post not found');
         }
-
 
         blogPost.comments.push({
             author: req.rootUser._id,
             text: commentText,
             createdAt: new Date()
         });
-
 
         await blogPost.save();
 

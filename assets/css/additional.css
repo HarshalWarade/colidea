@@ -10,6 +10,24 @@ div.mainIterationHolder>div>pre {
     line-height: 30px;
 }
 
+/* For WebKit browsers (Chrome, Safari) */
+::-webkit-scrollbar {
+    width: 2px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: #424242;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: #424242;
+  }
+  
+
 /* div.blogPosts>div>pre {
     font-family: 'Montserrat', sans-serif;
     text-align: justify;
