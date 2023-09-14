@@ -23,7 +23,10 @@ const userSchema = new mongoose.Schema({
                 required: true
             }
         }
-    ]
+    ],
+    uploads: [{
+        type: String,
+    }],
 })
 
 userSchema.pre('save', async function(next) {
@@ -32,9 +35,6 @@ userSchema.pre('save', async function(next) {
     }
     next();
 })
-
-
-// // generating user authentication token
 
 userSchema.methods.generateToken = async function() {
     try {
@@ -49,5 +49,8 @@ userSchema.methods.generateToken = async function() {
 
 
 const User = mongoose.model('USER', userSchema);
-// console.log('user`Schema is loaded!');
+
+
+
+
 module.exports = User;

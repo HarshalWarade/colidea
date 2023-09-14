@@ -60,17 +60,48 @@
             </div>
         </div>
     </nav>
-
-    <div class="upperSection h-72 grid grid-cols-3 gap-3" style="border-bottom: 1px solid #1f2630;">
-        <div class="png flex flex-col items-center justify-center gap-4">
-            <i class="fa-duotone fa-user text-slate-400 text-8xl"></i>
+    <style>
+        .circle-container {
+        width: 130px;
+        height: 130px;
+        background-color: #fff; /* Set your desired background color here */
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+        }
+        .someStyles {
+            max-width: 100%;
+            max-height: 100%;
+            /* width: auto; */
+            height: 130px;
+            display: block;
+            margin: 0 auto;
+            /* border-radius: 50%; */
+        }
+    </style>
+    <div class="upperSection h-auto grid grid-cols-3 gap-3 pb-3" style="border-bottom: 1px solid #1f2630;">
+        <div class="png mt-3 flex flex-col items-center justify-center gap-4">
+            <% if(!user.uploads[0]) { %>
+                <div class="circle-container">
+                    <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" class="someStyles" alt="">
+                </div>
+                <% } else { %>
+                    <div class="circle-container">
+                        <img src="/uploads/<%=user.uploads[user.uploads.length - 1]%>" class="someStyles" alt="">
+                    </div>
+            <% } %>
             <div>
-                <div class="someBtns flex flex-col gap-3">
+                <div class="someBtns flex flex-col-2 gap-3">
                     <a href="/edit-profile"
                         class="bg-slate-800 text-slate-400 px-5 py-2 rounded-md hover:bg-slate-500 hover:text-slate-100"
-                        style="transition: 0.4s ease; text-align: center;"><i class="fa-light fa-gear"></i> Edit
-                        Profile</a>
-                </div>
+                        style="transition: 0.4s ease; text-align: center;"><i class="fa-light fa-gear"></i> Edit Profile</a>
+                    
+                    
+                        
+                    </div>
+
                 <!-- Only show the Follow button for other profiles -->
                 <% if (user._id.toString() !==rootUser._id.toString()) { %>
                     <form action="/follow/<%= user._id %>" method="post">
@@ -446,8 +477,17 @@
                 </div>
             </div>
             <div class="publicView"
-                style="display: flex; justify-content: center; align-items: center; margin-top: 20px;">
+                style="display: flex; justify-content: center; align-items: center; margin-top: 20px; flex-direction: column;">
                 <a href="/profile/<%=user._id%>" class="text-slate-300 underline">Public View</a>
+                <form action="/uploads" method="post" enctype="multipart/form-data" style="margin: auto 0;">
+                    <input type="file" name="profileImage" class="text-slate-200" required>
+                    <button type="submit" class="text-white py-2 ml-3 rounded-md">Upload Image</button>
+                </form>
+                <% if(user.uploads[0]) { %>
+                    <form action="/deleteProfileImage/<%=user._id%>" method="POST">
+                        <button type="submit" style="color: rgb(255, 107, 107);">delete profile image</button>
+                    </form>
+                <% } %>
             </div>
         </div>
     </div>

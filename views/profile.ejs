@@ -61,10 +61,38 @@
                 </div>
             </div>
         </nav>
-
+        <style>
+            .circle-container {
+            width: 130px;
+            height: 130px;
+            background-color: #fff; /* Set your desired background color here */
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            }
+            .someStyles {
+                max-width: 100%;
+                max-height: 100%;
+                /* width: auto; */
+                height: 130px;
+                display: block;
+                margin: 0 auto;
+                /* border-radius: 50%; */
+            }
+        </style>
         <div class="upperSection h-72 grid grid-cols-3 gap-3" style="border-bottom: 1px solid #1f2630;">
             <div class="png flex flex-col items-center justify-center gap-4">
-                <i class="fa-duotone fa-user text-slate-400 text-8xl"></i>
+                <% if(!user.uploads[0]) { %>
+                    <div class="circle-container">
+                        <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" class="someStyles" alt="">
+                    </div>
+                    <% } else { %>
+                        <div class="circle-container">
+                            <img src="/uploads/<%=user.uploads[user.uploads.length - 1]%>" class="someStyles" alt="">
+                        </div>
+                <% } %>
                 <p class="text-slate-500" style="width: 80%; text-align: center;">
                     <%=user.college%>
                 </p>

@@ -2,7 +2,7 @@
 const usernames = new Set();
 
 const nodemailer = require('nodemailer');
-
+const fs = require('fs-extra');
 const express = require('express');
 const dotenv = require('dotenv');
 const mongoose = require('mongoose');
@@ -10,12 +10,32 @@ const path = require('path');
 const bcrypt = require('bcryptjs');
 
 const app = express();
+
+const multer = require('multer');
+
 const BlogPost = require('./models/blogPostSchema');
 
+app.use(express.urlencoded({extended: false}));
 const cookieParser = require('cookie-parser');
 app.use(cookieParser());
 app.use(express.json());
-app.use(express.urlencoded());
+
+
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, "./uploads");
+    },
+    filename: function (req, file, cb) {
+        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+        cb(null, `${uniqueSuffix}${file.originalname}`);
+    },
+});
+
+
+
+const upload = multer({storage});
+
+
 
 dotenv.config({ path: 'config.env' });
 
@@ -32,6 +52,9 @@ require('./conn/conn')
 app.use(express.static('assets'));
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
+
+
+
 
 app.get('/', async function(req, res) {
     return res.status(200).render('basic', {title: "Welcome | Colidea", link1: process.env.LINK1, link2: process.env.LINK2});
@@ -110,7 +133,7 @@ app.post('/signinrequest', async function (req, res) {
             httpOnly: true
         });
         
-        return res.status(200).redirect(req.headers.referer);
+        return res.status(200).redirect("/dashboard");
     } else {
         return res.status(400).json({ error: "Wrong credentials!" });
     }
@@ -203,6 +226,9 @@ app.get("/search", authenticate, async (req, res) => {
                 { firstName: { $regex: searchQuery, $options: "i" } },
                 { lastName: { $regex: searchQuery, $options: "i" } },
                 { username: { $regex: searchQuery, $options: "i" } },
+                { college: { $regex: searchQuery, $options: "i" } },
+                { email: { $regex: searchQuery, $options: "i" } },
+                { bio: { $regex: searchQuery, $options: "i" } },
             ],
         });
 
@@ -381,7 +407,7 @@ app.post('/delete-blog/:id', authenticate, async (req, res) => {
             return res.status(404).json({ error: "Blog not found or you are not authorized to delete it." });
         }
 
-        res.status(200).redirect('/dashboard');
+        res.status(200).redirect(req.headers.referer);
     } catch (error) {
         console.error("Error deleting blog:", error);
         return res.status(500).json({ error: "Internal server error" });
@@ -630,6 +656,65 @@ app.get('/logout', authenticate, async function(req, res) {
     }
 })
 
+app.use('/uploads', express.static('uploads'));
+
+app.post('/uploads', authenticate, upload.single("profileImage"), async function(req, res) {
+    try {
+        const userFileName = req.file.filename;
+        const thisUser = await User.findOne({username: req.rootUser.username});
+
+        thisUser.uploads.push(userFileName);
+
+        await thisUser.save();
+        
+        return res.redirect('/dashboard');
+    } catch (err) {
+        return res.send(err);
+    }
+});
+
+app.post('/deleteProfileImage/:userID', authenticate, async function(req, res) {
+    const userId = req.params.userID;
+
+    try {
+      // Find the user by their ID
+      const user = await User.findById(userId);
+  
+      if (!user) {
+        return res.status(404).json({ message: 'User not found' });
+      }
+  
+      // Specify the uploads directory
+      const uploadsDirectory = path.join(__dirname, 'uploads'); // Replace with your actual uploads directory path
+  
+      // Loop through the user's uploads and delete the corresponding files
+      for (const fileName of user.uploads) {
+        const filePath = path.join(uploadsDirectory, fileName);
+  
+        // Check if the file exists
+        const fileExists = await fs.pathExists(filePath);
+  
+        if (fileExists) {
+          // Delete the file
+          await fs.unlink(filePath);
+          console.log(`Deleted file: ${fileName}`);
+        } else {
+          console.log(`File not found: ${fileName}`);
+        }
+      }
+  
+      // Clear the uploads array in the user document
+      user.uploads = [];
+  
+      // Save the updated user document
+      await user.save();
+  
+      res.status(200).redirect('/dashboard');
+    } catch (error) {
+      console.error('Error deleting uploads:', error);
+      res.status(500).json({ message: 'Internal server error' });
+    }
+})
 
 app.listen(port, (err) => {
     if (err) {
