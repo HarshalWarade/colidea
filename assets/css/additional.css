@@ -12,21 +12,29 @@ div.mainIterationHolder>div>pre {
 
 /* For WebKit browsers (Chrome, Safari) */
 ::-webkit-scrollbar {
-    width: 2px;
-  }
-  
-  ::-webkit-scrollbar-track {
-    background: transparent;
-  }
-  
-  ::-webkit-scrollbar-thumb {
-    background: #424242;
-  }
-  
-  ::-webkit-scrollbar-thumb:hover {
-    background: #424242;
-  }
-  
+  width: 2px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #424242;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #424242;
+}
+
+@font-face {
+  font-family: 'devFontHarshal';
+  src: url("/fonts/SFPRODISPLAYMEDIUM.OTF");
+}
+
+* {
+  font-family: 'devFontHarshal';
+}
 
 /* div.blogPosts>div>pre {
     font-family: 'Montserrat', sans-serif;

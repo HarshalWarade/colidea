@@ -594,36 +594,30 @@ app.post('/deleteAccount/:userID', authenticate, async function(req, res) {
         }
 
         if (delUsername === req.rootUser.username) {
-            // delet all the blogs that belonged to that user
             await BlogPost.deleteMany({ author: userId });
 
-            // removing that user's likes from all those blogs which he liked
             await BlogPost.updateMany(
                 { likes: userId },
                 { $pull: { likes: userId } }
             );
 
-            // removing every comment he had ever made on any blog
             await BlogPost.updateMany(
                 { 'comments.author': userId },
                 { $pull: { comments: { author: userId } } }
             );
 
-            // Find user's followers and update their followings
             const followers = await User.find({ followings: userId });
             for (const follower of followers) {
                 follower.followings.pull(userId);
                 await follower.save();
             }
 
-            // Find user's followings and update their followers
             const followings = await User.find({ followers: userId });
             for (const following of followings) {
                 following.followers.pull(userId);
                 await following.save();
             }
 
-            // Delete the user document
             await User.findByIdAndDelete(userId);
 
             return res.status(200).redirect('/');
@@ -677,25 +671,20 @@ app.post('/deleteProfileImage/:userID', authenticate, async function(req, res) {
     const userId = req.params.userID;
 
     try {
-      // Find the user by their ID
       const user = await User.findById(userId);
   
       if (!user) {
         return res.status(404).json({ message: 'User not found' });
       }
   
-      // Specify the uploads directory
-      const uploadsDirectory = path.join(__dirname, 'uploads'); // Replace with your actual uploads directory path
+      const uploadsDirectory = path.join(__dirname, 'uploads');
   
-      // Loop through the user's uploads and delete the corresponding files
       for (const fileName of user.uploads) {
         const filePath = path.join(uploadsDirectory, fileName);
   
-        // Check if the file exists
         const fileExists = await fs.pathExists(filePath);
   
         if (fileExists) {
-          // Delete the file
           await fs.unlink(filePath);
           console.log(`Deleted file: ${fileName}`);
         } else {
@@ -703,10 +692,8 @@ app.post('/deleteProfileImage/:userID', authenticate, async function(req, res) {
         }
       }
   
-      // Clear the uploads array in the user document
       user.uploads = [];
   
-      // Save the updated user document
       await user.save();
   
       res.status(200).redirect('/dashboard');
