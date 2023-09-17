@@ -18,12 +18,13 @@
     <link rel="stylesheet" href="/css/loginGeneral.css">
     <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.2.1/css/all.css">
     <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.2.1/css/sharp-solid.css">
-    <link rel="stylesheet" href="/css/output.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simplebar/5.3.0/simplebar.min.css">
     
     <!-- Include SimpleBar JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/simplebar/5.3.0/simplebar.min.js"></script>
+    
     <link rel="stylesheet" href="/css/additional.css">
+    <link rel="stylesheet" href="/css/output.css">
 </head>
 <body class="bg-gray-900">
     <nav class="bg-gray-800 shadow-lg">
@@ -45,7 +46,7 @@
                     <div class="hidden md:block">
                         <a href="/following-blogs"
                             class="bg-gray-700 text-gray-300 hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium">Home</a>
-                        <a href="#"
+                        <a href="/about"
                             class="text-gray-300 hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium">About</a>
                         <a href="/explore"
                             class="text-gray-300 hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium">Explore</a>
@@ -137,6 +138,31 @@
                                 </div>
                             </div>
                         <% }); %>
+                    </div>
+
+                    <style>
+                        .mainButtonsHolder {
+                            display: flex;
+                            flex-direction: column;
+                            gap: 1rem;
+                        }
+                        .mainButtonsHolder .subBtn {
+                            transition: 0.4s ease;
+                            color: white;
+                            text-align: center;
+                            height: 60px;
+                            width: 100%;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            padding: 0 20px;
+                            gap: 1rem;
+                        }
+                    </style>
+                    
+                    <div class="mainButtonsHolder">
+                        <a href="/mostLikedBlogs" class="subBtn bg-slate-800 rounded-md hover:bg-slate-600"><i class="fa-solid fa-circle-heart"></i> Most Liked Blogs</a>
+                        <a href="/mostCommented" class="subBtn bg-slate-800 rounded-md hover:bg-slate-600"><i class="fa-solid fa-circle-heart"></i> Most Commented</a>
                     </div>
                 </div>
             </div>

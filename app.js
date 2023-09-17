@@ -703,6 +703,29 @@ app.post('/deleteProfileImage/:userID', authenticate, async function(req, res) {
     }
 })
 
+
+app.get('/mostLikedBlogs', authenticate, async (req, res) => {
+    try {
+        const popularPosts = await BlogPost.find({}).sort({ likes: -1 }).exec();
+    
+        res.render('mostliked', { popularPosts });
+    } catch (error) {
+        console.error('Error fetching popular posts:', error);
+        res.status(500).send('Internal server error');
+    }
+});
+
+
+app.get('/mostCommented', authenticate, async function(req, res) {
+    console.log('success');
+    return res.status(200).send(req.rootUser.username);
+});
+
+
+app.get('/about', async function(req, res) {
+    return res.status(200).render('about');
+})
+
 app.listen(port, (err) => {
     if (err) {
         console.log("Error occurred while setting up the port");

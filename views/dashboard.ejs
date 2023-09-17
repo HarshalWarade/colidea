@@ -38,7 +38,7 @@
                     <div class="hidden md:block">
                         <a href="/following-blogs"
                             class="text-gray-300 hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium">Home</a>
-                        <a href="#"
+                        <a href="/about"
                             class="text-gray-300 hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium">About</a>
                         <a href="/explore"
                             class="text-gray-300 hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium">Explore</a>
@@ -103,7 +103,6 @@
                     class="fa-light fa-pen-to-square fa-beat"></i> Add
                 Blog</button>
 
-            <!-- Add this modal structure at the bottom of the file, outside the main content -->
             <div id="addBlogModal"
                 class="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50 hidden" style="z-index: 999;">
                 <div class="w-1/2 bg-slate-700 p-6 rounded-md shadow-md">
@@ -554,7 +553,7 @@
     </div>
 
     <script>
-        // JavaScript to manage the modal
+        // managing the modals
         const addBlogButton = document.getElementById('addBlogButton');
         const addBlogModal = document.getElementById('addBlogModal');
         const closeModalButton = document.getElementById('closeModalButton');
