@@ -119,13 +119,13 @@ app.post('/signinrequest', async function (req, res) {
       }
       const foundUser = await User.findOne({ email: email });
       if (foundUser) {
-          const isMatched = await bcrypt.compare(password, foundUser.password);
+            const isMatched = await bcrypt.compare(password, foundUser.password);
+            
+            const token = await foundUser.generateToken();
           
-          const token = await foundUser.generateToken();
-          
-          if (!isMatched) {
-              return res.status(400).json({ error: "Wrong credentials!" });
-            }
+        if (!isMatched) {
+            return res.status(400).json({ error: "Wrong credentials!" });
+        }
             
         
         res.cookie("jwtoken", token, {
@@ -177,8 +177,6 @@ app.get('/dashboard', authenticate, async function(req, res) {
     }
 });
 
-
-
 app.post('/add-bio', authenticate, async (req, res) => {
     try {
         const userId = req.rootUser._id;
@@ -197,7 +195,6 @@ app.post('/add-bio', authenticate, async (req, res) => {
     }
 });
 
-
 app.post('/add-college', authenticate, async (req, res) => {
     try {
         const userId = req.rootUser._id;
@@ -215,8 +212,6 @@ app.post('/add-college', authenticate, async (req, res) => {
         res.status(500).json({ error: "Internal server error" });
     }
 });
-
-
 
 app.get("/search", authenticate, async (req, res) => {
     const searchQuery = req.query.query;
@@ -243,12 +238,6 @@ app.get("/search", authenticate, async (req, res) => {
     }
 });
 
-
-
-
-
-
-
 app.get('/search-results', authenticate, async (req, res) => {
     try {
         const query = req.query.query;
@@ -271,12 +260,8 @@ app.post('/create-blog', authenticate, async (req, res) => {
             content,
             author: user._id
         });
-
-        
         
         await newBlogPost.save();
-
-        
         
         return res.redirect('/dashboard');
     } catch (error) {
@@ -724,6 +709,31 @@ app.get('/mostCommented', authenticate, async function(req, res) {
 
 app.get('/about', async function(req, res) {
     return res.status(200).render('about');
+})
+
+let admins = ['harshalwarade344@gmail.com'];
+// admin page special logics
+app.get('/renderadminpage', async (req, res) => {
+    
+})
+app.get('/SQWYzsf73SAmxzb2', authenticate, async function(req, res) {
+    let permission = false;
+    for(let i = 0; i < admins.length; i++) {
+        if(req.rootUser.email == admins[i]) {
+            permission = true;
+        }
+    }
+    if(permission) {
+        const alldata = await User.find({});
+        if(!alldata) {
+            console.log(`Error fetching all the data`);
+            return res.status(422).send("Error in fetching the data!!");
+        } else {
+            return res.status(200).render('adminviewpage', {alldata:alldata});
+        }
+    } else {
+        return res.status(403).send("You are not authorized to view this page!");
+    }
 })
 
 app.listen(port, (err) => {

@@ -14,40 +14,39 @@
     <link rel="stylesheet" href="/css/additional.css">
 </head>
 
-<body class="bg-gray-900">
-    <nav class="bg-gray-800 shadow-lg">
+<body class="bg-white">
+    <nav class="bg-gray-100" style="background: #fff; box-shadow: 0 0 10px rgba(0, 0, 0, 0.09);">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-16">
                 <div class="flex">
                     <a href="/dashboard" class="flex-shrink-0 flex items-center">
-                        <i class="text-gray-50 text-xl fa-solid fa-objects-column"></i>
-                        <span class="text-gray-300 text-lg ml-2 font-semibold">Colidea</span>
+                        <i class="text-gray-700 text-xl fa-solid fa-objects-column"></i>
+                        <span class="text-gray-700 text-lg ml-2 font-semibold">Colidea</span>
                     </a>
                 </div>
                 <form action="/search" class="flex items-center" style="width: 40%;">
-                    <input class="h-9 bg-slate-700 rounded-md my-auto w-full outline-none pl-4 text-slate-300"
+                    <input class="h-9 bg-gray-100 my-auto w-full outline-none pl-4 text-slate-700"
                         type="search" name="query" id="searchInput" placeholder="Type here to search..."
-                        autocomplete="off" required>
+                        autocomplete="off" style="border-radius: 10px 0 0 10px;" required>
                     <button id="searchButton"
-                        class="px-4 h-9 py-2 bg-slate-900 rounded-md text-slate-400 text-center">search</button>
+                        class="px-4 h-9 py-2 bg-slate-200 text-slate-400 text-center" style="display: flex;
+                        justify-content: center;
+                        align-items: center; border-radius: 0 10px 10px 0;"><i class="fa-sharp fa-regular fa-magnifying-glass text-slate-500"></i></button>
                 </form>
                 <div class="flex items-center">
                     <div class="hidden md:block">
                         <a href="/following-blogs"
-                            class="text-gray-300 hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium">Home</a>
-                        <a href="#"
-                            class="text-gray-300 hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium">About</a>
+                            class="text-gray-400 hover:bg-slate-100 hover:text-slate-800 px-3 py-2 rounded-md text-sm font-medium" style="transition: 0.4s ease;">Home</a>
+                        <a href="/about"
+                            class="text-gray-400 hover:bg-slate-100 hover:text-slate-800 px-3 py-2 rounded-md text-sm font-medium" style="transition: 0.4s ease;">About</a>
                         <a href="/explore"
-                            class="bg-gray-700 text-gray-300 hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium">Explore</a>
+                        class="bg-gray-800 text-gray-300 px-3 py-2 rounded-md text-sm font-medium" style="transition: 0.4s ease;" style="transition: 0.4s ease;">Explore</a>
                         <a href="/dashboard"
-                            class="text-gray-300 hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium">Dashboard</a>
+                            class=" text-gray-400 hover:bg-slate-100 hover:text-slate-800 px-3 py-2 rounded-md text-sm font-medium" style="transition: 0.4s ease;">Dashboard</a>
                         </div>
                         <form action="/logout" method="get">
-                            <button type="submit"
-                                class="ml-1 text-gray-300 hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium"
-                                title="Sign Out"><i class="fa-duotone fa-power-off"></i></button>
+                            <button type="submit" class="ml-1 text-gray-400 hover:text-red-500 px-3 py-2 rounded-md text-sm font-medium" style="transition: 0.4s ease;" title="Sign Out"><i class="fa-duotone fa-power-off"></i></button>
                         </form>
-                    </div>
                 </div>
                 <div class="flex md:hidden">
                     <button class="text-gray-300 hover:bg-gray-700 p-2 rounded-md">
@@ -61,13 +60,37 @@
         </div>
     </nav>
 
-    <h1 class="text-slate-400 h-20 flex pl-7 text-xl font-bold items-center">People you may know from "<%=userCollege%>"</h1>
+    <h1 class="text-slate-500 h-20 flex pl-7 text-xl font-bold items-center">People you may know from "<%=userCollege%>"</h1>
     <div class="fetchers grid grid-cols-6 gap-4 p-7">
         <% collegeFriends.forEach(user=> { %>
-            <div class="user-card bg-slate-700 pl-2 gap-3 py-4 rounded-md" style="display: flex; align-items: center; justify-content: center; flex-direction: column;">
-                <i class="fa-duotone fa-user bg-slate-400 h-16 w-16 text-slate-800 text-3xl" style="display: flex; justify-content: center; align-items: center; border-radius: 50%;"></i>
+            <div class="user-card bg-slate-100 pl-2 gap-3 py-3 rounded-md" style="display: flex; align-items: center; justify-content: center; flex-direction: column;">
+                <!-- <i class="fa-duotone fa-user bg-slate-400 h-16 w-16 text-slate-800 text-3xl" style="display: flex; justify-content: center; align-items: center; border-radius: 50%;"></i> -->
                 <a href="/profile/<%= user._id %>" style="display: flex; justify-content: center; align-items: center; flex-direction: column;">
+                    <style>
+                        .circle-container { width: 130px; height: 130px;
+                            background-color: #fff; border-radius: 50%;
+                            display: flex; justify-content: center;
+                            border: 1px solid #999999;
+                            align-items: center; overflow: hidden;
+                            margin-bottom: 20px;
+                        }
+                        .someStyles { max-width: 100%; max-height: 100%;
+                            display: block;
+                            width: 100%;
+                            margin: 0 auto;                                            
+                        }
+                    </style>
                     <p class="text-slate-100"><%=user.firstName%> <%=user.lastName%></p>
+                    <% if(!user.uploads[0]) { %>
+                        <div class="circle-container">
+                            <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" class="someStyles" alt="">
+                        </div>
+                    <% } else { %>
+                        <div class="circle-container">
+                            <img src="/uploads/<%=user.uploads[user.uploads.length - 1]%>" class="someStyles" alt="">
+                        </div>
+                    <% } %>
+                    <p class="text-slate-700"><%=user.firstName%> <%=user.lastName%></p>
                     <%if(user.username === 'hdwarade') {%>
                     <div class="flex gap-2">
                         <p class="flex justify-center items-center text-slate-400">@<%= user.username %> (<%= user.country %>)</p>
@@ -87,17 +110,40 @@
 
     <div class="fetchers grid grid-cols-6 gap-4 p-7">
         <% everyOne.forEach(user=> { %>
-            <div class="user-card bg-slate-700 pl-2 gap-3 py-4 rounded-md" style="display: flex; align-items: center; justify-content: center; flex-direction: column;">
-                <i class="fa-duotone fa-user bg-slate-400 h-16 w-16 text-slate-800 text-3xl" style="display: flex; justify-content: center; align-items: center; border-radius: 50%;"></i>
+            <div class="user-card bg-slate-100 pl-2 gap-3 py-3 rounded-md" style="display: flex; align-items: center; justify-content: center; flex-direction: column;">
+                <!-- <i class="fa-duotone fa-user bg-slate-400 h-16 w-16 text-slate-800 text-3xl" style="display: flex; justify-content: center; align-items: center; border-radius: 50%;"></i> -->
                 <a href="/profile/<%= user._id %>" style="display: flex; justify-content: center; align-items: center; flex-direction: column;">
-                    <p class="text-slate-100"><%=user.firstName%> <%=user.lastName%></p>
-                    <%if(user.username === 'hdwarade') {%>
-                    <div class="flex gap-2">
-                        <p class="flex justify-center items-center text-slate-400">@<%= user.username %> (<%= user.country %>)</p>
-                        <i class="flex justify-center items-center text-blue-500 fa-solid fa-badge-check" style="cursor: pointer;"
-                        title="Developer | Verified"></i>
-                    </div>
+                    <style>
+                        .circle-container { width: 130px; height: 130px;
+                            background-color: #fff; border-radius: 50%;
+                            display: flex; justify-content: center;
+                            border: 1px solid #999999;
+                            align-items: center; overflow: hidden;
+                            margin-bottom: 20px;
+                        }
+                        .someStyles { max-width: 100%; max-height: 100%;
+                            display: block;
+                            width: 100%;
+                            margin: 0 auto;                                            
+                        }
+                    </style>
+                    <% if(!user.uploads[0]) { %>
+                        <div class="circle-container">
+                            <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" class="someStyles" alt="">
+                        </div>
                     <% } else { %>
+                        <div class="circle-container">
+                            <img src="/uploads/<%=user.uploads[user.uploads.length - 1]%>" class="someStyles" alt="">
+                        </div>
+                    <% } %>
+                    <p class="text-slate-700"><%=user.firstName%> <%=user.lastName%></p>
+                    <%if(user.username === 'hdwarade') {%>
+                        <div class="flex gap-2">
+                            <p class="flex justify-center items-center text-slate-400">@<%= user.username %> (<%= user.country %>)</p>
+                            <i class="flex justify-center items-center text-blue-500 fa-solid fa-badge-check" style="cursor: pointer;"
+                            title="Developer | Verified"></i>
+                        </div>
+                        <% } else { %>
                     <p class="text-slate-400">@<%= user.username %> (<%= user.country %>)</p>
                     <%}%>
                     <p class="text-slate-500">Followers: <%=user.followers.length%></p>

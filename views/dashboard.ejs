@@ -1,670 +1,884 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%=title%> | Profile</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="<%=link1%>" />
+    <link rel="stylesheet" href="<%=link2%>" />
+    <link
+      rel="canonical"
+      href="https://getbootstrap.com/docs/5.3/examples/masonry/"
+    />
+    <link rel="stylesheet" href="/css/output.css" />
+    <link rel="stylesheet" href="/css/additional.css" />
+  </head>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>
-        <%=title%> | Profile
-    </title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
-    <link rel="stylesheet" href="<%=link1%>">
-    <link rel="stylesheet" href="<%=link2%>">
-    <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/masonry/">
-    <link rel="stylesheet" href="/css/output.css">
-    <link rel="stylesheet" href="/css/additional.css">
-
-</head>
-
-<body class="bg-gray-900">
-    <nav class="bg-gray-800 shadow-lg">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-16">
-                <div class="flex">
-                    <a href="/dashboard" class="flex-shrink-0 flex items-center">
-                        <i class="text-gray-50 text-xl fa-solid fa-objects-column"></i>
-                        <span class="text-gray-300 text-lg ml-2 font-semibold">Colidea</span>
-                    </a>
-                </div>
-                <form action="/search" class="flex items-center" style="width: 40%;">
-                    <input class="h-9 bg-slate-700 rounded-md my-auto w-full outline-none pl-4 text-slate-300"
-                        type="search" name="query" id="searchInput" placeholder="Type here to search..."
-                        autocomplete="off" required>
-                    <button id="searchButton"
-                        class="px-4 h-9 py-2 bg-slate-900 rounded-md text-slate-400 text-center">search</button>
-                </form>
-                <div class="flex items-center">
-                    <div class="hidden md:block">
-                        <a href="/following-blogs"
-                            class="text-gray-300 hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium">Home</a>
-                        <a href="/about"
-                            class="text-gray-300 hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium">About</a>
-                        <a href="/explore"
-                            class="text-gray-300 hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium">Explore</a>
-                        <a href="/dashboard"
-                            class="bg-gray-700 text-gray-300 hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium">Dashboard</a>
-                        </div>
-                        <form action="/logout" method="get">
-                            <button type="submit" class="ml-1 text-gray-300 hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium" title="Sign Out"><i class="fa-duotone fa-power-off"></i></button>
-                        </form>
-                </div>
-                <div class="flex md:hidden">
-                    <button class="text-gray-300 hover:bg-gray-700 p-2 rounded-md">
-                        <svg class="h-6 w-6" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            viewBox="0 0 24 24" stroke="currentColor">
-                            <path d="M4 6h16M4 12h16M4 18h16"></path>
-                        </svg>
-                    </button>
-                </div>
+  <body style="background: #fff">
+    <nav
+      class="bg-gray-100"
+      style="background: #fff; box-shadow: 0 0 10px rgba(0, 0, 0, 0.09)"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-16">
+          <div class="flex">
+            <a href="/dashboard" class="flex-shrink-0 flex items-center">
+              <i class="text-gray-700 text-xl fa-solid fa-objects-column"></i>
+              <span class="text-gray-700 text-lg ml-2 font-semibold"
+                >Colidea</span
+              >
+            </a>
+          </div>
+          <form action="/search" class="flex items-center" style="width: 40%">
+            <input
+              class="h-9 bg-gray-100 my-auto w-full outline-none pl-4 text-slate-700"
+              type="search"
+              name="query"
+              id="searchInput"
+              placeholder="Type here to search..."
+              autocomplete="off"
+              style="border-radius: 10px 0 0 10px"
+              required
+            />
+            <button
+              id="searchButton"
+              class="px-4 h-9 py-2 bg-slate-200 text-slate-400 text-center"
+              style="
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                border-radius: 0 10px 10px 0;
+              "
+            >
+              <i
+                class="fa-sharp fa-regular fa-magnifying-glass text-slate-500"
+              ></i>
+            </button>
+          </form>
+          <div class="flex items-center">
+            <div class="hidden md:block">
+              <a
+                href="/following-blogs"
+                class="text-gray-400 hover:bg-slate-100 hover:text-slate-800 px-3 py-2 rounded-md text-sm font-medium"
+                style="transition: 0.4s ease"
+                >Home</a
+              >
+              <a
+                href="/about"
+                class="text-gray-400 hover:bg-slate-100 hover:text-slate-800 px-3 py-2 rounded-md text-sm font-medium"
+                style="transition: 0.4s ease"
+                >About</a
+              >
+              <a
+                href="/explore"
+                class="text-gray-400 hover:bg-slate-100 hover:text-slate-800 px-3 py-2 rounded-md text-sm font-medium"
+                style="transition: 0.4s ease"
+                >Explore</a
+              >
+              <a
+                href="/dashboard"
+                class="bg-gray-800 text-gray-300 hover:text-gray-300 px-3 py-2 rounded-md text-sm font-medium"
+                style="transition: 0.4s ease"
+                >Dashboard</a
+              >
             </div>
+            <form action="/logout" method="get">
+              <button
+                type="submit"
+                class="ml-1 text-gray-400 hover:text-red-500 px-3 py-2 rounded-md text-sm font-medium"
+                style="transition: 0.4s ease"
+                title="Sign Out"
+              >
+                <i class="fa-duotone fa-power-off"></i>
+              </button>
+            </form>
+          </div>
+          <div class="flex md:hidden">
+            <button class="text-gray-300 hover:bg-gray-700 p-2 rounded-md">
+              <svg
+                class="h-6 w-6"
+                fill="none"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path d="M4 6h16M4 12h16M4 18h16"></path>
+              </svg>
+            </button>
+          </div>
         </div>
+      </div>
     </nav>
     <style>
-        .circle-container { width: 130px; height: 130px;
-            background-color: #fff; border-radius: 50%;
-            display: flex; justify-content: center;
-            align-items: center; overflow: hidden;
-        }
-        .someStyles { max-width: 100%; max-height: 100%;
-            height: 130px; display: block;
-            margin: 0 auto;
-        }
+      .circle-container {
+        width: 130px;
+        height: 130px;
+        background-color: #fff;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        border: 1px solid #999999;
+        align-items: center;
+        overflow: hidden;
+        margin-bottom: 20px;
+      }
+      .someStyles {
+        max-width: 100%;
+        max-height: 100%;
+        display: block;
+        width: 100%;
+        margin: 0 auto;
+      }
     </style>
-    <div class="upperSection h-auto grid grid-cols-3 gap-3 pb-3" style="border-bottom: 1px solid #1f2630;">
-        <div class="png mt-3 flex flex-col items-center justify-center gap-4">
-            <% if(!user.uploads[0]) { %>
-                <div class="circle-container">
-                    <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" class="someStyles" alt="">
-                </div>
-                <% } else { %>
-                    <div class="circle-container">
-                        <img src="/uploads/<%=user.uploads[user.uploads.length - 1]%>" class="someStyles" alt="">
-                    </div>
-            <% } %>
-            <div>
-                <div class="someBtns flex flex-col-2 gap-3">
-                    <a href="/edit-profile"
-                        class="bg-slate-800 text-slate-400 px-5 py-2 rounded-md hover:bg-slate-500 hover:text-slate-100"
-                        style="transition: 0.4s ease; text-align: center;"><i class="fa-light fa-gear"></i> Edit Profile</a>
-                    
-                    
-                        
-                    </div>
-
-                <!-- Only show the Follow button for other profiles -->
-                <% if (user._id.toString() !==rootUser._id.toString()) { %>
-                    <form action="/follow/<%= user._id %>" method="post">
-                        <button class="bg-blue-500 text-white px-4 py-2 ml-3 rounded-md">Follow</button>
-                    </form>
-                    <% } %>
-            </div>
-            <button id="addBlogButton" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-700"><i
-                    class="fa-light fa-pen-to-square fa-beat"></i> Add
-                Blog</button>
-
-            <div id="addBlogModal"
-                class="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50 hidden" style="z-index: 999;">
-                <div class="w-1/2 bg-slate-700 p-6 rounded-md shadow-md">
-                    <h2 class="text-2xl font-semibold mb-4 text-slate-200">Add a New Blog</h2>
-                    <form action="/create-blog" method="POST">
-                        <div class="mb-3">
-                            <label for="modalBlogTitle"
-                                class="block text-gray-300 text-sm font-medium mb-1">Title</label>
-                            <input type="text" id="modalBlogTitle" name="title"
-                                class="w-full text-gray-400 bg-slate-800 px-3 py-2 rounded-md outline-none"
-                                autocomplete="off" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="modalBlogContent"
-                                class="block text-gray-300 text-sm font-medium mb-1">Content</label>
-                            <textarea id="modalBlogContent" name="content"
-                                class="w-full px-3 py-2 text-gray-400 bg-slate-800 outline-none rounded-md" rows="5"
-                                required></textarea>
-                        </div>
-                        <button type="submit" class="bg-blue-700 text-white px-4 py-2 rounded-md hover:bg-blue-800"
-                            style="transition: 0.4s ease">Post
-                            Blog</button>
-                        <button type="button" id="closeModalButton"
-                            class="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600"
-                            style="transition: 0.4s ease">Cancel</button>
-                    </form>
-                </div>
-            </div>
+    <div
+      class="upperSection h-auto pb-3 grid grid-cols-3 gap-3 mt-3"
+      style="border-bottom: 1px solid #e4e4e4"
+    >
+      <div class="png mt-3 flex flex-col items-center justify-center gap-4">
+        <% if(!user.uploads[0]) { %>
+        <div class="circle-container">
+          <img
+            src="https://cdn-icons-png.flaticon.com/512/149/149071.png"
+            class="someStyles"
+            alt=""
+          />
         </div>
-        <div class="bio gap-3" style="display: flex; justify-content: center; flex-direction: column;">
-            <h2 class="text-slate-300 text-xl">
-                <%=myFirstName%>
-                    <%=myLastName%> <span class="text-sm">
-                            <%=myCountry%>
-                        </span>
-            </h2>
-            <h2 class="text-slate-300 text-md">@<%=user.username%>
-
-                    <%if(verified==true) {%>
-                        <i class="text-blue-500 fa-solid fa-badge-check" style="cursor: pointer;"
-                            title="Developer | Verified"></i>
-                        <% } %>
-
-
-
-            </h2>
-
-            <div class="collegeAdding text-slate-700">
-                <% if (!user.college) { %>
-                    <form action="/add-college" class="flex flex-col gap-1 bg-slate-600" method="post">
-                        <select name="college" class="h-10 pl-2 bg-slate-700 text-slate-300 rounded-md">
-                            <option selected>Prof. Ram Meghe College of Engineering and Management, Badnera-Amravati</option>
-                            <option>Prof. Ram Meghe Institute of Technology and Research, Badnera-Amravati</option>
-                            <option>Sipna College of Engineering and Technology, Amravati</option>
-                            <option>P R Pote Engineering College</option>
-                            <option>Government College of Amravati</option>
-                            <option>VIT University</option>
-                            <option>SRM Institute of Science and Technology</option>
-                            <option>Manipal Institute of Technology</option>
-                            <option>Christ University</option>
-                            <option>Loyola College, Chennai</option>
-                            <option>St. Xavier's College, Mumbai</option>
-                            <option>Presidency College, Kolkata</option>
-                            <option>Hindu College, Delhi</option>
-                            <option>St. Stephen's College, Delhi</option>
-                            <option>Lady Shri Ram College for Women</option>
-                            <option>Amrita Vishwa Vidyapeetham</option>
-                            <option>Thapar Institute of Engineering and Technology</option>
-                            <option>Symbiosis International University</option>
-                            <option>ICFAI Business School</option>
-                            <option>SP Jain Institute of Management and Research</option>
-                            <option>Xavier School of Management (XLRI)</option>
-                            <option>Indian School of Business (ISB)</option>
-                            <option>Narsee Monjee Institute of Management Studies (NMIMS)</option>
-                            <option>FLAME University</option>
-                            <option>Ashoka University</option>
-                            <option>O.P. Jindal Global University</option>
-                            <option>Amity University</option>
-                            <option>Birla Institute of Technology and Science (BITS)</option>
-                            <option>Shri Ram College of Commerce</option>
-                            <option>National Institute of Fashion Technology (NIFT)</option>
-                            <option>National Institute of Design (NID)</option>
-                            <option>Srishti Institute of Art, Design, and Technology</option>
-                            <option>PES University</option>
-                            <option>Birla Institute of Technology, Mesra</option>
-                            <option>Amrita School of Engineering</option>
-                            <option>Lovely Professional University</option>
-                            <option>St. Joseph's College, Bangalore</option>
-                            <option>Jyoti Nivas College, Bangalore</option>
-                            <option>Symbiosis Centre for Management Studies</option>
-                            <option>Nirma University</option>
-                            <option>Manipal Academy of Higher Education</option>
-                            <option>FLAME University</option>
-                            <option>Jindal Global Business School</option>
-                            <option>Symbiosis School of Economics</option>
-                            <option>Shiv Nadar University</option>
-                            <option>Indian Maritime University</option>
-                            <option>ICFAI Law School</option>
-                            <option>Amrita School of Business</option>
-                            <option>Whistling Woods International</option>
-                            <option>Chitkara University</option>
-                            <option>Mody University</option>
-                            <option>Mount Carmel College, Bangalore</option>
-                            <option>Symbiosis Law School</option>
-                            <option>SRM University</option>
-                            <option>Chandigarh University</option>
-                            <option>Manipal School of Communication</option>
-                            <option>SCMS Cochin School of Business</option>
-                            <option>SP Jain School of Global Management</option>
-                            <option>LPU School of Business</option>
-                            <option>SRM Institute of Hotel Management</option>
-                            <option>Manipal School of Architecture and Planning</option>
-                            <option>Chitkara Business School</option>
-                            <option>Amity Business School</option>
-                            <option>Thapar School of Management</option>
-                            <option>Vellore Institute of Technology Business School</option>
-                            <option>SCMS School of Technology and Management</option>
-                            <option>Galgotias University</option>
-                            <option>GD Goenka University</option>
-                            <option>Amity School of Engineering and Technology</option>
-                            <option>Sharda University</option>
-                            <option>KIIT School of Management</option>
-                            <option>Bennett University</option>
-                            <option>Amity School of Communication</option>
-                            <option>Noida International University</option>
-                            <option>SRM Institute of Science and Technology</option>
-                            <option>Jindal School of Journalism and Communication</option>
-                            <option>Quantum University</option>
-                            <option>Amity School of Fashion Technology</option>
-                            <option>Symbiosis Institute of Media and Communication</option>
-                            <option>GD Goenka School of Fashion and Design</option>
-                            <option>Amity School of Architecture and Planning</option>
-                            <option>NIFT Mumbai</option>
-                            <option>VIT School of Fashion</option>
-                            <option>School of Fashion Technology, Pune</option>
-                            <option>Symbiosis Institute of Design</option>
-                            <option>Amity School of Hospitality</option>
-                            <option>Manipal School of Nursing</option>
-                            <option>Amrita School of Medicine</option>
-                            <option>Symbiosis Institute of Technology</option>
-                            <option>VIT School of Law</option>
-                            <option>Manipal College of Pharmaceutical Sciences</option>
-                            <option>Amity Law School</option>
-                            <option>Symbiosis School of Culinary Arts</option>
-                            <option>VIT School of Business</option>
-                            <option>Manipal College of Dental Sciences</option>
-                            <option>Amrita School of Arts and Sciences</option>
-                            <option>VIT School of Social Sciences</option>
-                            <option>Manipal School of Life Sciences</option>
-                            <option>Amity Institute of Psychology and Allied Sciences</option>
-                            <option>Symbiosis School for Liberal Arts</option>
-                            <option>VIT School of Computer Science and Engineering</option>
-                            <option>Manipal College of Allied Health Sciences</option>
-                            <option>Amity Institute of Biotechnology</option>
-                            <option>Symbiosis School of Biological Sciences</option>
-                            <option>VIT School of Electronics Engineering</option>
-                            <option>Manipal School of Information Sciences</option>
-                            <option>Amity Institute of Nanotechnology</option>
-                            <option>Symbiosis School of Economics</option>
-                            <option>VIT School of Mechanical Engineering</option>
-                            <option>Manipal College of Nursing</option>
-                            <option>Amity Institute of Aerospace Engineering</option>
-                            <option>Symbiosis School of International Studies</option>
-                            <option>VIT School of Electrical Engineering</option>
-                            <option>Manipal College of Physiotherapy</option>
-                            <option>Amity Institute of Marine Science and Technology</option>
-                            <option>Symbiosis Institute of Telecom Management</option>
-                            <option>VIT School of Civil Engineering</option>
-                            <option>Manipal College of Optometry</option>
-                            <option>Amity Institute of Virology and Immunology</option>
-                            <option>Symbiosis Institute of Business Management</option>
-                            <option>VIT School of Architecture</option>
-                            <option>Manipal College of Health Professions</option>
-                            <option>Amity Institute of Clinical Psychology</option>
-                            <option>Symbiosis Centre for Management Studies</option>
-                            <option>VIT School of Chemical Engineering</option>
-                            <option>Manipal Institute of Regenerative Medicine</option>
-                            <option>Amity Institute of Disaster Management</option>
-                            <option>Symbiosis Institute of Computer Studies and Research</option>
-                            <option>VIT School of Advanced Sciences</option>
-                            <option>Manipal School of Life Sciences</option>
-                            <option>Amity Institute of Behavioral and Allied Sciences</option>
-                            <option>Symbiosis Institute of Health Sciences</option>
-                            <option>VIT School of Fashion Design</option>
-                            <option>Manipal Institute of Digital Marketing</option>
-                            <option>Amity Institute of Space Science and Technology</option>
-                            <option>Indian Institute of Technology Bombay</option>
-                            <option>Indian Institute of Technology Delhi</option>
-                            <option>Indian Institute of Technology Kanpur</option>
-                            <option>Indian Institute of Technology Madras</option>
-                            <option>Indian Institute of Technology Kharagpur</option>
-                            <option>Indian Institute of Technology Roorkee</option>
-                            <option>Indian Institute of Technology Guwahati</option>
-                            <option>Indian Institute of Technology Bhubaneswar</option>
-                            <option>Indian Institute of Technology Gandhinagar</option>
-                            <option>Indian Institute of Technology Hyderabad</option>
-                            <option>Indian Institute of Technology Jodhpur</option>
-                            <option>Indian Institute of Technology Patna</option>
-                            <option>Indian Institute of Technology Indore</option>
-                            <option>Indian Institute of Technology Mandi</option>
-                            <option>Indian Institute of Technology (ISM) Dhanbad</option>
-                            <option>Indian Institute of Technology Varanasi</option>
-                            <option>Indian Institute of Technology Palakkad</option>
-                            <option>Indian Institute of Technology Tirupati</option>
-                            <option>Indian Institute of Technology Bhilai</option>
-                            <option>Indian Institute of Technology Goa</option>
-                            <option>Indian Institute of Technology Jammu</option>
-                            <option>Indian Institute of Technology Dharwad</option>
-                            <option>Indian Institute of Science Bangalore</option>
-                            <option>Indian Institute of Management Ahmedabad</option>
-                            <option>Indian Institute of Management Bangalore</option>
-                            <option>Indian Institute of Management Calcutta</option>
-                            <option>Indian Institute of Management Lucknow</option>
-                            <option>Indian Institute of Management Indore</option>
-                            <option>Indian Institute of Management Kozhikode</option>
-                            <option>Indian Institute of Management Shillong</option>
-                            <option>Indian Institute of Management Rohtak</option>
-                            <option>Indian Institute of Management Raipur</option>
-                            <option>Indian Institute of Management Udaipur</option>
-                            <option>Indian Institute of Management Tiruchirappalli</option>
-                            <option>Indian Institute of Management Kashipur</option>
-                            <option>Indian Institute of Management Nagpur</option>
-                            <option>Indian Institute of Management Visakhapatnam</option>
-                            <option>Indian Institute of Management Bodh Gaya</option>
-                            <option>Indian Institute of Management Amritsar</option>
-                            <option>Indian Institute of Management Sambalpur</option>
-                            <option>Indian Institute of Management Sirmaur</option>
-                            <option>Indian Institute of Management Jammu</option>
-                            <option>Indian Institute of Management Nagaland</option>
-                            <option>Indian Institute of Management Ranchi</option>
-                            <option>Indian Institute of Management Indore</option>
-                            <option>Indian Institute of Management Kozhikode</option>
-                            <option>Indian Institute of Management Shillong</option>
-                            <option>Indian Institute of Management Rohtak</option>
-                            <option>Indian Institute of Management Raipur</option>
-                            <option>Indian Institute of Management Udaipur</option>
-                            <option>Indian Institute of Management Tiruchirappalli</option>
-                            <option>Indian Institute of Management Kashipur</option>
-                            <option>Indian Institute of Management Nagpur</option>
-                            <option>Indian Institute of Management Visakhapatnam</option>
-                            <option>Indian Institute of Management Bodh Gaya</option>
-                            <option>Indian Institute of Management Amritsar</option>
-                            <option>Indian Institute of Management Sambalpur</option>
-                            <option>Indian Institute of Management Sirmaur</option>
-                            <option>Indian Institute of Management Jammu</option>
-                            <option>Indian Institute of Management Nagaland</option>
-                            <option>Indian Institute of Management Ranchi</option>
-                            <option>Delhi University</option>
-                            <option>Jawaharlal Nehru University</option>
-                            <option>Anna University</option>
-                            <option>University of Mumbai</option>
-                            <option>University of Calcutta</option>
-                            <option>Banaras Hindu University</option>
-                            <option>Indian Statistical Institute</option>
-                            <option>Indian Institute of Foreign Trade</option>
-                            <option>Aligarh Muslim University</option>
-                            <option>Jadavpur University</option>
-                            <option>Manipal Academy of Higher Education</option>
-                            <option>Amity University</option>
-                            <option>Visvesvaraya Technological University</option>
-                            <option>Savitribai Phule Pune University</option>
-                            <option>Indian Institute of Technology Ropar</option>
-                            <option>Indian Institute of Technology Mandi</option>
-                            <option>Indian Institute of Technology (ISM) Dhanbad</option>
-                            <option>Indian Institute of Technology Varanasi</option>
-                            <option>Indian Institute of Technology Palakkad</option>
-                            <option>Indian Institute of Technology Tirupati</option>
-                            <option>Indian Institute of Technology Bhilai</option>
-                            <option>Indian Institute of Technology Goa</option>
-                            <option>Indian Institute of Technology Jammu</option>
-                            <option>Indian Institute of Technology Dharwad</option>
-                            <option>Indian Institute of Science Bangalore</option>
-                            <option>Indian Institute of Management Ahmedabad</option>
-                            <option>Indian Institute of Management Bangalore</option>
-                            <option>Indian Institute of Management Calcutta</option>
-                            <option>Indian Institute of Management Lucknow</option>
-                            <option>Indian Institute of Management Indore</option>
-                            <option>Indian Institute of Management Kozhikode</option>
-                            <option>Indian Institute of Management Shillong</option>
-                            <option>Indian Institute of Management Rohtak</option>
-                            <option>Indian Institute of Management Raipur</option>
-                            <option>Indian Institute of Management Udaipur</option>
-                            <option>Indian Institute of Management Tiruchirappalli</option>
-                            <option>Indian Institute of Management Kashipur</option>
-                            <option>Indian Institute of Management Nagpur</option>
-                            <option>Indian Institute of Management Visakhapatnam</option>
-                            <option>Indian Institute of Management Bodh Gaya</option>
-                            <option>Indian Institute of Management Amritsar</option>
-                            <option>Indian Institute of Management Sambalpur</option>
-                            <option>Indian Institute of Management Sirmaur</option>
-                            <option>Indian Institute of Management Jammu</option>
-                            <option>Indian Institute of Management Nagaland</option>
-                            <option>Indian Institute of Management Ranchi</option>
-                            <option>Indian Institute of Management Indore</option>
-                            <option>Indian Institute of Management Kozhikode</option>
-                            <option>Indian Institute of Management Shillong</option>
-                            <option>Indian Institute of Management Rohtak</option>
-                            <option>Indian Institute of Management Raipur</option>
-                            <option>Indian Institute of Management Udaipur</option>
-                            <option>Indian Institute of Management Tiruchirappalli</option>
-                            <option>Indian Institute of Management Kashipur</option>
-                            <option>Indian Institute of Management Nagpur</option>
-                            <option>Indian Institute of Management Visakhapatnam</option>
-                            <option>Indian Institute of Management Bodh Gaya</option>
-                            <option>Indian Institute of Management Amritsar</option>
-                            <option>Indian Institute of Management Sambalpur</option>
-                            <option>Indian Institute of Management Sirmaur</option>
-                            <option>Indian Institute of Management Jammu</option>
-                            <option>Indian Institute of Management Nagaland</option>
-                            <option>Indian Institute of Management Ranchi</option>
-                            <option>Delhi University</option>
-                            <option>Jawaharlal Nehru University</option>
-                            <option>Anna University</option>
-                            <option>University of Mumbai</option>
-                            <option>University of Calcutta</option>
-                            <option>Banaras Hindu University</option>
-                        </select>
-                        <button type="submit">Add College</button>
-                    </form>
-                    <% } else { %>
-                        <p class="text-slate-400"><%= user.college %></p>
-                        <% } %>
-            </div>
-
-
-            <div class="bioAdding text-slate-300 w-full">
-                <% if (!user.bio) { %>
-                    <form action="/add-bio" class="flex flex-col gap-1" method="post">
-                        <textarea name="bio" class="bg-slate-700 py-2 w-full px-2 outline-none rounded-md"
-                            placeholder="Add your bio / About here. Don't hit enter for new line"></textarea>
-                        <button type="submit">Add</button>
-                    </form>
-                    <% } else { %>
-                        <p style="height: min-content; max-height: 14vh; overflow-y: auto; white-space: pre-wrap;"><%= user.bio %></p>
-                    <% } %>
-            </div>
+        <% } else { %>
+        <div class="circle-container">
+          <img
+            src="/uploads/<%=user.uploads[user.uploads.length - 1]%>"
+            class="someStyles"
+            alt=""
+          />
         </div>
-        <div class="settings" style="display: flex; justify-content: center; flex-direction: column;">
-            <div class="funTab" style="display: flex; justify-content: space-evenly;">
-                <div class="followers flex gap-2 flex-col">
-                    <h1 class="text-slate-500 font-bold">Followers</h1>
-                    <a href="/get-followers">
-                        <h1 class="text-slate-300 text-xl">
-                            <%=followersCount%>
-                        </h1>
-                    </a>
-                </div>
-                <div class="following flex gap-2 flex-col">
-                    <h1 class="text-slate-500 font-bold">Followings</h1>
-                    <h1></h1>
-                    <h1 class="text-slate-300 text-xl">
-                        <%=followingsCount%>
-                    </h1>
-                </div>
-                <div class="posts flex gap-2 flex-col">
-                    <h1 class="text-slate-500 font-bold">Posts</h1>
-                    <h1></h1>
-                    <h1 class="text-slate-300 text-xl">
-                        <%=blogsCount%>
-                    </h1>
-                </div>
-            </div>
-            <div class="publicView"
-                style="display: flex; justify-content: center; align-items: center; margin-top: 20px; flex-direction: column;">
-                <a href="/profile/<%=user._id%>" class="text-slate-300 underline">Public View</a>
-                <form action="/uploads" method="post" enctype="multipart/form-data" style="margin: auto 0;">
-                    <input type="file" name="profileImage" class="text-slate-200" required>
-                    <button type="submit" class="text-white py-2 ml-3 rounded-md">Upload Image</button>
+        <% } %>
+        <div class="flex gap-2">
+          <div class="someBtns flex flex-col-2 gap-3">
+            <a
+              href="/edit-profile"
+              class="px-4 py-2 text-slate-400 rounded-md hover:bg-slate-800 hover:text-slate-100"
+              style="
+                transition: 0.4s ease;
+                text-align: center;
+                --tw-bg-opacity: 1;
+                border: 1px solid #ccc;
+              "
+              ><i class="fa-light fa-gear"></i> Settings
+            </a>
+          </div>
+
+          <!-- Only show the Follow button for other profiles -->
+          <% if (user._id.toString() !== rootUser._id.toString()) { %>
+          <form action="/follow/<%= user._id %>" method="post">
+            <button class="bg-blue-500 text-white px-4 py-2 ml-3 rounded-md">
+              Follow
+            </button>
+          </form>
+          <% } %>
+          <button
+            id="addBlogButton"
+            class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600"
+            style="transition: 0.4s ease"
+          >
+            <i class="fa-light fa-pen-to-square"></i> Add Blog
+          </button>
+          <% if(user.username == 'hdwarade') { %>
+            <form action="/SQWYzsf73SAmxzb2" method="get">
+              <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600"
+              style="transition: 0.4s ease">Admin Portal</button>
+            </form>
+          <% } %>
+        </div>
+
+        <!-- needs to add 'hidden' after opacity-50 -->
+        <div
+          id="addBlogModal"
+          class="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50 hidden"
+          style="z-index: 999"
+        >
+          <div class="w-1/2 bg-slate-100 p-6 rounded-md shadow-md">
+            <h2 class="text-2xl font-semibold mb-4 text-slate-600">
+              Add a New Blog
+            </h2>
+            <form action="/create-blog" method="POST">
+              <div class="mb-3">
+                <label
+                  for="modalBlogTitle"
+                  class="block text-gray-500 text-sm font-medium mb-1"
+                  >Title</label
+                >
+                <input
+                  type="text"
+                  id="modalBlogTitle"
+                  name="title"
+                  class="w-full text-gray-600 bg-slate-100 px-3 py-2 rounded-md outline-none"
+                  autocomplete="off"
+                  style="border: 1px solid #e2e2e2"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <label
+                  for="modalBlogContent"
+                  class="block text-gray-600 text-sm font-medium mb-1"
+                  >Content</label
+                >
+                <textarea
+                  id="modalBlogContent"
+                  name="content"
+                  class="w-full px-3 py-2 text-gray-600 bg-slate-100 outline-none rounded-md"
+                  rows="5"
+                  style="border: 1px solid #e2e2e2"
+                  required
+                ></textarea>
+              </div>
+              <button
+                type="submit"
+                class="bg-blue-700 text-white px-4 py-2 rounded-md hover:bg-blue-800"
+                style="transition: 0.4s ease"
+              >
+                Post Blog
+              </button>
+              <button
+                type="button"
+                id="closeModalButton"
+                class="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600"
+                style="transition: 0.4s ease"
+              >
+                Cancel
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div
+        class="bio gap-3"
+        style="display: flex; justify-content: center; flex-direction: column"
+      >
+        <h2 class="text-slate-700 font-bold text-xl">
+          <%=myFirstName%> <%=myLastName%>
+          <span class="text-sm"> <%=myCountry%> </span>
+        </h2>
+        <h2 class="text-slate-500 text-md">
+          @<%=user.username%> <%if(verified==true) {%>
+          <i
+            class="text-blue-500 fa-solid fa-badge-check"
+            style="cursor: pointer"
+            title="Developer | Verified"
+          ></i>
+          <% } %>
+        </h2>
+
+        <div class="collegeAdding text-slate-700">
+          <% if (!user.college) { %>
+          <form
+            action="/add-college"
+            class="flex flex-col gap-1 bg-slate-600"
+            method="post"
+          >
+            <select
+              name="college"
+              class="h-10 pl-2 bg-slate-700 text-slate-300 rounded-md"
+            >
+              <option selected>
+                Prof. Ram Meghe College of Engineering and Management,
+                Badnera-Amravati
+              </option>
+              <option>
+                Prof. Ram Meghe Institute of Technology and Research,
+                Badnera-Amravati
+              </option>
+              <option>
+                Sipna College of Engineering and Technology, Amravati
+              </option>
+              <option>P R Pote Engineering College</option>
+              <option>Government College of Amravati</option>
+              <option>VIT University</option>
+              <option>SRM Institute of Science and Technology</option>
+              <option>Manipal Institute of Technology</option>
+              <option>Christ University</option>
+              <option>Loyola College, Chennai</option>
+              <option>St. Xavier's College, Mumbai</option>
+              <option>Presidency College, Kolkata</option>
+              <option>Hindu College, Delhi</option>
+              <option>St. Stephen's College, Delhi</option>
+              <option>Lady Shri Ram College for Women</option>
+              <option>Amrita Vishwa Vidyapeetham</option>
+              <option>Thapar Institute of Engineering and Technology</option>
+              <option>Symbiosis International University</option>
+              <option>ICFAI Business School</option>
+              <option>SP Jain Institute of Management and Research</option>
+              <option>Xavier School of Management (XLRI)</option>
+              <option>Indian School of Business (ISB)</option>
+              <option>
+                Narsee Monjee Institute of Management Studies (NMIMS)
+              </option>
+              <option>FLAME University</option>
+              <option>Ashoka University</option>
+              <option>O.P. Jindal Global University</option>
+              <option>Amity University</option>
+              <option>Birla Institute of Technology and Science (BITS)</option>
+              <option>Shri Ram College of Commerce</option>
+              <option>National Institute of Fashion Technology (NIFT)</option>
+              <option>National Institute of Design (NID)</option>
+              <option>Srishti Institute of Art, Design, and Technology</option>
+              <option>PES University</option>
+              <option>Birla Institute of Technology, Mesra</option>
+              <option>Amrita School of Engineering</option>
+              <option>Lovely Professional University</option>
+              <option>St. Joseph's College, Bangalore</option>
+              <option>Jyoti Nivas College, Bangalore</option>
+              <option>Symbiosis Centre for Management Studies</option>
+              <option>Nirma University</option>
+              <option>Manipal Academy of Higher Education</option>
+              <option>FLAME University</option>
+              <option>Jindal Global Business School</option>
+              <option>Symbiosis School of Economics</option>
+              <option>Shiv Nadar University</option>
+              <option>Indian Maritime University</option>
+              <option>ICFAI Law School</option>
+              <option>Amrita School of Business</option>
+              <option>Whistling Woods International</option>
+              <option>Chitkara University</option>
+              <option>Mody University</option>
+              <option>Mount Carmel College, Bangalore</option>
+              <option>Symbiosis Law School</option>
+              <option>SRM University</option>
+              <option>Chandigarh University</option>
+              <option>Manipal School of Communication</option>
+              <option>SCMS Cochin School of Business</option>
+              <option>SP Jain School of Global Management</option>
+              <option>LPU School of Business</option>
+              <option>SRM Institute of Hotel Management</option>
+              <option>Manipal School of Architecture and Planning</option>
+              <option>Chitkara Business School</option>
+              <option>Amity Business School</option>
+              <option>Thapar School of Management</option>
+              <option>Vellore Institute of Technology Business School</option>
+              <option>SCMS School of Technology and Management</option>
+              <option>Galgotias University</option>
+              <option>GD Goenka University</option>
+              <option>Amity School of Engineering and Technology</option>
+              <option>Sharda University</option>
+              <option>KIIT School of Management</option>
+              <option>Bennett University</option>
+              <option>Amity School of Communication</option>
+              <option>Noida International University</option>
+              <option>SRM Institute of Science and Technology</option>
+              <option>Jindal School of Journalism and Communication</option>
+              <option>Quantum University</option>
+              <option>Amity School of Fashion Technology</option>
+              <option>Symbiosis Institute of Media and Communication</option>
+              <option>GD Goenka School of Fashion and Design</option>
+              <option>Amity School of Architecture and Planning</option>
+              <option>NIFT Mumbai</option>
+              <option>VIT School of Fashion</option>
+              <option>School of Fashion Technology, Pune</option>
+              <option>Symbiosis Institute of Design</option>
+              <option>Amity School of Hospitality</option>
+              <option>Manipal School of Nursing</option>
+              <option>Amrita School of Medicine</option>
+              <option>Symbiosis Institute of Technology</option>
+              <option>VIT School of Law</option>
+              <option>Manipal College of Pharmaceutical Sciences</option>
+              <option>Amity Law School</option>
+              <option>Symbiosis School of Culinary Arts</option>
+              <option>VIT School of Business</option>
+              <option>Manipal College of Dental Sciences</option>
+              <option>Amrita School of Arts and Sciences</option>
+              <option>VIT School of Social Sciences</option>
+              <option>Manipal School of Life Sciences</option>
+              <option>Amity Institute of Psychology and Allied Sciences</option>
+              <option>Symbiosis School for Liberal Arts</option>
+              <option>VIT School of Computer Science and Engineering</option>
+              <option>Manipal College of Allied Health Sciences</option>
+              <option>Amity Institute of Biotechnology</option>
+              <option>Symbiosis School of Biological Sciences</option>
+              <option>VIT School of Electronics Engineering</option>
+              <option>Manipal School of Information Sciences</option>
+              <option>Amity Institute of Nanotechnology</option>
+              <option>Symbiosis School of Economics</option>
+              <option>VIT School of Mechanical Engineering</option>
+              <option>Manipal College of Nursing</option>
+              <option>Amity Institute of Aerospace Engineering</option>
+              <option>Symbiosis School of International Studies</option>
+              <option>VIT School of Electrical Engineering</option>
+              <option>Manipal College of Physiotherapy</option>
+              <option>Amity Institute of Marine Science and Technology</option>
+              <option>Symbiosis Institute of Telecom Management</option>
+              <option>VIT School of Civil Engineering</option>
+              <option>Manipal College of Optometry</option>
+              <option>Amity Institute of Virology and Immunology</option>
+              <option>Symbiosis Institute of Business Management</option>
+              <option>VIT School of Architecture</option>
+              <option>Manipal College of Health Professions</option>
+              <option>Amity Institute of Clinical Psychology</option>
+              <option>Symbiosis Centre for Management Studies</option>
+              <option>VIT School of Chemical Engineering</option>
+              <option>Manipal Institute of Regenerative Medicine</option>
+              <option>Amity Institute of Disaster Management</option>
+              <option>
+                Symbiosis Institute of Computer Studies and Research
+              </option>
+              <option>VIT School of Advanced Sciences</option>
+              <option>Manipal School of Life Sciences</option>
+              <option>Amity Institute of Behavioral and Allied Sciences</option>
+              <option>Symbiosis Institute of Health Sciences</option>
+              <option>VIT School of Fashion Design</option>
+              <option>Manipal Institute of Digital Marketing</option>
+              <option>Amity Institute of Space Science and Technology</option>
+              <option>Indian Institute of Technology Bombay</option>
+              <option>Indian Institute of Technology Delhi</option>
+              <option>Indian Institute of Technology Kanpur</option>
+              <option>Indian Institute of Technology Madras</option>
+              <option>Indian Institute of Technology Kharagpur</option>
+              <option>Indian Institute of Technology Roorkee</option>
+              <option>Indian Institute of Technology Guwahati</option>
+              <option>Indian Institute of Technology Bhubaneswar</option>
+              <option>Indian Institute of Technology Gandhinagar</option>
+              <option>Indian Institute of Technology Hyderabad</option>
+              <option>Indian Institute of Technology Jodhpur</option>
+              <option>Indian Institute of Technology Patna</option>
+              <option>Indian Institute of Technology Indore</option>
+              <option>Indian Institute of Technology Mandi</option>
+              <option>Indian Institute of Technology (ISM) Dhanbad</option>
+              <option>Indian Institute of Technology Varanasi</option>
+              <option>Indian Institute of Technology Palakkad</option>
+              <option>Indian Institute of Technology Tirupati</option>
+              <option>Indian Institute of Technology Bhilai</option>
+              <option>Indian Institute of Technology Goa</option>
+              <option>Indian Institute of Technology Jammu</option>
+              <option>Indian Institute of Technology Dharwad</option>
+              <option>Indian Institute of Science Bangalore</option>
+              <option>Indian Institute of Management Ahmedabad</option>
+              <option>Indian Institute of Management Bangalore</option>
+              <option>Indian Institute of Management Calcutta</option>
+              <option>Indian Institute of Management Lucknow</option>
+              <option>Indian Institute of Management Indore</option>
+              <option>Indian Institute of Management Kozhikode</option>
+              <option>Indian Institute of Management Shillong</option>
+              <option>Indian Institute of Management Rohtak</option>
+              <option>Indian Institute of Management Raipur</option>
+              <option>Indian Institute of Management Udaipur</option>
+              <option>Indian Institute of Management Tiruchirappalli</option>
+              <option>Indian Institute of Management Kashipur</option>
+              <option>Indian Institute of Management Nagpur</option>
+              <option>Indian Institute of Management Visakhapatnam</option>
+              <option>Indian Institute of Management Bodh Gaya</option>
+              <option>Indian Institute of Management Amritsar</option>
+              <option>Indian Institute of Management Sambalpur</option>
+              <option>Indian Institute of Management Sirmaur</option>
+              <option>Indian Institute of Management Jammu</option>
+              <option>Indian Institute of Management Nagaland</option>
+              <option>Indian Institute of Management Ranchi</option>
+              <option>Indian Institute of Management Indore</option>
+              <option>Indian Institute of Management Kozhikode</option>
+              <option>Indian Institute of Management Shillong</option>
+              <option>Indian Institute of Management Rohtak</option>
+              <option>Indian Institute of Management Raipur</option>
+              <option>Indian Institute of Management Udaipur</option>
+              <option>Indian Institute of Management Tiruchirappalli</option>
+              <option>Indian Institute of Management Kashipur</option>
+              <option>Indian Institute of Management Nagpur</option>
+              <option>Indian Institute of Management Visakhapatnam</option>
+              <option>Indian Institute of Management Bodh Gaya</option>
+              <option>Indian Institute of Management Amritsar</option>
+              <option>Indian Institute of Management Sambalpur</option>
+              <option>Indian Institute of Management Sirmaur</option>
+              <option>Indian Institute of Management Jammu</option>
+              <option>Indian Institute of Management Nagaland</option>
+              <option>Indian Institute of Management Ranchi</option>
+              <option>Delhi University</option>
+              <option>Jawaharlal Nehru University</option>
+              <option>Anna University</option>
+              <option>University of Mumbai</option>
+              <option>University of Calcutta</option>
+              <option>Banaras Hindu University</option>
+              <option>Indian Statistical Institute</option>
+              <option>Indian Institute of Foreign Trade</option>
+              <option>Aligarh Muslim University</option>
+              <option>Jadavpur University</option>
+              <option>Manipal Academy of Higher Education</option>
+              <option>Amity University</option>
+              <option>Visvesvaraya Technological University</option>
+              <option>Savitribai Phule Pune University</option>
+              <option>Indian Institute of Technology Ropar</option>
+              <option>Indian Institute of Technology Mandi</option>
+              <option>Indian Institute of Technology (ISM) Dhanbad</option>
+              <option>Indian Institute of Technology Varanasi</option>
+              <option>Indian Institute of Technology Palakkad</option>
+              <option>Indian Institute of Technology Tirupati</option>
+              <option>Indian Institute of Technology Bhilai</option>
+              <option>Indian Institute of Technology Goa</option>
+              <option>Indian Institute of Technology Jammu</option>
+              <option>Indian Institute of Technology Dharwad</option>
+              <option>Indian Institute of Science Bangalore</option>
+              <option>Indian Institute of Management Ahmedabad</option>
+              <option>Indian Institute of Management Bangalore</option>
+              <option>Indian Institute of Management Calcutta</option>
+              <option>Indian Institute of Management Lucknow</option>
+              <option>Indian Institute of Management Indore</option>
+              <option>Indian Institute of Management Kozhikode</option>
+              <option>Indian Institute of Management Shillong</option>
+              <option>Indian Institute of Management Rohtak</option>
+              <option>Indian Institute of Management Raipur</option>
+              <option>Indian Institute of Management Udaipur</option>
+              <option>Indian Institute of Management Tiruchirappalli</option>
+              <option>Indian Institute of Management Kashipur</option>
+              <option>Indian Institute of Management Nagpur</option>
+              <option>Indian Institute of Management Visakhapatnam</option>
+              <option>Indian Institute of Management Bodh Gaya</option>
+              <option>Indian Institute of Management Amritsar</option>
+              <option>Indian Institute of Management Sambalpur</option>
+              <option>Indian Institute of Management Sirmaur</option>
+              <option>Indian Institute of Management Jammu</option>
+              <option>Indian Institute of Management Nagaland</option>
+              <option>Indian Institute of Management Ranchi</option>
+              <option>Indian Institute of Management Indore</option>
+              <option>Indian Institute of Management Kozhikode</option>
+              <option>Indian Institute of Management Shillong</option>
+              <option>Indian Institute of Management Rohtak</option>
+              <option>Indian Institute of Management Raipur</option>
+              <option>Indian Institute of Management Udaipur</option>
+              <option>Indian Institute of Management Tiruchirappalli</option>
+              <option>Indian Institute of Management Kashipur</option>
+              <option>Indian Institute of Management Nagpur</option>
+              <option>Indian Institute of Management Visakhapatnam</option>
+              <option>Indian Institute of Management Bodh Gaya</option>
+              <option>Indian Institute of Management Amritsar</option>
+              <option>Indian Institute of Management Sambalpur</option>
+              <option>Indian Institute of Management Sirmaur</option>
+              <option>Indian Institute of Management Jammu</option>
+              <option>Indian Institute of Management Nagaland</option>
+              <option>Indian Institute of Management Ranchi</option>
+              <option>Delhi University</option>
+              <option>Jawaharlal Nehru University</option>
+              <option>Anna University</option>
+              <option>University of Mumbai</option>
+              <option>University of Calcutta</option>
+              <option>Banaras Hindu University</option>
+            </select>
+            <button type="submit">Add College</button>
+          </form>
+          <% } else { %>
+          <p class="text-slate-600"><%= user.college %></p>
+          <% } %>
+        </div>
+
+        <div class="bioAdding text-slate-600 w-full">
+          <% if (!user.bio) { %>
+          <form action="/add-bio" class="flex flex-col gap-1" method="post">
+            <textarea
+              name="bio"
+              class="bg-slate-700 py-2 w-full px-2 outline-none rounded-md"
+              placeholder="Add your bio / About here. Don't hit enter for new line"
+            ></textarea>
+            <button type="submit">Add</button>
+          </form>
+          <% } else { %>
+          <p style="
+              height: min-content;
+              max-height: 14vh;
+              overflow-y: auto;
+              white-space: pre-wrap;
+            "
+          ><%= user.bio %></p>
+          <% } %>
+        </div>
+
+        <!-- <div>
+                <a href="" class="text-blue-500 rounded-md">See profile views</a>
+            </div> -->
+      </div>
+      <div
+        class="settings"
+        style="display: flex; justify-content: center; flex-direction: column"
+      >
+        <div
+          class="funTab"
+          style="display: flex; justify-content: space-evenly"
+        >
+          <div class="followers flex gap-2 flex-col">
+            <h1 class="text-slate-500 font-bold">Followers</h1>
+            <a href="/get-followers">
+              <h1 class="text-slate-800 text-xl"><%=followersCount%></h1>
+            </a>
+          </div>
+          <div class="following flex gap-2 flex-col">
+            <h1 class="text-slate-500 font-bold">Followings</h1>
+            <h1></h1>
+            <h1 class="text-slate-800 text-xl"><%=followingsCount%></h1>
+          </div>
+          <div class="posts flex gap-2 flex-col">
+            <h1 class="text-slate-500 font-bold">Posts</h1>
+            <h1></h1>
+            <h1 class="text-slate-800 text-xl"><%=blogsCount%></h1>
+          </div>
+        </div>
+        <style>
+          input::file-selector-button {
+            border: 1px solid #ececec;
+            border-radius: 6px;
+            color: #696969;
+            padding: 8px 12px;
+            cursor: pointer;
+          }
+        </style>
+        <div
+          class="publicView"
+          style="
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+            flex-direction: column;
+          "
+        >
+          <a href="/profile/<%=user._id%>" class="text-slate-600 underline"
+            >Public View</a
+          >
+          <% if(!user.uploads[0]) { %>
+          <form
+            action="/uploads"
+            method="post"
+            enctype="multipart/form-data"
+            style="margin: auto 0"
+          >
+            <input
+              type="file"
+              name="profileImage"
+              class="text-slate-400"
+              required
+            />
+            <button type="submit" class="text-gray-600 py-2 ml-3 rounded-md">
+              Upload Image
+            </button>
+          </form>
+          <% } %> <% if(user.uploads[0]) { %>
+          <form
+            action="/deleteProfileImage/<%=user._id%>"
+            class="mt-4"
+            method="POST"
+          >
+            <button type="submit" style="color: rgb(255, 107, 107)">
+              delete profile image
+            </button>
+          </form>
+          <% } %>
+        </div>
+      </div>
+    </div>
+
+    <div class="container" style="margin-bottom: 50px">
+      <% if (userBlogs.length===0) { %>
+      <p class="text-slate-700 text-center mt-16 text-3xl">
+        You haven't posted any blogs yet.
+      </p>
+      <% } else { %>
+      <h1
+        class="h-20 text-2xl text-slate-500 font-bold text-center"
+        style="display: flex; justify-content: center; align-items: center"
+      >
+        My Blogs
+      </h1>
+      <div class="row row-cols-1 row-cols-md-3 g-4">
+        <% userBlogs.forEach(blog=> { %>
+        <div class="col">
+          <div
+            class="card rounded-md bg-slate-50"
+            style="border: 1px solid #ccc"
+          >
+            <div class="card-body">
+              <h2 class="card-title text-slate-700 text-xl font-bold">
+                <%= blog.title %>
+              </h2>
+              <hr class="text-slate-500 mt-3" />
+              <div
+                class="card-text text-slate-700"
+                style="
+                  height: min-content;
+                  max-height: 40vh;
+                  overflow-y: auto;
+                  white-space: pre-wrap;
+                  padding-top: 20px;
+                "
+              ><p class="card-text"><%= blog.content %></p>`</div>
+              <div class="interactionSection flex justify-between mt-4">
+                <form action="/like/<%= blog._id %>" method="POST">
+                  <% if (blog.likes.includes(rootUser._id.toString())) { %>
+                  <!-- already liked -->
+                  <button class="text-slate-900 rounded-md py-2" type="submit">
+                    <i class="fa-solid fa-thumbs-up"></i>
+                    <%= blog.likes.length %>
+                  </button>
+                  <% } else { %>
+                  <!-- Not liked it yet! -->
+                  <button class="text-slate-900 rounded-md py-2" type="submit">
+                    <i class="fa-light fa-thumbs-up"></i>
+                    <%= blog.likes.length %>
+                  </button>
+                  <% } %>
                 </form>
-                <% if(user.uploads[0]) { %>
-                    <form action="/deleteProfileImage/<%=user._id%>" method="POST">
-                        <button type="submit" style="color: rgb(255, 107, 107);">delete profile image</button>
-                    </form>
-                <% } %>
-            </div>
-        </div>
-    </div>
+                <form action="/detailed-view/<%= blog._id %>" method="get">
+                  <button
+                    class="text-slate-400 rounded-md px-3 py-2 showCommentsButton"
+                    data-blog-id="<%= blog._id %>"
+                  >
+                    Show Comments (<%= blog.comments.length %>)
+                  </button>
+                </form>
+                <form action="/delete-blog/<%= blog._id %>" method="post">
+                  <button
+                    class="text-red-500 py-1 rounded-md hover:text-red-700 mr-2"
+                    onclick="confirmDelete('<%= blog._id %>')"
+                  >
+                    <i class="fas fa-trash-alt"></i>
+                  </button>
+                </form>
+              </div>
 
-    <div class="container" style="margin-bottom: 50px;">
-        <% if (userBlogs.length===0) { %>
-            <p class="text-slate-700 text-center mt-16 text-3xl">You haven't posted any blogs yet.</p>
-            <% } else { %>
-                <h1 class="h-20 text-2xl text-slate-500 font-bold text-center">My Blogs</h1>
-                <div class="row row-cols-1 row-cols-md-3 g-4">
-                    <% userBlogs.forEach(blog=> { %>
-                        <div class="col">
-                            <div class="card bg-slate-700 rounded-md">
-                                <div class="card-body">
-                                    <h2 class="card-title text-slate-200 text-xl font-bold">
-                                        <%= blog.title %>
-                                    </h2>
-                                    <hr class="text-slate-300 mt-3">
-                                    <div class="card-text text-slate-300" style="height: min-content; max-height: 40vh; overflow-y: auto; white-space: pre-wrap; padding-top: 20px;"><p class="card-text"><%= blog.content %></p></div>                            
-                                    <div class="interactionSection flex justify-between mt-4">
-                                        <form action="/like/<%= blog._id %>" method="POST">
-                                            <% if (blog.likes.includes(rootUser._id.toString())) { %>
-                                                <!-- already liked -->
-                                                <button class="text-white rounded-md py-2" type="submit">
-                                                    <i class="fa-solid fa-thumbs-up"></i>
-                                                    <%= blog.likes.length %>
-                                                </button>
-                                                <% } else { %>
-                                                    <!-- Not liked it yet! -->
-                                                    <button class="text-slate-300 rounded-md py-2" type="submit">
-                                                        <i class="fa-light fa-thumbs-up"></i>
-                                                        <%= blog.likes.length %>
-                                                    </button>
-                                            <% } %>
-                                        </form>
-                                        <form action="/detailed-view/<%= blog._id %>" method="get">
-                                            <button class="text-slate-400 rounded-md px-3 py-2 showCommentsButton"
-                                                data-blog-id="<%= blog._id %>">
-                                                Show Comments (<%= blog.comments.length %>)
-                                            </button>
-                                        </form>
-                                        <form action="/delete-blog/<%= blog._id %>" method="post">
-                                            <button class="text-red-500 py-1 rounded-md hover:text-red-700 mr-2"
-                                                onclick="confirmDelete('<%= blog._id %>')">
-                                                <i class="fas fa-trash-alt"></i>
-                                            </button>
-                                        </form>
-                                    </div>
-        
-                                    <div class="commentsSection mt-4" style="display: none;">
-                                        <% blog.comments.forEach(comment=> { %>
-                                            <div class="comment bg-slate-800 rounded-md p-2 mt-2">
-                                                <a href="/profile/<%= comment.author._id %>" class="text-slate-600">@<%=
-                                                        comment.author.username %></a>
-                                                <p class="text-slate-300 mt-1">
-                                                    <%= comment.text %>
-                                                </p>
-                                            </div>
-                                        <% }); %>
-                                        <form action="/comment/<%= blog._id %>" method="POST" class="commentForm mt-2">
-                                            <input type="text" name="comment"
-                                                class="w-full h-10 bg-slate-700 rounded-md px-3 py-2 text-slate-300"
-                                                placeholder="Write a comment..." autocomplete="off" required>
-                                            <button class="bg-blue-800 text-slate-300 rounded-md px-3 py-2 ml-2"
-                                                type="submit">Post</button>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    <% }); %>
+              <div class="commentsSection mt-4" style="display: none">
+                <% blog.comments.forEach(comment=> { %>
+                <div class="comment bg-slate-800 rounded-md p-2 mt-2">
+                  <a
+                    href="/profile/<%= comment.author._id %>"
+                    class="text-slate-600"
+                    >@<%= comment.author.username %></a
+                  >
+                  <p class="text-slate-300 mt-1"><%= comment.text %></p>
                 </div>
-                <% } %>
+                <% }); %>
+                <form
+                  action="/comment/<%= blog._id %>"
+                  method="POST"
+                  class="commentForm mt-2"
+                >
+                  <input
+                    type="text"
+                    name="comment"
+                    class="w-full h-10 bg-slate-700 rounded-md px-3 py-2 text-slate-300"
+                    placeholder="Write a comment..."
+                    autocomplete="off"
+                    required
+                  />
+                  <button
+                    class="bg-blue-800 text-slate-300 rounded-md px-3 py-2 ml-2"
+                    type="submit"
+                  >
+                    Post
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        <% }); %>
+      </div>
+      <% } %>
     </div>
 
     <script>
-        // managing the modals
-        const addBlogButton = document.getElementById('addBlogButton');
-        const addBlogModal = document.getElementById('addBlogModal');
-        const closeModalButton = document.getElementById('closeModalButton');
+      // managing the modals
+      const addBlogButton = document.getElementById("addBlogButton");
+      const addBlogModal = document.getElementById("addBlogModal");
+      const closeModalButton = document.getElementById("closeModalButton");
 
-        addBlogButton.addEventListener('click', () =>
-        {
-            addBlogModal.classList.remove('hidden');
-        });
+      addBlogButton.addEventListener("click", () => {
+        addBlogModal.classList.remove("hidden");
+      });
 
-        closeModalButton.addEventListener('click', () =>
-        {
-            addBlogModal.classList.add('hidden');
-        });
+      closeModalButton.addEventListener("click", () => {
+        addBlogModal.classList.add("hidden");
+      });
     </script>
 
-
     <script>
-        const showCommentsButtons = document.querySelectorAll('.showCommentsButton');
+      const showCommentsButtons = document.querySelectorAll(
+        ".showCommentsButton"
+      );
 
-        showCommentsButtons.forEach(button =>
-        {
-            button.addEventListener('click', () =>
-            {
-                const blogId = button.getAttribute('data-blog-id');
-                const commentsSection = document.querySelector(`.commentsSection[data-blog-id="${blogId}"]`);
-                commentsSection.style.display = 'block';
-                button.style.display = 'none';
-            });
+      showCommentsButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+          const blogId = button.getAttribute("data-blog-id");
+          const commentsSection = document.querySelector(
+            `.commentsSection[data-blog-id="${blogId}"]`
+          );
+          commentsSection.style.display = "block";
+          button.style.display = "none";
         });
+      });
     </script>
 
-
-
     <script>
-        function confirmDelete(blogId)
-        {
-            const confirmResult = alert("Are you sure you want to delete this blog? If not, then refresh the page! Do not click on OK!");
-            if (!confirmResult)
-            {
-                fetch('/dashboard', {
-                    method: 'GET',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                })
-            }
-            if (confirmResult)
-            {
-                // User confirmed, send the delete request
-                fetch(`/delete-blog/${blogId}`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                })
-                    .then(response => response.json())
-                    .then(data =>
-                    {
-                        alert(data.message); // Show success message
-                        window.location.reload(); // Reload the page to update the blog list
-                    })
-                    .catch(error =>
-                    {
-                        console.error('Error deleting blog:', error);
-                        alert('An error occurred while deleting the blog.');
-                    });
-            }
+      function confirmDelete(blogId) {
+        const confirmResult = alert(
+          "Are you sure you want to delete this blog? If not, then refresh the page! Do not click on OK!"
+        );
+        if (!confirmResult) {
+          fetch("/dashboard", {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          });
         }
-    </script>
-
-
-
-    <script>
-        document.addEventListener('DOMContentLoaded', () =>
-        {
-            const commentButtons = document.querySelectorAll('[id^="commentButton_"]');
-
-            commentButtons.forEach(button =>
-            {
-                const blogId = button.id.split('_')[1];
-                const commentForm = document.getElementById(`commentForm_${blogId}`);
-
-                button.addEventListener('click', () =>
-                {
-                    commentForm.classList.toggle('hidden');
-                });
+        if (confirmResult) {
+          // User confirmed, send the delete request
+          fetch(`/delete-blog/${blogId}`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          })
+            .then((response) => response.json())
+            .then((data) => {
+              alert(data.message); // Show success message
+              window.location.reload(); // Reload the page to update the blog list
+            })
+            .catch((error) => {
+              console.error("Error deleting blog:", error);
+              alert("An error occurred while deleting the blog.");
             });
-        });
+        }
+      }
     </script>
-
-
 
     <script>
-        const searchInput = document.getElementById('searchInput');
-        const searchButton = document.getElementById('searchButton');
+      document.addEventListener("DOMContentLoaded", () => {
+        const commentButtons = document.querySelectorAll(
+          '[id^="commentButton_"]'
+        );
 
-        searchButton.addEventListener('click', () =>
-        {
-            const query = searchInput.value;
-            if (query.trim() !== '')
-            {
-                // Redirect or handle the search here
-                window.location.href = `/search?query=${encodeURIComponent(query)}`;
-            }
+        commentButtons.forEach((button) => {
+          const blogId = button.id.split("_")[1];
+          const commentForm = document.getElementById(`commentForm_${blogId}`);
+
+          button.addEventListener("click", () => {
+            commentForm.classList.toggle("hidden");
+          });
         });
+      });
     </script>
 
+    <script>
+      const searchInput = document.getElementById("searchInput");
+      const searchButton = document.getElementById("searchButton");
 
-
-
-
-</body>
-
+      searchButton.addEventListener("click", () => {
+        const query = searchInput.value;
+        if (query.trim() !== "") {
+          // Redirect or handle the search here
+          window.location.href = `/search?query=${encodeURIComponent(query)}`;
+        }
+      });
+    </script>
+  </body>
 </html>

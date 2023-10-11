@@ -1,89 +1,144 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%=title%> | Profile</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="<%=link1%>" />
+    <link rel="stylesheet" href="<%=link2%>" />
+    <link
+      rel="canonical"
+      href="https://getbootstrap.com/docs/5.3/examples/masonry/"
+    />
+    <link rel="stylesheet" href="/css/output.css" />
+    <link rel="stylesheet" href="/css/additional.css" />
+  </head>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>
-        <%= title %>'s Profile
-    </title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
-    <link rel="stylesheet" href="<%=link1%>">
-    <link rel="stylesheet" href="<%=link2%>">
-    <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/masonry/">
-    <link rel="stylesheet" href="/css/output.css">
-    <link rel="stylesheet" href="/css/additional.css">
-</head>
-
-<body class="bg-gray-900">
-    <div class="dashboard-container">
-        <nav class="bg-gray-800 shadow-lg">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="flex justify-between h-16">
-                    <div class="flex">
-                        <a href="/dashboard" class="flex-shrink-0 flex items-center">
-                            <i class="text-gray-50 text-xl fa-solid fa-objects-column"></i>
-                            <span class="text-gray-300 text-lg ml-2 font-semibold">Colidea</span>
-                        </a>
-                    </div>
-                    <form action="/search" class="flex items-center" style="width: 40%;">
-                        <input class="h-9 bg-slate-700 rounded-md my-auto w-full outline-none pl-4 text-slate-300"
-                            type="search" name="query" id="searchInput" placeholder="Type here to search..." required autocomplete="off">
-                        <button id="searchButton"
-                            class="px-4 h-9 py-2 bg-slate-900 rounded-md text-slate-400 text-center">search</button>
-                    </form>
-                    <div class="flex items-center">
-                        <div class="hidden md:block">
-                            <a href="/following-blogs"
-                                class="text-gray-300 hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium">Home</a>
-                            <a href="/about"
-                                class="text-gray-300 hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium">About</a>
-                            <a href="/explore"
-                                class="text-gray-300 hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium">Explore</a>
-                            <a href="/dashboard"
-                                class="bg-gray-700 text-gray-300 hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium">Dashboard</a>
-                            </div>
-                            <form action="/logout" method="get">
-                                <button type="submit"
-                                    class="ml-1 text-gray-300 hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium"
-                                    title="Sign Out"><i class="fa-duotone fa-power-off"></i></button>
-                            </form>
-                        </div>
-                    </div>
-                    <div class="flex md:hidden">
-                        <button class="text-gray-300 hover:bg-gray-700 p-2 rounded-md">
-                            <svg class="h-6 w-6" fill="none" stroke-linecap="round" stroke-linejoin="round"
-                                stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
-                                <path d="M4 6h16M4 12h16M4 18h16"></path>
-                            </svg>
-                        </button>
-                    </div>
-                </div>
+  <body style="background: #fff">
+    <nav
+      class="bg-gray-100"
+      style="background: #fff; box-shadow: 0 0 10px rgba(0, 0, 0, 0.09)"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-16">
+          <div class="flex">
+            <a href="/dashboard" class="flex-shrink-0 flex items-center">
+              <i class="text-gray-700 text-xl fa-solid fa-objects-column"></i>
+              <span class="text-gray-700 text-lg ml-2 font-semibold"
+                >Colidea</span
+              >
+            </a>
+          </div>
+          <form action="/search" class="flex items-center" style="width: 40%">
+            <input
+              class="h-9 bg-gray-100 my-auto w-full outline-none pl-4 text-slate-700"
+              type="search"
+              name="query"
+              id="searchInput"
+              placeholder="Type here to search..."
+              autocomplete="off"
+              style="border-radius: 10px 0 0 10px"
+              required
+            />
+            <button
+              id="searchButton"
+              class="px-4 h-9 py-2 bg-slate-200 text-slate-400 text-center"
+              style="
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                border-radius: 0 10px 10px 0;
+              "
+            >
+              <i
+                class="fa-sharp fa-regular fa-magnifying-glass text-slate-500"
+              ></i>
+            </button>
+          </form>
+          <div class="flex items-center">
+            <div class="hidden md:block">
+              <a
+                href="/following-blogs"
+                class="text-gray-400 hover:bg-slate-100 hover:text-slate-800 px-3 py-2 rounded-md text-sm font-medium"
+                style="transition: 0.4s ease"
+                >Home</a
+              >
+              <a
+                href="/about"
+                class="text-gray-400 hover:bg-slate-100 hover:text-slate-800 px-3 py-2 rounded-md text-sm font-medium"
+                style="transition: 0.4s ease"
+                >About</a
+              >
+              <a
+                href="/explore"
+                class="text-gray-400 hover:bg-slate-100 hover:text-slate-800 px-3 py-2 rounded-md text-sm font-medium"
+                style="transition: 0.4s ease"
+                >Explore</a
+              >
+              <a
+                href="/dashboard"
+                class="bg-gray-800 text-gray-300 hover:text-gray-300 px-3 py-2 rounded-md text-sm font-medium"
+                style="transition: 0.4s ease"
+                >Dashboard</a
+              >
             </div>
-        </nav>
+            <form action="/logout" method="get">
+              <button
+                type="submit"
+                class="ml-1 text-gray-400 hover:text-red-500 px-3 py-2 rounded-md text-sm font-medium"
+                style="transition: 0.4s ease"
+                title="Sign Out"
+              >
+                <i class="fa-duotone fa-power-off"></i>
+              </button>
+            </form>
+          </div>
+          <div class="flex md:hidden">
+            <button class="text-gray-300 hover:bg-gray-700 p-2 rounded-md">
+              <svg
+                class="h-6 w-6"
+                fill="none"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path d="M4 6h16M4 12h16M4 18h16"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </nav>
         <style>
-            .circle-container {
-            width: 130px;
-            height: 130px;
-            background-color: #fff; /* Set your desired background color here */
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-            }
-            .someStyles {
-                max-width: 100%;
-                max-height: 100%;
-                /* width: auto; */
-                height: 130px;
-                display: block;
-                margin: 0 auto;
-                /* border-radius: 50%; */
-            }
+      .circle-container {
+        width: 130px;
+        height: 130px;
+        background-color: #fff;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        border: 1px solid #999999;
+        align-items: center;
+        overflow: hidden;
+        margin-bottom: 20px;
+      }
+      .someStyles {
+        max-width: 100%;
+        max-height: 100%;
+        display: block;
+        width: 100%;
+        margin: 0 auto;
+      }
         </style>
-        <div class="upperSection h-72 grid grid-cols-3 gap-3" style="border-bottom: 1px solid #1f2630;">
+        <div class="upperSection h-72 grid grid-cols-3 gap-3" style="border-bottom: 1px solid #dedede;">
             <div class="png flex flex-col items-center justify-center gap-4">
                 <% if(!user.uploads[0]) { %>
                     <div class="circle-container">
@@ -99,13 +154,13 @@
                 </p>
             </div>
             <div class="bio gap-3" style="display: flex; justify-content: center; flex-direction: column;">
-                <h2 class="text-slate-300 text-xl">
+                <h2 class="text-slate-600 text-xl">
                     <%=user.firstName%>
                         <%=user.lastName%> <span class="text-sm">
                                 <%=user.country%>
                             </span>
                 </h2>
-                <h2 class="text-slate-300 text-md">@<%=user.username%>
+                <h2 class="text-slate-400 text-md">@<%=user.username%>
 
                         <%if(verified==true) {%>
                             <i class="text-blue-500 fa-solid fa-badge-check" style="cursor: pointer;"
@@ -119,29 +174,27 @@
                     <div class="followers flex gap-2 flex-col">
                         <h1 class="text-slate-500 font-bold">Followers</h1>
                         <h1 class="text-slate-300 text-xl">
-                            <a href="/get-followers">
-                                <h1 class="text-slate-300 text-xl">
-                                    <%=followersCnt%>
-                                </h1>
-                            </a>
+                            <h1 class="text-slate-400 text-xl">
+                                <%=followersCnt%>
+                            </h1>
                         </h1>
                     </div>
                     <div class="following flex gap-2 flex-col">
                         <h1 class="text-slate-500 font-bold">Followings</h1>
                         <h1></h1>
-                        <h1 class="text-slate-300 text-xl">
+                        <h1 class="text-slate-400 text-xl">
                             <%=followingsCnt%>
                         </h1>
                     </div>
                     <div class="posts flex gap-2 flex-col">
                         <h1 class="text-slate-500 font-bold">Posts</h1>
                         <h1></h1>
-                        <h1 class="text-slate-300 text-xl">
+                        <h1 class="text-slate-400 text-xl">
                             <%=userBlogs.length%>
                         </h1>
                     </div>
                 </div>
-                <div class="bioAdding text-slate-300">
+                <div class="bioAdding text-slate-500">
                     <p>
                         <%=user.bio%>
                     </p>
@@ -172,32 +225,32 @@
             </div>
         </div>
 
-        <h1 class="text-slate-400 text-center text-2xl font-bold" style="height: 10vh; display: flex; justify-content: center; align-items: center;"><%=profiledName%>'s Blogs</h1>
+        <h1 class="text-slate-500 text-center text-2xl font-bold" style="height: 10vh; display: flex; justify-content: center; align-items: center;"><%=profiledName%>'s Blogs</h1>
 
         <div class="blogPosts mt-8 w-full px-4 mx-auto grid grid-cols-3 gap-4">
             <% userBlogs.forEach(blog=> { %>
-                <div class="blogPost bg-slate-700 rounded-md mb-6 p-4">
-                    <h2 class="text-slate-200 text-xl font-bold">
+                <div class="blogPost bg-slate-100 rounded-md mb-6 p-4">
+                    <h2 class="text-slate-500 text-xl font-bold">
                         <%= blog.title %>
                     </h2>
-                    <hr class="text-slate-100 mt-2">
-                    <div class="card-text text-slate-300" style="height: min-content; max-height: 40vh; overflow-y: auto; white-space: pre-wrap; padding-top: 20px;"><p class="card-text"><%= blog.content %></p></div>
+                    <hr class="text-slate-400 mt-2">
+                    <div class="card-text text-slate-500" style="height: min-content; max-height: 40vh; overflow-y: auto; white-space: pre-wrap; padding-top: 20px;"><p class="card-text"><%= blog.content %></p></div>
                     <div class="interactionSection grid mt-4">
                         <div class="containedPack flex justify-between">
                             <form action="/like/<%= blog._id %>" method="POST">
                                 <% if (blog.likes.includes(rootUser._id.toString())) { %>
                                     <!-- Show Unlike button if the user has already liked the blog -->
-                                    <button class="text-white rounded-md py-2" type="submit">
+                                    <button class="text-slate-900 rounded-md py-2" type="submit">
                                         <i class="fa-solid fa-thumbs-up"></i> <%= blog.likes.length %>
                                     </button>
                                 <% } else { %>
                                     <!-- Show Like button if the user hasn't liked the blog -->
-                                    <button class="text-slate-300 rounded-md py-2" type="submit">
+                                    <button class="text-slate-900 rounded-md py-2" type="submit">
                                         <i class="fa-light fa-thumbs-up"></i> <%= blog.likes.length %>
                                     </button>
                                 <% } %>
                             </form>
-                            <button class="bg-blue-800 text-slate-300 rounded-md px-3 py-2 commentButton"
+                            <button class="bg-slate-600 text-slate-200 rounded-md px-3 py-2 commentButton"
                                 data-blog-id="<%= blog._id %>">
                                 Comment
                             </button>
